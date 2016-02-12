@@ -15,6 +15,7 @@
 		CE2775F81C67D3F6002F81F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2775F61C67D3F6002F81F2 /* LaunchScreen.storyboard */; };
 		CE2776031C67D3F6002F81F2 /* FalconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2776021C67D3F6002F81F2 /* FalconTests.swift */; };
 		CE27760E1C67D3F6002F81F2 /* FalconUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27760D1C67D3F6002F81F2 /* FalconUITests.swift */; };
+		CE27761D1C67EA98002F81F2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27761C1C67EA98002F81F2 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		CE2776091C67D3F6002F81F2 /* FalconUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FalconUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE27760D1C67D3F6002F81F2 /* FalconUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalconUITests.swift; sourceTree = "<group>"; };
 		CE27760F1C67D3F6002F81F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE27761C1C67EA98002F81F2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
 		E8DB16FED10A9AA1C3B29461 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 		CE2775EC1C67D3F6002F81F2 /* Falcon */ = {
 			isa = PBXGroup;
 			children = (
+				CE27761B1C67EA78002F81F2 /* Controllers */,
 				CE2775ED1C67D3F6002F81F2 /* AppDelegate.swift */,
 				CE2775EF1C67D3F6002F81F2 /* ViewController.swift */,
 				CE2775F11C67D3F6002F81F2 /* Main.storyboard */,
@@ -147,6 +150,14 @@
 				CE27760F1C67D3F6002F81F2 /* Info.plist */,
 			);
 			path = FalconUITests;
+			sourceTree = "<group>";
+		};
+		CE27761B1C67EA78002F81F2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE27761C1C67EA98002F81F2 /* LoginViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE27761D1C67EA98002F81F2 /* LoginViewController.swift in Sources */,
 				CE2775F01C67D3F6002F81F2 /* ViewController.swift in Sources */,
 				CE2775EE1C67D3F6002F81F2 /* AppDelegate.swift in Sources */,
 			);
