@@ -15,7 +15,6 @@ class LoginViewController: UIViewController {
 	var ref: Firebase!
 	@IBOutlet weak var loginTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
-	@IBOutlet weak var loginButton: UIButton!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
