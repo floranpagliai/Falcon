@@ -7,12 +7,32 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
+	var ref: Firebase!
 
+	override init() {
+		super.init()
+		Firebase.defaultConfig().persistenceEnabled = true
+		print("test")
+		ref = Firebase(url: "https://falcongame.firebaseio.com")
+		ref.createUser("floran.pagliai@gmail.com", password: "floran",
+			withValueCompletionBlock: { error, result in
+				if error != nil {
+					print("error")
+					print(error)
+					// There was an error creating the account
+				} else {
+					let uid = result["uid"] as? String
+					print("Successfully created user account with uid: \(uid)")
+				}
+		})
+		print("test2")
+	}
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		

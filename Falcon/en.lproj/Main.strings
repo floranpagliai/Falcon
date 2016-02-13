@@ -1,0 +1,12 @@
+
+/* Class = "UITextField"; placeholder = "Enter password"; ObjectID = "90k-dm-EGL"; */
+"90k-dm-EGL.placeholder" = "Enter password";
+
+/* Class = "UITextField"; placeholder = "Enter username"; ObjectID = "GF0-6i-uUf"; */
+"GF0-6i-uUf.placeholder" = "Enter username";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "Urb-6p-P50"; */
+"Urb-6p-P50.normalTitle" = "Login";
+
+/* Class = "UIViewController"; title = "Login View"; ObjectID = "Vhb-mS-16o"; */
+"Vhb-mS-16o.title" = "Login View";

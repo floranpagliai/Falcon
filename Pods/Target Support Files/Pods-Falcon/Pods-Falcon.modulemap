@@ -1,0 +1,6 @@
+framework module Pods_Falcon {
+  umbrella header "Pods-Falcon-umbrella.h"
+
+  export *
+  module * { export * }
+}
