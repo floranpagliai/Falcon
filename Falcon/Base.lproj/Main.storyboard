@@ -13,7 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username" textAlignment="natural" minimumFontSize="17" id="GF0-6i-uUf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" id="GF0-6i-uUf">
                                 <rect key="frame" x="20" y="231" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -34,7 +34,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="M02-61-v2f"/>
-                                    <segue destination="aQG-iD-qj2" kind="push" identifier="Logged" id="ewC-i0-3ff"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XqF-QB-1y6">
@@ -43,6 +42,7 @@
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="GU1-PK-HGO"/>
+                                    <segue destination="rTZ-gs-Zw2" kind="modal" modalTransitionStyle="flipHorizontal" id="R5h-9t-FK9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -56,6 +56,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jP0-yE-59F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="485" y="307"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="zKl-ZL-pMD">
+            <objects>
+                <viewController storyboardIdentifier="Register" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rTZ-gs-Zw2" customClass="RegisterViewController" customModule="Falcon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d9c-Re-rrP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" id="Mrj-4h-uZ3">
+                                <rect key="frame" x="20" y="212" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" id="Cbd-f3-ZwU">
+                                <rect key="frame" x="20" y="250" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="o2M-CT-cDJ">
+                                <rect key="frame" x="20" y="288" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.85098039219999999" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="OB8-uk-HZz"/>
+                                    <action selector="registerAction:" destination="rTZ-gs-Zw2" eventType="touchUpInside" id="Fru-UM-RAi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="v3e-MA-fAI">
+                                <rect key="frame" x="142" y="326" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="registerAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="agi-71-8d5"/>
+                                    <segue destination="Vhb-mS-16o" kind="modal" modalTransitionStyle="flipHorizontal" id="JUg-wo-jbd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vTK-zv-lHp"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="Mrj-4h-uZ3" id="gpu-JS-2lf"/>
+                        <outlet property="passwordTextField" destination="Cbd-f3-ZwU" id="ud4-36-kHZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WBU-Av-E88" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="485" y="989"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="ctH-ZA-rjA">

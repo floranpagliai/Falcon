@@ -26,61 +26,17 @@ class LoginViewController: UIViewController {
 	
 	// MARK: Actions
 	@IBAction func loginAction(sender: UIButton) {
-		ref.authUser(loginTextField.text, password: passwordTextField.text,
-			withCompletionBlock: { (error, auth) in
-				if error != nil {
-					print("login ko")
-					// There was an error logging in to this account
-				} else {
-					print("login ok")
-					// We are now logged in
-					self.performSegueWithIdentifier("Logged", sender: self)
-					
-				}
+		ref.authUser(loginTextField.text, password: passwordTextField.text, withCompletionBlock: {
+			(error, auth) in
+			if error != nil {
+				print("Login : Login ko")
+				// There was an error logging in to this account
+				// TODO: Add error message
+			} else {
+				print("Login : Login ok")
+				// We are now logged in
+				self.presentViewController(HomeViewController(), animated: true, completion: nil)
+			}
 		})
-	}
-	
-	@IBAction func registerAction(sender: UIButton) {
-		let alert = UIAlertController(title: "Register",
-			message: "Register",
-			preferredStyle: .Alert)
-		
-		let saveAction = UIAlertAction(title: "Save",
-			style: .Default) { (action: UIAlertAction) -> Void in
-				
-				let emailField = alert.textFields![0]
-				let passwordField = alert.textFields![1]
-				self.ref.createUser(emailField.text, password: passwordField.text) { (error: NSError!) in
-					// 2
-					if error == nil {
-						// 3
-						self.ref.authUser(emailField.text, password: passwordField.text,
-							withCompletionBlock: { (error, auth) -> Void in
-						})
-					}
-				}
-		}
-		
-		let cancelAction = UIAlertAction(title: "Cancel",
-			style: .Default) { (action: UIAlertAction) -> Void in
-		}
-		
-		alert.addTextFieldWithConfigurationHandler {
-			(textEmail) -> Void in
-			textEmail.placeholder = "Enter your email"
-		}
-		
-		alert.addTextFieldWithConfigurationHandler {
-			(textPassword) -> Void in
-			textPassword.secureTextEntry = true
-			textPassword.placeholder = "Enter your password"
-		}
-		
-		alert.addAction(saveAction)
-		alert.addAction(cancelAction)
-		
-		presentViewController(alert,
-			animated: true,
-			completion: nil)
 	}
 }
