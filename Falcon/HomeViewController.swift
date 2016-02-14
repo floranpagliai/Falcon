@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UITableViewController {
+	
+	// MARK: Properties
+	var ref: Firebase!
 	
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		ref = Firebase(url: "https://falcongame.firebaseio.com")
+	}
+	@IBAction func logoutAction(sender: UIButton) {
+		ref.unauth()
 	}
 }
