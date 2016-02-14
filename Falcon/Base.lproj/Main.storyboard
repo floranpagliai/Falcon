@@ -34,6 +34,7 @@
                                 </state>
                                 <connections>
                                     <action selector="loginAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="M02-61-v2f"/>
+                                    <segue destination="BVd-Bd-ZBR" kind="modal" identifier="Logged" id="ak8-T3-LHz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XqF-QB-1y6">
@@ -66,11 +67,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KlJ-Hg-W6S">
-                                <rect key="frame" x="137" y="15" width="46" height="30"/>
+                                <rect key="frame" x="136" y="269" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logoutAction:" destination="BVd-Bd-ZBR" eventType="touchUpInside" id="TtG-PG-Izv"/>
+                                    <segue destination="Vhb-mS-16o" kind="modal" identifier="Logout" id="Iwy-Rj-YvC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -136,4 +138,7 @@
             <point key="canvasLocation" x="485" y="989"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Iwy-Rj-YvC"/>
+    </inferredMetricsTieBreakers>
 </document>

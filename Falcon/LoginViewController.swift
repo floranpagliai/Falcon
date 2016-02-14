@@ -35,7 +35,8 @@ class LoginViewController: UIViewController {
 			} else {
 				print("Login : Login ok")
 				// We are now logged in
-				self.presentViewController(HomeViewController(), animated: true, completion: nil)
+				self.performSegueWithIdentifier("Logged", sender: nil)
+//				self.presentViewController(HomeViewController(), animated: true, completion: nil)
 			}
 		})
 	}

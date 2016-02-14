@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		var controllerId = "Login";
 		let ref = Firebase(url: "https://falcongame.firebaseio.com")
-		ref.unauth()
+
 		if ref.authData != nil {
 			// user authenticated
 			print(ref.authData)

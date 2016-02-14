@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UIViewController {
 	
 	// MARK: Properties
 	var ref: Firebase!
@@ -21,5 +21,6 @@ class HomeViewController: UITableViewController {
 	}
 	@IBAction func logoutAction(sender: UIButton) {
 		ref.unauth()
+		self.performSegueWithIdentifier("Logout", sender: nil)
 	}
 }
