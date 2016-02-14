@@ -18,25 +18,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	override init() {
 		super.init()
 		Firebase.defaultConfig().persistenceEnabled = true
-		print("test")
-		ref = Firebase(url: "https://falcongame.firebaseio.com")
-		ref.createUser("floran.pagliai@gmail.com", password: "floran",
-			withValueCompletionBlock: { error, result in
-				if error != nil {
-					print("error")
-					print(error)
-					// There was an error creating the account
-				} else {
-					let uid = result["uid"] as? String
-					print("Successfully created user account with uid: \(uid)")
-				}
-		})
-		print("test2")
 	}
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+		var controllerId = "Login";
+		let ref = Firebase(url: "https://falcongame.firebaseio.com")
+		ref.unauth()
+		if ref.authData != nil {
+			// user authenticated
+			print(ref.authData)
+			controllerId = "Home";
+		} else {
+			// No user is signed in
+			controllerId = "Login";
+		}
 		
-		let controllerId = "Login";
+		
 		
 		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 		let initViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier(controllerId) as UIViewController

@@ -6,4 +6,12 @@
 //  Copyright © 2016 Falcon. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class HomeViewController: UITableViewController {
+	
+	// MARK: UIViewController Lifecycle
+	override func viewDidLoad() {
+		super.viewDidLoad()
+	}
+}
