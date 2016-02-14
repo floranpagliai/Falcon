@@ -13,6 +13,7 @@ class RegisterViewController: UIViewController {
 	
 	// MARK: Properties
 	var ref: Firebase!
+	@IBOutlet weak var usernameTextField: UITextField!
 	@IBOutlet weak var emailTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
 	
@@ -34,10 +35,16 @@ class RegisterViewController: UIViewController {
 						(error, auth) in
 						if error != nil {
 							print("Register : Login ko")
-							self.presentViewController(LoginViewController(), animated: true, completion: nil)
+							self.performSegueWithIdentifier("Login", sender: nil)
 						} else {
 							print("Register : Login ok")
-							self.presentViewController(HomeViewController(), animated: true, completion: nil)
+							let newUser = [
+								"provider": auth.provider,
+								"username": self.usernameTextField.text,
+								"email": self.emailTextField.text
+							]
+							self.ref.childByAppendingPath("users").childByAppendingPath(auth.uid).setValue(newUser)
+							self.performSegueWithIdentifier("Logged", sender: nil)
 						}
 					})
 				} else {

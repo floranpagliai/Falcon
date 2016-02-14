@@ -42,8 +42,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <action selector="registerAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="GU1-PK-HGO"/>
-                                    <segue destination="rTZ-gs-Zw2" kind="modal" modalTransitionStyle="flipHorizontal" id="R5h-9t-FK9"/>
+                                    <segue destination="rTZ-gs-Zw2" kind="modal" identifier="" modalTransitionStyle="flipHorizontal" id="R5h-9t-FK9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -72,7 +71,7 @@
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logoutAction:" destination="BVd-Bd-ZBR" eventType="touchUpInside" id="TtG-PG-Izv"/>
-                                    <segue destination="Vhb-mS-16o" kind="modal" identifier="Logout" id="Iwy-Rj-YvC"/>
+                                    <segue destination="Vhb-mS-16o" kind="modal" identifier="Logout" modalTransitionStyle="crossDissolve" id="Iwy-Rj-YvC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -81,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4e1-B5-D5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="858" y="315"/>
+            <point key="canvasLocation" x="1302" y="323"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="zKl-ZL-pMD">
@@ -124,6 +123,12 @@
                                     <segue destination="Vhb-mS-16o" kind="modal" modalTransitionStyle="flipHorizontal" id="JUg-wo-jbd"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username" textAlignment="natural" minimumFontSize="17" id="yIk-AQ-JCg">
+                                <rect key="frame" x="20" y="174" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -131,6 +136,8 @@
                     <connections>
                         <outlet property="emailTextField" destination="Mrj-4h-uZ3" id="gpu-JS-2lf"/>
                         <outlet property="passwordTextField" destination="Cbd-f3-ZwU" id="ud4-36-kHZ"/>
+                        <outlet property="usernameTextField" destination="yIk-AQ-JCg" id="N8T-NQ-hMy"/>
+                        <segue destination="BVd-Bd-ZBR" kind="modal" identifier="Logged" id="9fZ-gR-3TG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WBU-Av-E88" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,6 +146,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Iwy-Rj-YvC"/>
+        <segue reference="JUg-wo-jbd"/>
+        <segue reference="9fZ-gR-3TG"/>
     </inferredMetricsTieBreakers>
 </document>
