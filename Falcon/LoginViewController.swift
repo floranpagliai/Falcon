@@ -29,20 +29,23 @@ class LoginViewController: UIViewController {
 	// MARK: Actions
 	@IBAction func loginFacebookAction(sender: UIButton) {
 		let facebookLogin = FBSDKLoginManager()
-		facebookLogin.logInWithReadPermissions(["email"], handler: {
+		facebookLogin.loginBehavior = FBSDKLoginBehavior.SystemAccount
+		facebookLogin.logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: self, handler: {
 			(facebookResult, facebookError) -> Void in
 			if facebookError != nil {
-				print("Facebook login failed. Error \(facebookError)")
+				print("Login : Facebook login failed. Error \(facebookError)")
 			} else if facebookResult.isCancelled {
-				print("Facebook login was cancelled.")
+				print("Login : Facebook login was cancelled.")
 			} else {
 				let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
 				self.ref.authWithOAuthProvider("facebook", token: accessToken,
-					withCompletionBlock: { error, authData in
+					withCompletionBlock: { error, auth in
 						if error != nil {
-							print("Login failed. \(error)")
+							print("Login : Facebook login ko")
 						} else {
-							print("Logged in! \(authData)")
+							print("Login : Facebook login ok")
+							FacebookManager.registerUser(auth, token: facebookResult.token.tokenString)
+							self.performSegueWithIdentifier("Logged", sender: nil)
 						}
 				})
 			}

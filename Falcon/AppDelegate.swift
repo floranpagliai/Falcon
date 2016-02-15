@@ -38,8 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let initViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier(controllerId) as UIViewController
 		self.window?.rootViewController = initViewController
 		
-		return FBSDKApplicationDelegate.sharedInstance()
-			.application(application, didFinishLaunchingWithOptions: launchOptions)
+		return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 	}
 
 	func applicationWillResignActive(application: UIApplication) {
@@ -65,11 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
 	
-	func application(application: UIApplication, openURL url: NSURL,
-		sourceApplication: String?, annotation: AnyObject?) -> Bool {
-			return FBSDKApplicationDelegate.sharedInstance()
-				.application(application, openURL: url,
-					sourceApplication: sourceApplication, annotation: annotation)
+	func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+			return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
 	}
 
 

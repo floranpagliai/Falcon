@@ -17,6 +17,7 @@
 		CEDAB01A1C70BF4100CC332C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0191C70BF4100CC332C /* HomeViewController.swift */; };
 		CEDAB01E1C70ECCA00CC332C /* RegisterViewCrontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */; };
 		CEDAB0201C7124F900CC332C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB01F1C7124F900CC332C /* MapViewController.swift */; };
+		CEDAB0221C72730900CC332C /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0211C72730900CC332C /* FacebookManager.swift */; };
 		D5AFDD6E96640E8675FBEE36 /* Pods_Falcon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054683E0AA2FA33BD5F932D2 /* Pods_Falcon.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		CEDAB0191C70BF4100CC332C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewCrontroller.swift; sourceTree = "<group>"; };
 		CEDAB01F1C7124F900CC332C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		CEDAB0211C72730900CC332C /* FacebookManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		FE533763D9FE914DCBF5FC91 /* Pods-Falcon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Falcon.release.xcconfig"; path = "Pods/Target Support Files/Pods-Falcon/Pods-Falcon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,6 +187,7 @@
 		CE529BFB1C6FC70300A97F18 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CEDAB0211C72730900CC332C /* FacebookManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				CEDAB0181C7087D300CC332C /* LoginViewController.swift in Sources */,
 				CE2775EE1C67D3F6002F81F2 /* AppDelegate.swift in Sources */,
 				CEDAB01E1C70ECCA00CC332C /* RegisterViewCrontroller.swift in Sources */,
+				CEDAB0221C72730900CC332C /* FacebookManager.swift in Sources */,
 				CEDAB0201C7124F900CC332C /* MapViewController.swift in Sources */,
 				CEDAB01A1C70BF4100CC332C /* HomeViewController.swift in Sources */,
 			);
