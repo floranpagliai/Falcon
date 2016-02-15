@@ -37,17 +37,19 @@ class LoginViewController: UIViewController {
 			} else if facebookResult.isCancelled {
 				print("Login : Facebook login was cancelled.")
 			} else {
-				let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-				self.ref.authWithOAuthProvider("facebook", token: accessToken,
-					withCompletionBlock: { error, auth in
-						if error != nil {
-							print("Login : Facebook login ko")
-						} else {
-							print("Login : Facebook login ok")
-							FacebookManager.registerUser(auth, token: facebookResult.token.tokenString)
-							self.performSegueWithIdentifier("Logged", sender: nil)
-						}
-				})
+				FacebookManager.registerUser(facebookResult.token.tokenString)
+				self.performSegueWithIdentifier("Logged", sender: nil)
+//				let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+//				self.ref.authWithOAuthProvider("facebook", token: accessToken,
+//					withCompletionBlock: { error, auth in
+//						if error != nil {
+//							print("Login : Facebook login ko")
+//						} else {
+//							print("Login : Facebook login ok")
+//							FacebookManager.registerUser(auth, token: facebookResult.token.tokenString)
+//							self.performSegueWithIdentifier("Logged", sender: nil)
+//						}
+//				})
 			}
 		})
 	}

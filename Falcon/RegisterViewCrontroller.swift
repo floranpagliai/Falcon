@@ -32,18 +32,18 @@ class RegisterViewController: UIViewController {
 				(error: NSError!) in
 				if error == nil {
 					self.ref.authUser(self.emailTextField.text, password: self.passwordTextField.text, withCompletionBlock: {
-						(error, auth) in
+						(error, authData) in
 						if error != nil {
 							print("Register : Login ko")
 							self.performSegueWithIdentifier("Login", sender: nil)
 						} else {
 							print("Register : Login ok")
 							let newUser = [
-								"provider": auth.provider,
+								"provider": authData.provider,
 								"username": self.usernameTextField.text,
 								"email": self.emailTextField.text
 							]
-							self.ref.childByAppendingPath("users").childByAppendingPath(auth.uid).setValue(newUser)
+							self.ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
 							self.performSegueWithIdentifier("Logged", sender: nil)
 						}
 					})
