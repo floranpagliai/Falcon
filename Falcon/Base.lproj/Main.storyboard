@@ -34,7 +34,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="M02-61-v2f"/>
-                                    <segue destination="BVd-Bd-ZBR" kind="modal" identifier="Logged" id="ak8-T3-LHz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XqF-QB-1y6">
@@ -51,11 +50,12 @@
                     <connections>
                         <outlet property="loginTextField" destination="GF0-6i-uUf" id="4i2-Tt-ad5"/>
                         <outlet property="passwordTextField" destination="90k-dm-EGL" id="ITd-or-HoI"/>
+                        <segue destination="BVd-Bd-ZBR" kind="modal" identifier="Logged" id="SYo-nc-eFf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jP0-yE-59F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="485" y="307"/>
+            <point key="canvasLocation" x="591" y="311"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="zFH-LF-Edt">
@@ -146,7 +146,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JUg-wo-jbd"/>
-        <segue reference="9fZ-gR-3TG"/>
+        <segue reference="Iwy-Rj-YvC"/>
+        <segue reference="SYo-nc-eFf"/>
     </inferredMetricsTieBreakers>
 </document>

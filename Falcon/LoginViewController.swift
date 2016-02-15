@@ -32,11 +32,17 @@ class LoginViewController: UIViewController {
 				print("Login : Login ko")
 				// There was an error logging in to this account
 				// TODO: Add error message
+				
+				self.loginTextField.layer.borderColor = UIColor.redColor().CGColor
+				self.loginTextField.layer.borderWidth = 1.0
+				self.loginTextField.layer.cornerRadius = 8
+				self.passwordTextField.layer.borderColor = UIColor.redColor().CGColor
+				self.passwordTextField.layer.borderWidth = 1.0
+				self.passwordTextField.layer.cornerRadius = 8
 			} else {
 				print("Login : Login ok")
 				// We are now logged in
 				self.performSegueWithIdentifier("Logged", sender: nil)
-//				self.presentViewController(HomeViewController(), animated: true, completion: nil)
 			}
 		})
 	}

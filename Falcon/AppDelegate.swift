@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,17 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		var controllerId = "Login";
 		let ref = Firebase(url: "https://falcongame.firebaseio.com")
+		GMSServices.provideAPIKey("AIzaSyDg64M-wm_BOaiicA5nt0f3zqGPWbNFfvs")
 
 		if ref.authData != nil {
-			// user authenticated
-			print(ref.authData)
 			controllerId = "Home";
 		} else {
-			// No user is signed in
 			controllerId = "Login";
 		}
-		
-		
 		
 		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 		let initViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier(controllerId) as UIViewController
