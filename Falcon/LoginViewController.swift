@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
 	// MARK: Actions
 	@IBAction func loginFacebookAction(sender: UIButton) {
 		let facebookLogin = FBSDKLoginManager()
+		
 		facebookLogin.loginBehavior = FBSDKLoginBehavior.SystemAccount
 		facebookLogin.logInWithReadPermissions(["public_profile", "email", "user_friends"], fromViewController: self, handler: {
 			(facebookResult, facebookError) -> Void in
@@ -37,19 +38,54 @@ class LoginViewController: UIViewController {
 			} else if facebookResult.isCancelled {
 				print("Login : Facebook login was cancelled.")
 			} else {
-				FacebookManager.registerUser(facebookResult.token.tokenString)
-				self.performSegueWithIdentifier("Logged", sender: nil)
-//				let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-//				self.ref.authWithOAuthProvider("facebook", token: accessToken,
-//					withCompletionBlock: { error, auth in
-//						if error != nil {
-//							print("Login : Facebook login ko")
-//						} else {
-//							print("Login : Facebook login ok")
-//							FacebookManager.registerUser(auth, token: facebookResult.token.tokenString)
-//							self.performSegueWithIdentifier("Logged", sender: nil)
-//						}
-//				})
+				let req = FBSDKGraphRequest(
+					graphPath: "me",
+					parameters: ["fields":"email,name"],
+					tokenString: facebookResult.token.tokenString, version: nil,
+					HTTPMethod: "GET")
+				req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+					if(error == nil) {
+						let ref = Firebase(url: "https://falcongame.firebaseio.com")
+						let password = self.randomStringWithLength(8)
+						let resultdict = result as? NSDictionary
+						let newUser = [
+							"provider": "facebook",
+							"username": resultdict!["name"] as! String,
+							"email": resultdict!["email"] as! String,
+							"facebook_token": facebookResult.token.tokenString
+						]
+						ref.createUser(newUser["email"], password: password, withValueCompletionBlock: {
+							(error, result) in
+							if error == nil {
+								print("Register : Register ok")
+								let uid = result["uid"] as? String
+								ref.childByAppendingPath("users").childByAppendingPath(uid).setValue(newUser)
+								//								ref.authUser(newUser["email"], password: password, withCompletionBlock: {
+								//									(error, authData) in
+								//									if error == nil {
+								//										print("FacebookManager : Login ok")
+								//										self.performSegueWithIdentifier("Logged", sender: nil)
+								//									} else {
+								//										print("FacebookManager : Login ko")
+								//									}
+								//								})
+								
+							} else {
+								print("Register : Register ko")
+							}
+							ref.authWithOAuthProvider("facebook", token: facebookResult.token.tokenString,
+								withCompletionBlock: {
+									(error, authData) in
+									if error != nil {
+										print("Login failed. \(error)")
+									} else {
+										print("Logged in! \(authData)")
+										self.performSegueWithIdentifier("Logged", sender: nil)
+									}
+							})
+						})
+					}
+				})
 			}
 		})
 	}
@@ -74,5 +110,20 @@ class LoginViewController: UIViewController {
 				self.performSegueWithIdentifier("Logged", sender: nil)
 			}
 		})
+	}
+	
+	func randomStringWithLength(len: Int) -> String {
+		
+		let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+		
+		let randomString : NSMutableString = NSMutableString(capacity: len)
+		
+		for (var i=0; i < len; i++){
+			let length = UInt32 (letters.length)
+			let rand = arc4random_uniform(length)
+			randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+		}
+		
+		return randomString as String
 	}
 }
