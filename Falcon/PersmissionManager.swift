@@ -14,7 +14,7 @@ class PersmissionManager {
 		let pscope = PermissionScope()
 		
 		pscope.addPermission(LocationWhileInUsePermission(), message: "We use this to track\r\nwhere you live")
-		
+
 		pscope.show()
 	}
 }

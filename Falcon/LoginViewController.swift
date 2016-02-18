@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
 	// MARK: Properties
 	var ref: FirebaseManager!
 	var fbm: FacebookManager!
+	
+	// MARK: View Properties
 	@IBOutlet weak var loginTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
 	
