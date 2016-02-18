@@ -14,14 +14,16 @@ import FBSDKLoginKit
 class LoginViewController: UIViewController {
 	
 	// MARK: Properties
-	var ref: Firebase!
+	var ref: FirebaseManager!
+	var fbm: FacebookManager!
 	@IBOutlet weak var loginTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
 	
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		ref = Firebase(url: "https://falcongame.firebaseio.com")
+		ref = FirebaseManager()
+		fbm = FacebookManager()
 		
 		loginTextField.autocorrectionType = UITextAutocorrectionType.No
 	}
@@ -38,52 +40,13 @@ class LoginViewController: UIViewController {
 			} else if facebookResult.isCancelled {
 				print("Login : Facebook login was cancelled.")
 			} else {
-				let req = FBSDKGraphRequest(
-					graphPath: "me",
-					parameters: ["fields":"email,name"],
-					tokenString: facebookResult.token.tokenString, version: nil,
-					HTTPMethod: "GET")
-				req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
-					if(error == nil) {
-						let ref = Firebase(url: "https://falcongame.firebaseio.com")
-						let password = self.randomStringWithLength(8)
-						let resultdict = result as? NSDictionary
-						let newUser = [
-							"provider": "facebook",
-							"username": resultdict!["name"] as! String,
-							"email": resultdict!["email"] as! String,
-							"facebook_token": facebookResult.token.tokenString
-						]
-						ref.createUser(newUser["email"], password: password, withValueCompletionBlock: {
-							(error, result) in
-							if error == nil {
-								print("Register : Register ok")
-								let uid = result["uid"] as? String
-								ref.childByAppendingPath("users").childByAppendingPath(uid).setValue(newUser)
-								//								ref.authUser(newUser["email"], password: password, withCompletionBlock: {
-								//									(error, authData) in
-								//									if error == nil {
-								//										print("FacebookManager : Login ok")
-								//										self.performSegueWithIdentifier("Logged", sender: nil)
-								//									} else {
-								//										print("FacebookManager : Login ko")
-								//									}
-								//								})
-								
-							} else {
-								print("Register : Register ko")
-							}
-							ref.authWithOAuthProvider("facebook", token: facebookResult.token.tokenString,
-								withCompletionBlock: {
-									(error, authData) in
-									if error != nil {
-										print("Login failed. \(error)")
-									} else {
-										print("Logged in! \(authData)")
-										self.performSegueWithIdentifier("Logged", sender: nil)
-									}
-							})
-						})
+				self.fbm.registerUser(facebookResult.token.tokenString, withCompletionBlock: {
+					(error) -> Void in
+				})
+				self.ref.loginOAuthUser("facebook", token: facebookResult.token.tokenString, withCompletionBlock: {
+					(error) -> Void in
+					if (!error) {
+						self.performSegueWithIdentifier("Logged", sender: nil)
 					}
 				})
 			}
@@ -91,25 +54,21 @@ class LoginViewController: UIViewController {
 	}
 	
 	@IBAction func loginAction(sender: UIButton) {
-		ref.authUser(loginTextField.text, password: passwordTextField.text, withCompletionBlock: {
-			(error, auth) in
-			if error != nil {
-				print("Login : Login ko")
+		ref.loginUser(loginTextField.text!, password: passwordTextField.text!) {
+			(error) -> Void in
+			if (!error) {
+				self.performSegueWithIdentifier("Logged", sender: nil)
+			} else {
 				// There was an error logging in to this account
 				// TODO: Add error message
-				
 				self.loginTextField.layer.borderColor = UIColor.redColor().CGColor
 				self.loginTextField.layer.borderWidth = 1.0
 				self.loginTextField.layer.cornerRadius = 8
 				self.passwordTextField.layer.borderColor = UIColor.redColor().CGColor
 				self.passwordTextField.layer.borderWidth = 1.0
 				self.passwordTextField.layer.cornerRadius = 8
-			} else {
-				print("Login : Login ok")
-				// We are now logged in
-				self.performSegueWithIdentifier("Logged", sender: nil)
 			}
-		})
+		}
 	}
 	
 	func randomStringWithLength(len: Int) -> String {

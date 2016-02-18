@@ -12,7 +12,7 @@ import Firebase
 class RegisterViewController: UIViewController {
 	
 	// MARK: Properties
-	var ref: Firebase!
+	var ref: FirebaseManager!
 	@IBOutlet weak var usernameTextField: UITextField!
 	@IBOutlet weak var emailTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
@@ -20,35 +20,24 @@ class RegisterViewController: UIViewController {
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		ref = Firebase(url: "https://falcongame.firebaseio.com")
+		ref = FirebaseManager()
 		
 		emailTextField.autocorrectionType = UITextAutocorrectionType.No
 	}
 	
 	// MARK: Actions
 	@IBAction func registerAction(sender: UIButton) {
-		ref.createUser(emailTextField.text,
-			password: passwordTextField.text) {
-				(error: NSError!) in
-				if error == nil {
-					self.ref.authUser(self.emailTextField.text, password: self.passwordTextField.text, withCompletionBlock: {
-						(error, authData) in
-						if error != nil {
-							print("Register : Login ko")
-							self.performSegueWithIdentifier("Login", sender: nil)
-						} else {
-							print("Register : Login ok")
-							let newUser = [
-								"provider": authData.provider,
-								"username": self.usernameTextField.text,
-								"email": self.emailTextField.text
-							]
-							self.ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
-							self.performSegueWithIdentifier("Logged", sender: nil)
-						}
-					})
-				} else {
-					print("Register : Register ko")
+		let userData = [
+			"provider": "pasword",
+			"username": usernameTextField.text!,
+			"email": emailTextField.text!
+		]
+		ref.registerUser(
+			userData,
+			password: passwordTextField.text!) {
+				(error) -> Void in
+				if (!error) {
+					self.performSegueWithIdentifier("Logged", sender: nil)
 				}
 		}
 	}
