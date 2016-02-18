@@ -7,4 +7,5 @@ target 'Falcon' do
     pod "FBSDKCoreKit";
     pod "FBSDKLoginKit";
     pod "FBSDKShareKit";
+    pod 'PermissionScope'
 end

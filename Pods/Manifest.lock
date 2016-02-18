@@ -13,6 +13,7 @@ PODS:
     - FBSDKCoreKit
   - Firebase (2.5.0)
   - GoogleMaps (1.11.1)
+  - PermissionScope (1.0.2)
 
 DEPENDENCIES:
   - FBSDKCoreKit
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - FBSDKShareKit
   - Firebase (>= 2.5.0)
   - GoogleMaps
+  - PermissionScope
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
@@ -28,7 +30,8 @@ SPEC CHECKSUMS:
   FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a
   Firebase: 744617c0733b45198f9486ebd5cac64ec2d10d79
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
+  PermissionScope: 860828c5516d349b6f49e5491799cfef33c5ccc7
 
-PODFILE CHECKSUM: 2d4f2ef25465c6d91f861a976243f25a090bb13d
+PODFILE CHECKSUM: f01b590945e1353f2fb494f9772d958129761879
 
 COCOAPODS: 1.0.0.beta.3

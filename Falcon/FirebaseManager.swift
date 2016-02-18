@@ -9,6 +9,8 @@
 import Firebase
 
 class FirebaseManager {
+	
+	// MARK: Properties
 	let ref = Firebase(url: "https://falcongame.firebaseio.com")
 	
 	func loginUser(email: String, password: String, withCompletionBlock: (error: Bool) -> Void) {

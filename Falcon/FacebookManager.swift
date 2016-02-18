@@ -11,6 +11,8 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class FacebookManager {
+	
+	// MARK: Properties
 	let ref = FirebaseManager()
 	
 	func getUserData(token: String, withCompletionBlock: (error: Bool, result: NSDictionary) -> Void) {

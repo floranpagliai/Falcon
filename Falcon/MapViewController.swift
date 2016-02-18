@@ -9,24 +9,46 @@
 import UIKit
 import GoogleMaps
 
-class MapViewController: UIViewController, GMSMapViewDelegate {
+class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
+	
+	// MARK: Properties
+	let locationManager = CLLocationManager()
+	var mapView = GMSMapView()
+	let mapZoom: Float = 18
+	let mapViewingAngle: Double = 20
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let camera = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
-		let mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
-//		mapView.myLocationEnabled = true
-		mapView.settings.myLocationButton = true
-//		self.view = mapView
+		locationManager.delegate = self
 		mapView.delegate = self
-		self.view = mapView
 		
+		locationManager.requestWhenInUseAuthorization()
+		
+		mapView.settings.setAllGesturesEnabled(false)
+		mapView.myLocationEnabled = true
+		mapView.settings.myLocationButton = false
+		self.view = mapView
 	}
 	
 	// MARK: GMSMapViewDelegate
-	
 	func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
 		print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+	}
+	
+	// MARK: - CLLocationManagerDelegate
+	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+		if status == .AuthorizedWhenInUse {
+			locationManager.startUpdatingLocation()
+		}
+	}
+	
+	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		if let location = locations.first {
+			
+			mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: self.mapZoom, bearing: 0, viewingAngle: self.mapViewingAngle)
+			locationManager.stopUpdatingLocation()
+		}
+		
 	}
 }
