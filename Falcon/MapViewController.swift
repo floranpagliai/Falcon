@@ -17,6 +17,8 @@ class MapViewController: UIViewController {
 	let placesClient = GMSPlacesClient()
 	let mapZoom: Float = 18
 	let mapViewingAngle: Double = 20
+	let placeManager = PlacesManager()
+	let searchRadius: Double = 1000
 	
 	// MARK: View Properties
 	@IBOutlet weak var locationLabel: UILabel!
@@ -36,8 +38,16 @@ class MapViewController: UIViewController {
 		mapView.settings.myLocationButton = true
 	}
 	@IBAction func scanAction(sender: UIButton) {
-		let pm = PlacesManager()
-		pm.fetchNearPlaces()
+		mapView.clear()
+		self.placeManager.fetchNearPlaces {
+			(places) -> Void in
+			for place: Place in places {
+				// 3
+				let marker = PlaceMarker(place: place)
+				// 4
+				marker.map = self.mapView
+			}
+		}
 	}
 	
 	func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {

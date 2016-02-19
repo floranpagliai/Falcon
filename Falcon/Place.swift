@@ -9,12 +9,12 @@
 import Firebase
 import GoogleMaps
 
-enum PlaceType : Int {
-	case unknow = 0
-	case bank
-	case restaurant
-	case school
-	case store
+enum PlaceType : String {
+	case unknow = "unknow"
+	case bank = "bank"
+	case restaurant = "restaurant"
+	case school = "school"
+	case store = "store"
 }
 
 struct Place {

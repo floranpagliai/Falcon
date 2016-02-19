@@ -14,7 +14,7 @@ class PlacesManager {
 	let placesClient = GMSPlacesClient()
 	let ref = FirebaseManager()
 	
-	func fetchNearPlaces() {
+	func fetchNearPlaces(withCompletionBlock: (places: [Place]) -> Void) {
 		self.placesClient.currentPlaceWithCallback { (likelihoodList, error) -> Void in
 			if error != nil {
 				print("[\(self.dynamicType)] Error: \(error!.localizedDescription)")
@@ -32,21 +32,20 @@ class PlacesManager {
 						type: placeTypes,
 						coordinate: likelihood.place.coordinate
 					)
-					places.append(place)
+					if place.type != PlaceType.unknow {
+						places.append(place)
+					}
 				}
 			}
 			self.savePlaces(places)
+			withCompletionBlock(places: places)
 		}
 	}
 	
 	func savePlaces(places: [Place]) {
 		let placesRef = ref.getPathRef("places")
 		for place in places {
-			print(place.name)
-			print(place.type)
-			if place.type != PlaceType.unknow {
-				ref.update(placesRef, key: place.id, data: place.toAnyObject())
-			}
+			ref.update(placesRef, key: place.id, data: place.toAnyObject())
 		}
 	}
 	
