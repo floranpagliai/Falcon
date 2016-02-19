@@ -13,6 +13,14 @@ class FirebaseManager {
 	// MARK: Properties
 	let ref = Firebase(url: "https://falcongame.firebaseio.com")
 	
+	func getPathRef(path: String) -> Firebase {
+		return self.ref.childByAppendingPath(path)
+	}
+	
+	func getPathRef(path: String, ref: Firebase) -> Firebase {
+		return ref.childByAppendingPath(path)
+	}
+	
 	func loginUser(email: String, password: String, withCompletionBlock: (error: Bool) -> Void) {
 		ref.authUser(email, password: password, withCompletionBlock: {
 			(error, auth) in
@@ -54,8 +62,12 @@ class FirebaseManager {
 		})
 	}
 	
-	func append(path: String, key: String, data: AnyObject) {
-		self.ref.childByAppendingPath(path).childByAppendingPath(key).setValue(data)
+	func save(ref: Firebase, key: String, data: [NSObject : AnyObject]) {
+		ref.childByAppendingPath(key).setValue(data)
+	}
+	
+	func update(ref: Firebase, key: String, data: [NSObject : AnyObject]) {
+		ref.childByAppendingPath(key).updateChildValues(data)
 	}
 	
 }

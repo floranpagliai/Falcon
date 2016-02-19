@@ -45,7 +45,6 @@ class MapViewController: UIViewController {
 		geocoder.reverseGeocodeCoordinate(coordinate) {
 			response, error in
 			if let address = response?.firstResult() {
-				print("3")
 				let lines = address.lines as! [String]
 				self.locationLabel.text = lines.joinWithSeparator("\n")
 				let labelHeight = self.locationLabel.intrinsicContentSize().height

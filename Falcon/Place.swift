@@ -9,7 +9,8 @@
 import Firebase
 import GoogleMaps
 
-enum PlaceType {
+enum PlaceType : Int {
+	case unknow = 0
 	case bank
 	case restaurant
 	case school
@@ -21,16 +22,16 @@ struct Place {
 	let id: String!
 	let name: String!
 	let address: String!
-	let types: [PlaceType]
+	let type: PlaceType
 	let coordinate: CLLocationCoordinate2D
 	let ref: Firebase?
 	
 	// Initialize from arbitrary data
-	init(id: String, name: String, address: String, types: [PlaceType], coordinate: CLLocationCoordinate2D) {
+	init(id: String, name: String, address: String, type: PlaceType, coordinate: CLLocationCoordinate2D) {
 		self.id = id
 		self.name = name
 		self.address = address
-		self.types = types
+		self.type = type
 		self.coordinate = coordinate
 		self.ref = nil
 	}
@@ -39,19 +40,22 @@ struct Place {
 		self.id = snapshot.key
 		self.name = snapshot.value["name"] as! String
 		self.address = snapshot.value["address"] as! String
-		self.types = snapshot.value["types"] as! [PlaceType]
+		self.type = snapshot.value["type"] as! PlaceType
 		self.coordinate = CLLocationCoordinate2D(
 			latitude: snapshot.value["latitude"] as! CLLocationDegrees,
 			longitude: snapshot.value["longitude"] as! CLLocationDegrees)
 		self.ref = snapshot.ref
 	}
 	
-	func toAnyObject() ->  AnyObject {
+	  func toAnyObject() -> [NSObject : AnyObject] {
+		print(self.name)
 		return [
-			"name": name,
-			"address": address,
-//			"latitude": coordinate.latitude,
-//			"longitude": coordinate.longitude
+			"name": self.name,
+			"address": self.address,
+			"test": "test2",
+			"type": type.rawValue,
+			"latitude": self.coordinate.latitude,
+			"longitude": self.coordinate.longitude
 		]
 	}
 }
