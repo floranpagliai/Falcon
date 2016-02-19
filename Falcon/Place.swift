@@ -48,11 +48,9 @@ struct Place {
 	}
 	
 	  func toAnyObject() -> [NSObject : AnyObject] {
-		print(self.name)
 		return [
 			"name": self.name,
 			"address": self.address,
-			"test": "test2",
 			"type": type.rawValue,
 			"latitude": self.coordinate.latitude,
 			"longitude": self.coordinate.longitude

@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import CoreLocation
 
 class MapViewController: UIViewController {
 	
@@ -16,13 +17,15 @@ class MapViewController: UIViewController {
 	let geocoder = GMSGeocoder()
 	let placesClient = GMSPlacesClient()
 	let mapZoom: Float = 18
-	let mapViewingAngle: Double = 20
+	let mapViewingAngle: Double = 42
 	let placeManager = PlacesManager()
 	let searchRadius: Double = 1000
 	
 	// MARK: View Properties
-	@IBOutlet weak var locationLabel: UILabel!
 	@IBOutlet weak var mapView: GMSMapView! = GMSMapView()
+	@IBOutlet weak var locationLabel: UILabel!
+	@IBOutlet weak var placeNameLabel: UILabel!
+	@IBOutlet weak var placeDistanceLabel: UILabel!
 	
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
@@ -31,7 +34,12 @@ class MapViewController: UIViewController {
 		locationManager.delegate = self
 		mapView.delegate = self
 		
+		locationManager.requestAlwaysAuthorization()
 		locationManager.requestWhenInUseAuthorization()
+		locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+		locationManager.startUpdatingLocation()
+		
+		mapView.camera = GMSCameraPosition(target: locationManager.location!.coordinate, zoom: self.mapZoom, bearing: 0, viewingAngle: self.mapViewingAngle)
 		
 		mapView.settings.setAllGesturesEnabled(false)
 		mapView.myLocationEnabled = true
@@ -42,16 +50,13 @@ class MapViewController: UIViewController {
 		self.placeManager.fetchNearPlaces {
 			(places) -> Void in
 			for place: Place in places {
-				// 3
 				let marker = PlaceMarker(place: place)
-				// 4
 				marker.map = self.mapView
 			}
 		}
 	}
 	
 	func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
-		self.mapView.camera = GMSCameraPosition(target: coordinate, zoom: self.mapZoom, bearing: 0, viewingAngle: self.mapViewingAngle)
 		geocoder.reverseGeocodeCoordinate(coordinate) {
 			response, error in
 			if let address = response?.firstResult() {
@@ -62,10 +67,22 @@ class MapViewController: UIViewController {
 				UIView.animateWithDuration(0.25) {
 					self.view.layoutIfNeeded()
 				}
-				
-				
 			}
 		}
+	}
+	
+	func showPlaceInfo(placeMarker: PlaceMarker) {
+		placeDistanceLabel.text = placeMarker.getDistanceString(locationManager.location!) + " m"
+		placeDistanceLabel.backgroundColor = UIColor.whiteColor()
+		placeNameLabel.text = placeMarker.place.name
+		placeNameLabel.backgroundColor = UIColor.whiteColor()
+	}
+	
+	func hidePlaceInfo() {
+		placeNameLabel.text = ""
+		placeDistanceLabel.text = ""
+		placeNameLabel.backgroundColor = nil
+		placeDistanceLabel.backgroundColor = nil
 	}
 }
 
@@ -81,8 +98,8 @@ extension MapViewController: CLLocationManagerDelegate {
 	
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		if let location = locations.first {
-			
-			mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: self.mapZoom, bearing: 0, viewingAngle: self.mapViewingAngle)
+			print("MapView : location updated")
+			mapView.animateToLocation(location.coordinate)
 			locationManager.stopUpdatingLocation()
 		}
 	}
@@ -92,6 +109,25 @@ extension MapViewController: GMSMapViewDelegate {
 	
 	// MARK: GMSMapViewDelegate
 	func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
-		reverseGeocodeCoordinate(position.target)
+		reverseGeocodeCoordinate(locationManager.location!.coordinate)
+	}
+	
+	func didTapMyLocationButtonForMapView(mapView: GMSMapView!) -> Bool {
+	  mapView.animateToLocation(locationManager.location!.coordinate)
+	  mapView.selectedMarker = nil
+	  return true
+	}
+	
+	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+		let placeMarker = marker as! PlaceMarker
+
+		self.showPlaceInfo(placeMarker)
+		mapView.animateToLocation(placeMarker.place.coordinate)
+		return true
+	}
+	
+	func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+		self.hidePlaceInfo()
+		mapView.animateToLocation(locationManager.location!.coordinate)
 	}
 }
