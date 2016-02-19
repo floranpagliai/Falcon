@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
 	// MARK: Properties
 	let locationManager = CLLocationManager()
 	let geocoder = GMSGeocoder()
+	let placesClient = GMSPlacesClient()
 	let mapZoom: Float = 18
 	let mapViewingAngle: Double = 20
 	
@@ -32,17 +33,23 @@ class MapViewController: UIViewController {
 		
 		mapView.settings.setAllGesturesEnabled(false)
 		mapView.myLocationEnabled = true
-		mapView.settings.myLocationButton = false
+		mapView.settings.myLocationButton = true
+	}
+	@IBAction func scanAction(sender: UIButton) {
+		let pm = PlacesManager()
+		pm.fetchNearPlaces()
 	}
 	
 	func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
+		self.mapView.camera = GMSCameraPosition(target: coordinate, zoom: self.mapZoom, bearing: 0, viewingAngle: self.mapViewingAngle)
 		geocoder.reverseGeocodeCoordinate(coordinate) {
 			response, error in
 			if let address = response?.firstResult() {
+				print("3")
+				let lines = address.lines as! [String]
+				self.locationLabel.text = lines.joinWithSeparator("\n")
 				let labelHeight = self.locationLabel.intrinsicContentSize().height
 				self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
-				
-				self.locationLabel.text = address.thoroughfare + "\n" + address.locality
 				UIView.animateWithDuration(0.25) {
 					self.view.layoutIfNeeded()
 				}
@@ -59,6 +66,7 @@ extension MapViewController: CLLocationManagerDelegate {
 	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
 		if status == .AuthorizedWhenInUse {
 			locationManager.startUpdatingLocation()
+			
 		}
 	}
 	
@@ -66,7 +74,7 @@ extension MapViewController: CLLocationManagerDelegate {
 		if let location = locations.first {
 			
 			mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: self.mapZoom, bearing: 0, viewingAngle: self.mapViewingAngle)
-//			locationManager.stopUpdatingLocation()
+			locationManager.stopUpdatingLocation()
 		}
 	}
 }

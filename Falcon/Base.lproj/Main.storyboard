@@ -3,7 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Login View-->
         <scene sceneID="duL-MC-ZhK">
@@ -97,6 +103,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="0gr-PJ-3a9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4e1-B5-D5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -116,20 +123,38 @@
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gkv-Ka-QlS" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="locationLabel" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnO-ba-vey">
-                                <rect key="frame" x="0.0" y="533" width="320" height="0.0"/>
-                                <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.79665948275862064" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="locationLabel" text="Position" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnO-ba-vey">
+                                <rect key="frame" x="0.0" y="547" width="320" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDi-CZ-mJJ">
+                                <rect key="frame" x="16" y="15" width="35" height="30"/>
+                                <state key="normal" title="Scan"/>
+                                <connections>
+                                    <action selector="scanAction:" destination="CB0-10-8w8" eventType="touchUpInside" id="x59-Vp-qiy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3P-f7-946">
+                                <rect key="frame" x="265" y="15" width="39" height="30"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <segue destination="BVd-Bd-ZBR" kind="modal" modalTransitionStyle="crossDissolve" id="HVh-O6-PDE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gAC-dx-Iwy" firstAttribute="top" secondItem="XnO-ba-vey" secondAttribute="bottom" id="1SA-1s-aWD"/>
+                            <constraint firstItem="pDi-CZ-mJJ" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="top" constant="15" id="JJV-fd-Dx9"/>
+                            <constraint firstItem="pDi-CZ-mJJ" firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leadingMargin" id="KzD-ez-KtS"/>
+                            <constraint firstItem="Z3P-f7-946" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="top" constant="15" id="LOc-yj-P7e"/>
                             <constraint firstAttribute="trailing" secondItem="XnO-ba-vey" secondAttribute="trailing" id="UQs-oG-ijV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Z3P-f7-946" secondAttribute="trailing" id="ndJ-la-AjO"/>
                             <constraint firstItem="XnO-ba-vey" firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leading" id="xIY-dp-WtR"/>
                         </constraints>
                     </view>
@@ -205,7 +230,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="HVh-O6-PDE"/>
         <segue reference="Iwy-Rj-YvC"/>
-        <segue reference="9fZ-gR-3TG"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -44,11 +44,6 @@ class FirebaseManager {
 			(error: NSError!, result) in
 			if error == nil {
 				let uid = result["uid"] as? String
-//				let newUser = [
-//					"provider": provider,
-//					"username": username,
-//					"email": email
-//				]
 				self.ref.childByAppendingPath("users").childByAppendingPath(uid).setValue(userData)
 				withCompletionBlock(error: false)
 				print("FirebaseManager : Register ok")
@@ -57,6 +52,10 @@ class FirebaseManager {
 				print("FirebaseManager : Register ko")
 			}
 		})
+	}
+	
+	func append(path: String, key: String, data: AnyObject) {
+		self.ref.childByAppendingPath(path).childByAppendingPath(key).setValue(data)
 	}
 	
 }
