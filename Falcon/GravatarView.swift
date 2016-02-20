@@ -19,6 +19,12 @@ class GravatarView: UIView {
 		}
 	}
 	
+	var url: String? {
+		didSet {
+			getImageFromUrl()
+		}
+	}
+	
 	func setup() {
 		let circleView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
 		circleView.layer.cornerRadius = frame.width / 2;
@@ -35,17 +41,18 @@ class GravatarView: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		setup()
-		
-		print(frame.width)
-		
-		email = "floran.pagliai@gmail.com"
 	}
 	
 	func getImage() {
 		profilePhoto?.image = nil
 		let url = NSURL(string: "http://www.gravatar.com/avatar/" + email!.md5() + ".jpg?s=400&d=404")
-		print(url)
 		profilePhoto?.hnk_setImageFromURL(url!)
+	}
+	
+	func getImageFromUrl() {
+		profilePhoto?.image = nil
+		let nsurl = NSURL(string: url!)
+		profilePhoto?.hnk_setImageFromURL(nsurl!)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

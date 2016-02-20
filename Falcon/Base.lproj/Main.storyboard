@@ -5,11 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold.ttf">
-            <string>Roboto-Bold</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--Login View-->
         <scene sceneID="duL-MC-ZhK">
@@ -133,34 +128,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="locationLabel" text="Position" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnO-ba-vey">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="locationLabel" text="Position" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnO-ba-vey">
                                 <rect key="frame" x="0.0" y="547" width="320" height="21"/>
                                 <color key="backgroundColor" red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3P-f7-946">
-                                <rect key="frame" x="8" y="25" width="61" height="61"/>
+                                <rect key="frame" x="8" y="25" width="32" height="32"/>
                                 <state key="normal" image="closeButton"/>
                                 <connections>
                                     <segue destination="BVd-Bd-ZBR" kind="modal" modalTransitionStyle="crossDissolve" id="HVh-O6-PDE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8j-Zf-Rx0">
-                                <rect key="frame" x="0.0" y="90" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciE-5a-BPz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDi-CZ-mJJ">
-                                <rect key="frame" x="251" y="402" width="61" height="61"/>
+                                <rect key="frame" x="251" y="397" width="61" height="61"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="0.0"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
                                 <state key="normal" image="radarButton"/>
@@ -168,6 +151,12 @@
                                     <action selector="scanAction:" destination="CB0-10-8w8" eventType="touchUpInside" id="x59-Vp-qiy"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6mb-EV-Z5i">
+                                <rect key="frame" x="20" y="100" width="280" height="170"/>
+                                <connections>
+                                    <segue destination="4cT-FH-0w5" kind="embed" id="YPP-Gz-G7w"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -176,16 +165,15 @@
                             <constraint firstItem="Z3P-f7-946" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="top" constant="25" id="LOc-yj-P7e"/>
                             <constraint firstAttribute="trailing" secondItem="XnO-ba-vey" secondAttribute="trailing" id="UQs-oG-ijV"/>
                             <constraint firstItem="Z3P-f7-946" firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leadingMargin" constant="-8" id="ZHp-9m-c3o"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="pDi-CZ-mJJ" secondAttribute="bottom" constant="105" id="d8g-Lo-PXO"/>
-                            <constraint firstItem="E8j-Zf-Rx0" firstAttribute="bottom" secondItem="ciE-5a-BPz" secondAttribute="top" id="ff8-RV-Xpm"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="pDi-CZ-mJJ" secondAttribute="bottom" constant="110" id="d8g-Lo-PXO"/>
+                            <constraint firstItem="6mb-EV-Z5i" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="topMargin" constant="60" id="w50-jI-rxb"/>
                             <constraint firstItem="XnO-ba-vey" firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leading" id="xIY-dp-WtR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="locationLabel" destination="XnO-ba-vey" id="Zju-NX-9T3"/>
                         <outlet property="mapView" destination="Gkv-Ka-QlS" id="PrQ-x4-Cf9"/>
-                        <outlet property="placeDistanceLabel" destination="ciE-5a-BPz" id="wLM-o9-juJ"/>
-                        <outlet property="placeNameLabel" destination="E8j-Zf-Rx0" id="DQb-eL-RRI"/>
+                        <outlet property="placeView" destination="6mb-EV-Z5i" id="IqM-w6-td5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfc-Ch-gdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -253,13 +241,26 @@
             </objects>
             <point key="canvasLocation" x="485" y="989"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="bz5-XA-twu">
+            <objects>
+                <viewController id="4cT-FH-0w5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BIU-df-3Bd">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="170"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fls-cD-NxB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
-        <image name="closeButton" width="61" height="61"/>
+        <image name="closeButton" width="32" height="32"/>
         <image name="radarButton" width="61" height="61"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SYo-nc-eFf"/>
+        <segue reference="HVh-O6-PDE"/>
         <segue reference="Iwy-Rj-YvC"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,6 +14,9 @@
 		CE2776031C67D3F6002F81F2 /* FalconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2776021C67D3F6002F81F2 /* FalconTests.swift */; };
 		CE27760E1C67D3F6002F81F2 /* FalconUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27760D1C67D3F6002F81F2 /* FalconUITests.swift */; };
 		CE8424511C77F5CF006B8379 /* GravatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8424501C77F5CF006B8379 /* GravatarView.swift */; };
+		CE8424541C78CE63006B8379 /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8424521C78CE63006B8379 /* PlaceViewController.swift */; };
+		CE8424551C78CE63006B8379 /* PlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8424531C78CE63006B8379 /* PlaceViewController.xib */; };
+		CE8424571C7905BC006B8379 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8424561C7905BC006B8379 /* DataManager.swift */; };
 		CEDAB0181C7087D300CC332C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0171C7087D300CC332C /* LoginViewController.swift */; };
 		CEDAB01A1C70BF4100CC332C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0191C70BF4100CC332C /* HomeViewController.swift */; };
 		CEDAB01E1C70ECCA00CC332C /* RegisterViewCrontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */; };
@@ -67,6 +70,9 @@
 		CE529C071C6FCE9800A97F18 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		CE529C091C6FCE9B00A97F18 /* libFirebase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFirebase.a; path = "Pods/../build/Debug-iphoneos/libFirebase.a"; sourceTree = "<group>"; };
 		CE8424501C77F5CF006B8379 /* GravatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravatarView.swift; sourceTree = "<group>"; };
+		CE8424521C78CE63006B8379 /* PlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
+		CE8424531C78CE63006B8379 /* PlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceViewController.xib; sourceTree = "<group>"; };
+		CE8424561C7905BC006B8379 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		CEDAB0171C7087D300CC332C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEDAB0191C70BF4100CC332C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewCrontroller.swift; sourceTree = "<group>"; };
@@ -193,6 +199,8 @@
 				CEDAB0191C70BF4100CC332C /* HomeViewController.swift */,
 				CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */,
 				CEDAB01F1C7124F900CC332C /* MapViewController.swift */,
+				CE8424521C78CE63006B8379 /* PlaceViewController.swift */,
+				CE8424531C78CE63006B8379 /* PlaceViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -205,6 +213,7 @@
 				CEDAB0251C7627F200CC332C /* PersmissionManager.swift */,
 				CEDAB0271C76781700CC332C /* PlacesManager.swift */,
 				CEDAB02B1C7743F700CC332C /* PlaceMarker.swift */,
+				CE8424561C7905BC006B8379 /* DataManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -332,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8424551C78CE63006B8379 /* PlaceViewController.xib in Resources */,
 				CE2775F81C67D3F6002F81F2 /* LaunchScreen.storyboard in Resources */,
 				CE2775F51C67D3F6002F81F2 /* Assets.xcassets in Resources */,
 				CE2775F31C67D3F6002F81F2 /* Main.storyboard in Resources */,
@@ -410,11 +420,13 @@
 				CEDAB0181C7087D300CC332C /* LoginViewController.swift in Sources */,
 				CE2775EE1C67D3F6002F81F2 /* AppDelegate.swift in Sources */,
 				CEDAB02C1C7743F700CC332C /* PlaceMarker.swift in Sources */,
+				CE8424571C7905BC006B8379 /* DataManager.swift in Sources */,
 				CEDAB0261C7627F200CC332C /* PersmissionManager.swift in Sources */,
 				CE8424511C77F5CF006B8379 /* GravatarView.swift in Sources */,
 				CEDAB0241C739FB300CC332C /* FirebaseManager.swift in Sources */,
 				CEDAB01E1C70ECCA00CC332C /* RegisterViewCrontroller.swift in Sources */,
 				CEDAB0281C76781700CC332C /* PlacesManager.swift in Sources */,
+				CE8424541C78CE63006B8379 /* PlaceViewController.swift in Sources */,
 				CEDAB0221C72730900CC332C /* FacebookManager.swift in Sources */,
 				CEDAB0201C7124F900CC332C /* MapViewController.swift in Sources */,
 				CEDAB01A1C70BF4100CC332C /* HomeViewController.swift in Sources */,

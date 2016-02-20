@@ -29,6 +29,23 @@ class FacebookManager {
 			}
 		})
 	}
+	
+	func getUserPicture(token: String, withCompletionBlock: (error: Bool, result: String) -> Void) {
+		let req = FBSDKGraphRequest(
+			graphPath: "me",
+			parameters: ["fields":"picture"],
+			tokenString: token, version: nil,
+			HTTPMethod: "GET")
+		req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+			if(error == nil) {
+				let resultdic = result as! NSDictionary
+				let url = resultdic["picture"]!["data"]!!["url"] as! String
+				withCompletionBlock(error: false, result: url)
+			} else {
+				withCompletionBlock(error: true, result: String())
+			}
+		})
+	}
 
 	func registerUser(token: String, withCompletionBlock: (error: Bool) -> Void)  {
 		self.getUserData(token) {

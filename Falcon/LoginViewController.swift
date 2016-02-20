@@ -36,10 +36,6 @@ class LoginViewController: UIViewController {
 	// MARK: Actions
 	@IBAction func emailEditingDidChange(sender: UITextField) {
 		profileImageView.email = self.loginTextField.text
-//		profileImage?.image = nil
-//		let url = NSURL(string: "http://www.gravatar.com/avatar/" + self.loginTextField.text!.md5() + ".jpg?s=400&d=404")
-//		print(url)
-//		profileImage?.hnk_setImageFromURL(url!)
 	}
 	
 	@IBAction func loginFacebookAction(sender: UIButton) {
@@ -53,6 +49,11 @@ class LoginViewController: UIViewController {
 			} else if facebookResult.isCancelled {
 				print("Login : Facebook login was cancelled.")
 			} else {
+				self.fbm.getUserPicture(facebookResult.token.tokenString, withCompletionBlock: { (error, result) -> Void in
+					if (!error) {
+						self.profileImageView.url = result
+					}
+				})
 				self.fbm.registerUser(facebookResult.token.tokenString, withCompletionBlock: {
 					(error) -> Void in
 				})

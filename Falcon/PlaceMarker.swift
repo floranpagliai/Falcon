@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import CoreLocation
 
 class PlaceMarker: GMSMarker {
 	let place: Place
@@ -18,7 +19,6 @@ class PlaceMarker: GMSMarker {
 		
 		position = place.coordinate
 		icon = UIImage(named: place.type.rawValue + "Marker")
-//		icon = UIImage(named: "bankMarker")
 		groundAnchor = CGPoint(x: 0.5, y: 1)
 		appearAnimation = kGMSMarkerAnimationPop
 	}
@@ -28,8 +28,9 @@ class PlaceMarker: GMSMarker {
 		return location.distanceFromLocation(fromLocation)
 	}
 	
-	func getDistanceString(fromLocation: CLLocation) -> String {
+	func getDistanceString() -> String {
 		let location = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-		return String(format:"%.0f", location.distanceFromLocation(fromLocation))
+		return String(format:"%.0f", location.distanceFromLocation(CLLocationManager().location!))
 	}
+	
 }

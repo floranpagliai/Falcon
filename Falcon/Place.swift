@@ -47,7 +47,11 @@ struct Place {
 		self.ref = snapshot.ref
 	}
 	
-	  func toAnyObject() -> [NSObject : AnyObject] {
+	func getType() -> String{
+		return self.type.rawValue.capitalizedString
+	}
+	
+	func toAnyObject() -> [NSObject : AnyObject] {
 		return [
 			"name": self.name,
 			"address": self.address,

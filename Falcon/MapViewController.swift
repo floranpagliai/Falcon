@@ -20,9 +20,11 @@ class MapViewController: UIViewController {
 	let mapViewingAngle: Double = 42
 	let placeManager = PlacesManager()
 	let searchRadius: Double = 1000
+	var placeViewController: UIViewController?
 	
 	// MARK: View Properties
 	@IBOutlet weak var mapView: GMSMapView! = GMSMapView()
+	@IBOutlet weak var placeView: UIView!
 	@IBOutlet weak var locationLabel: UILabel!
 	@IBOutlet weak var placeNameLabel: UILabel!
 	@IBOutlet weak var placeDistanceLabel: UILabel!
@@ -44,6 +46,8 @@ class MapViewController: UIViewController {
 		mapView.settings.setAllGesturesEnabled(false)
 		mapView.myLocationEnabled = true
 		mapView.settings.myLocationButton = true
+		
+		self.placeView.hidden = true
 	}
 	@IBAction func scanAction(sender: UIButton) {
 		mapView.clear()
@@ -72,17 +76,23 @@ class MapViewController: UIViewController {
 	}
 	
 	func showPlaceInfo(placeMarker: PlaceMarker) {
-		placeDistanceLabel.text = placeMarker.getDistanceString(locationManager.location!) + " m"
-		placeDistanceLabel.backgroundColor = UIColor.whiteColor()
-		placeNameLabel.text = placeMarker.place.name
-		placeNameLabel.backgroundColor = UIColor.whiteColor()
+		DataManager.sharedInstance.currentSelectedPlace = placeMarker
+		placeViewController = PlaceViewController()
+		self.placeView.hidden = false
+		//Add PlaceViewController to PlaceView Container
+		addChildViewController(placeViewController!)
+		placeViewController!.view.frame = placeView.bounds
+		placeView.addSubview(placeViewController!.view)
+		placeViewController!.didMoveToParentViewController(self)
 	}
 	
 	func hidePlaceInfo() {
-		placeNameLabel.text = ""
-		placeDistanceLabel.text = ""
-		placeNameLabel.backgroundColor = nil
-		placeDistanceLabel.backgroundColor = nil
+		self.placeView.hidden = true
+		if let activeVC = placeViewController {
+			activeVC.willMoveToParentViewController(nil)
+			activeVC.view.removeFromSuperview()
+			activeVC.removeFromParentViewController()
+		}
 	}
 }
 
@@ -129,6 +139,7 @@ extension MapViewController: GMSMapViewDelegate {
 	
 	func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
 		self.hidePlaceInfo()
+		print("MapView : tap")
 		mapView.animateToLocation(locationManager.location!.coordinate)
 	}
 }

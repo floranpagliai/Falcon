@@ -13,6 +13,18 @@ class FirebaseManager {
 	// MARK: Properties
 	let ref = Firebase(url: "https://falcongame.firebaseio.com")
 	
+	init() {
+//		Firebase.defaultConfig().persistenceEnabled = true
+	}
+	
+	func getAuthData() -> FAuthData? {
+		if self.ref.authData != nil {
+		    return self.ref.authData
+		} else {
+		    return nil
+		}
+	}
+	
 	func getPathRef(path: String) -> Firebase {
 		return self.ref.childByAppendingPath(path)
 	}

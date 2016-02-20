@@ -1,0 +1,18 @@
+//
+//  DataManager.swift
+//  Falcon
+//
+//  Created by Floran Pagliai on 20/02/2016.
+//  Copyright © 2016 Falcon. All rights reserved.
+//
+
+import Foundation
+
+class DataManager {
+	static let sharedInstance = DataManager()
+	var currentSelectedPlace: PlaceMarker?
+	
+	init() {
+		self.currentSelectedPlace = nil
+	}
+}
