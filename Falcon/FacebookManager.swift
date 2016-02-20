@@ -12,8 +12,10 @@ import FBSDKLoginKit
 
 class FacebookManager {
 	
-	static func registerUser(token: String)  {
-		
+	// MARK: Properties
+	let ref = FirebaseManager()
+	
+	func getUserData(token: String, withCompletionBlock: (error: Bool, result: NSDictionary) -> Void) {
 		let req = FBSDKGraphRequest(
 			graphPath: "me",
 			parameters: ["fields":"email,name"],
@@ -21,33 +23,68 @@ class FacebookManager {
 			HTTPMethod: "GET")
 		req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
 			if(error == nil) {
-				let ref = Firebase(url: "https://falcongame.firebaseio.com")
-				let resultdict = result as? NSDictionary
-				let newUser = [
-					"provider": "facebook",
-					"username": resultdict?["name"] as! String,
-					"email": resultdict?["email"] as! String,
-					"facebook_token": token
-				]
-				ref.createUser(newUser["email"], password: "floran") {
-					(error: NSError!) in
-					if error == nil {
-						print("Register : Register ok")
-						ref.authUser(newUser["email"], password: "floran", withCompletionBlock: {
-							(error, authData) in
-							if error != nil {
-								print("FacebookManager : Login ko")
-							} else {
-								print("FacebookManager : Login ko")
-								ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
-							}
-						})
-						
-					} else {
-						print("Register : Register ko")
-					}
-				}
+				withCompletionBlock(error: false, result: (result as? NSDictionary)!)
+			} else {
+				withCompletionBlock(error: true, result: NSDictionary())
 			}
 		})
+	}
+	
+	func getUserPicture(token: String, withCompletionBlock: (error: Bool, result: String) -> Void) {
+		let req = FBSDKGraphRequest(
+			graphPath: "me",
+			parameters: ["fields":"picture"],
+			tokenString: token, version: nil,
+			HTTPMethod: "GET")
+		req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+			if(error == nil) {
+				let resultdic = result as! NSDictionary
+				let url = resultdic["picture"]!["data"]!!["url"] as! String
+				withCompletionBlock(error: false, result: url)
+			} else {
+				withCompletionBlock(error: true, result: String())
+			}
+		})
+	}
+
+	func registerUser(token: String, withCompletionBlock: (error: Bool) -> Void)  {
+		self.getUserData(token) {
+			(error, result) -> Void in
+			if (!error) {
+				let password = self.randomStringWithLength(8)
+				let newUser = [
+					"provider": "facebook",
+					"username": result["name"] as! String,
+					"email": result["email"] as! String,
+					"facebook_token": token
+				]
+				self.ref.registerUser(newUser, password: password, withCompletionBlock: { (error) -> Void in
+					if (!error) {
+						withCompletionBlock(error: false)
+						print("FacebookManager : Register ok")
+					} else {
+						withCompletionBlock(error: true)
+						print("FacebookManager : Register ko")
+					}
+				})
+			} else {
+				withCompletionBlock(error: true)
+			}
+		}
+	}
+	
+	func randomStringWithLength(len: Int) -> String {
+		
+		let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+		
+		let randomString : NSMutableString = NSMutableString(capacity: len)
+		
+		for (var i=0; i < len; i++){
+			let length = UInt32 (letters.length)
+			let rand = arc4random_uniform(length)
+			randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+		}
+		
+		return randomString as String
 	}
 }
