@@ -24,17 +24,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GF0-6i-uUf">
-                                <rect key="frame" x="20" y="128" width="280" height="30"/>
+                                <rect key="frame" x="20" y="136" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="emailEditingDidChange:" destination="Vhb-mS-16o" eventType="editingDidEnd" id="mYT-Y0-ELy"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="90k-dm-EGL">
-                                <rect key="frame" x="20" y="166" width="280" height="30"/>
+                                <rect key="frame" x="20" y="174" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urb-6p-P50">
-                                <rect key="frame" x="20" y="204" width="280" height="30"/>
+                                <rect key="frame" x="20" y="212" width="280" height="30"/>
                                 <color key="backgroundColor" red="0.29803921570000003" green="0.85098039219999999" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,7 +47,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1q-6V-Wsl">
-                                <rect key="frame" x="20" y="242" width="280" height="30"/>
+                                <rect key="frame" x="20" y="250" width="280" height="30"/>
                                 <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Login with Facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,24 +57,29 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqF-QB-1y6">
-                                <rect key="frame" x="132" y="280" width="57" height="30"/>
+                                <rect key="frame" x="132" y="288" width="57" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <segue destination="rTZ-gs-Zw2" kind="modal" identifier="" modalTransitionStyle="flipHorizontal" id="R5h-9t-FK9"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UaJ-fe-bl7" customClass="GravatarView" customModule="Falcon" customModuleProvider="target">
+                                <rect key="frame" x="110" y="28" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="loginTextField" destination="GF0-6i-uUf" id="4i2-Tt-ad5"/>
                         <outlet property="passwordTextField" destination="90k-dm-EGL" id="ITd-or-HoI"/>
+                        <outlet property="profileImageView" destination="UaJ-fe-bl7" id="1yu-TG-lhC"/>
                         <segue destination="BVd-Bd-ZBR" kind="modal" identifier="Logged" id="SYo-nc-eFf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jP0-yE-59F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="311"/>
+            <point key="canvasLocation" x="219" y="239"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="zFH-LF-Edt">
@@ -107,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4e1-B5-D5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1302" y="323"/>
+            <point key="canvasLocation" x="894" y="239"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="eVc-ZT-sCv">
@@ -182,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfc-Ch-gdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1759" y="345"/>
+            <point key="canvasLocation" x="1391" y="239"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="zKl-ZL-pMD">
@@ -197,17 +205,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mrj-4h-uZ3">
-                                <rect key="frame" x="20" y="212" width="280" height="30"/>
+                                <rect key="frame" x="20" y="173" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cbd-f3-ZwU">
-                                <rect key="frame" x="20" y="250" width="280" height="30"/>
+                                <rect key="frame" x="20" y="211" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2M-CT-cDJ">
-                                <rect key="frame" x="20" y="288" width="280" height="30"/>
+                                <rect key="frame" x="20" y="249" width="280" height="30"/>
                                 <color key="backgroundColor" red="0.29803921570000003" green="0.85098039219999999" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Register">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -218,7 +226,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3e-MA-fAI">
-                                <rect key="frame" x="142" y="326" width="38" height="30"/>
+                                <rect key="frame" x="142" y="287" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="registerAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="agi-71-8d5"/>
@@ -226,7 +234,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yIk-AQ-JCg">
-                                <rect key="frame" x="20" y="174" width="280" height="30"/>
+                                <rect key="frame" x="20" y="135" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -251,7 +259,7 @@
         <image name="radarButton" width="61" height="61"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HVh-O6-PDE"/>
+        <segue reference="SYo-nc-eFf"/>
         <segue reference="Iwy-Rj-YvC"/>
     </inferredMetricsTieBreakers>
 </document>

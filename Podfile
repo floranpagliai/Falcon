@@ -8,4 +8,6 @@ target 'Falcon' do
     pod "FBSDKLoginKit";
     pod "FBSDKShareKit";
     pod 'PermissionScope'
+    pod 'CryptoSwift'
+    pod 'HanekeSwift'
 end

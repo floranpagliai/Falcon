@@ -13,6 +13,7 @@
 		CE2775F81C67D3F6002F81F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2775F61C67D3F6002F81F2 /* LaunchScreen.storyboard */; };
 		CE2776031C67D3F6002F81F2 /* FalconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2776021C67D3F6002F81F2 /* FalconTests.swift */; };
 		CE27760E1C67D3F6002F81F2 /* FalconUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27760D1C67D3F6002F81F2 /* FalconUITests.swift */; };
+		CE8424511C77F5CF006B8379 /* GravatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8424501C77F5CF006B8379 /* GravatarView.swift */; };
 		CEDAB0181C7087D300CC332C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0171C7087D300CC332C /* LoginViewController.swift */; };
 		CEDAB01A1C70BF4100CC332C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0191C70BF4100CC332C /* HomeViewController.swift */; };
 		CEDAB01E1C70ECCA00CC332C /* RegisterViewCrontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */; };
@@ -65,6 +66,7 @@
 		CE529C051C6FCE0B00A97F18 /* libFirebase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFirebase.a; path = "Pods/../build/Debug-iphoneos/libFirebase.a"; sourceTree = "<group>"; };
 		CE529C071C6FCE9800A97F18 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		CE529C091C6FCE9B00A97F18 /* libFirebase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFirebase.a; path = "Pods/../build/Debug-iphoneos/libFirebase.a"; sourceTree = "<group>"; };
+		CE8424501C77F5CF006B8379 /* GravatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravatarView.swift; sourceTree = "<group>"; };
 		CEDAB0171C7087D300CC332C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEDAB0191C70BF4100CC332C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewCrontroller.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		CE2775EC1C67D3F6002F81F2 /* Falcon */ = {
 			isa = PBXGroup;
 			children = (
+				CE84244F1C77F585006B8379 /* Views */,
 				CE529BFC1C6FC70A00A97F18 /* Models */,
 				CE529BFB1C6FC70300A97F18 /* Utils */,
 				CE27761B1C67EA78002F81F2 /* Controllers */,
@@ -212,6 +215,14 @@
 				CEDAB0291C7679A700CC332C /* Place.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		CE84244F1C77F585006B8379 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE8424501C77F5CF006B8379 /* GravatarView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +411,7 @@
 				CE2775EE1C67D3F6002F81F2 /* AppDelegate.swift in Sources */,
 				CEDAB02C1C7743F700CC332C /* PlaceMarker.swift in Sources */,
 				CEDAB0261C7627F200CC332C /* PersmissionManager.swift in Sources */,
+				CE8424511C77F5CF006B8379 /* GravatarView.swift in Sources */,
 				CEDAB0241C739FB300CC332C /* FirebaseManager.swift in Sources */,
 				CEDAB01E1C70ECCA00CC332C /* RegisterViewCrontroller.swift in Sources */,
 				CEDAB0281C76781700CC332C /* PlacesManager.swift in Sources */,

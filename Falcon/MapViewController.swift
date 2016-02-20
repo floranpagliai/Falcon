@@ -115,6 +115,7 @@ extension MapViewController: GMSMapViewDelegate {
 	func didTapMyLocationButtonForMapView(mapView: GMSMapView!) -> Bool {
 	  mapView.animateToLocation(locationManager.location!.coordinate)
 	  mapView.selectedMarker = nil
+	  self.hidePlaceInfo()
 	  return true
 	}
 	
