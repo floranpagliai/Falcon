@@ -11,6 +11,8 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 class FacebookManager {
+	
+	// MARK: Properties
 	let ref = FirebaseManager()
 	
 	func getUserData(token: String, withCompletionBlock: (error: Bool, result: NSDictionary) -> Void) {
@@ -24,6 +26,23 @@ class FacebookManager {
 				withCompletionBlock(error: false, result: (result as? NSDictionary)!)
 			} else {
 				withCompletionBlock(error: true, result: NSDictionary())
+			}
+		})
+	}
+	
+	func getUserPicture(token: String, withCompletionBlock: (error: Bool, result: String) -> Void) {
+		let req = FBSDKGraphRequest(
+			graphPath: "me",
+			parameters: ["fields":"picture"],
+			tokenString: token, version: nil,
+			HTTPMethod: "GET")
+		req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+			if(error == nil) {
+				let resultdic = result as! NSDictionary
+				let url = resultdic["picture"]!["data"]!!["url"] as! String
+				withCompletionBlock(error: false, result: url)
+			} else {
+				withCompletionBlock(error: true, result: String())
 			}
 		})
 	}

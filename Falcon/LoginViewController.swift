@@ -10,14 +10,19 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
+import CryptoSwift
+import Haneke
 
 class LoginViewController: UIViewController {
 	
 	// MARK: Properties
 	var ref: FirebaseManager!
 	var fbm: FacebookManager!
+	
+	// MARK: View Properties
 	@IBOutlet weak var loginTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
+	@IBOutlet weak var profileImageView: GravatarView!
 	
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
@@ -29,6 +34,10 @@ class LoginViewController: UIViewController {
 	}
 	
 	// MARK: Actions
+	@IBAction func emailEditingDidChange(sender: UITextField) {
+		profileImageView.email = self.loginTextField.text
+	}
+	
 	@IBAction func loginFacebookAction(sender: UIButton) {
 		let facebookLogin = FBSDKLoginManager()
 		
@@ -40,6 +49,11 @@ class LoginViewController: UIViewController {
 			} else if facebookResult.isCancelled {
 				print("Login : Facebook login was cancelled.")
 			} else {
+				self.fbm.getUserPicture(facebookResult.token.tokenString, withCompletionBlock: { (error, result) -> Void in
+					if (!error) {
+						self.profileImageView.url = result
+					}
+				})
 				self.fbm.registerUser(facebookResult.token.tokenString, withCompletionBlock: {
 					(error) -> Void in
 				})
@@ -69,20 +83,5 @@ class LoginViewController: UIViewController {
 				self.passwordTextField.layer.cornerRadius = 8
 			}
 		}
-	}
-	
-	func randomStringWithLength(len: Int) -> String {
-		
-		let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-		
-		let randomString : NSMutableString = NSMutableString(capacity: len)
-		
-		for (var i=0; i < len; i++){
-			let length = UInt32 (letters.length)
-			let rand = arc4random_uniform(length)
-			randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
-		}
-		
-		return randomString as String
 	}
 }

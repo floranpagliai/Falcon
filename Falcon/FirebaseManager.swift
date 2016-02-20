@@ -9,7 +9,29 @@
 import Firebase
 
 class FirebaseManager {
+	
+	// MARK: Properties
 	let ref = Firebase(url: "https://falcongame.firebaseio.com")
+	
+	init() {
+//		Firebase.defaultConfig().persistenceEnabled = true
+	}
+	
+	func getAuthData() -> FAuthData? {
+		if self.ref.authData != nil {
+		    return self.ref.authData
+		} else {
+		    return nil
+		}
+	}
+	
+	func getPathRef(path: String) -> Firebase {
+		return self.ref.childByAppendingPath(path)
+	}
+	
+	func getPathRef(path: String, ref: Firebase) -> Firebase {
+		return ref.childByAppendingPath(path)
+	}
 	
 	func loginUser(email: String, password: String, withCompletionBlock: (error: Bool) -> Void) {
 		ref.authUser(email, password: password, withCompletionBlock: {
@@ -42,11 +64,6 @@ class FirebaseManager {
 			(error: NSError!, result) in
 			if error == nil {
 				let uid = result["uid"] as? String
-//				let newUser = [
-//					"provider": provider,
-//					"username": username,
-//					"email": email
-//				]
 				self.ref.childByAppendingPath("users").childByAppendingPath(uid).setValue(userData)
 				withCompletionBlock(error: false)
 				print("FirebaseManager : Register ok")
@@ -55,6 +72,14 @@ class FirebaseManager {
 				print("FirebaseManager : Register ko")
 			}
 		})
+	}
+	
+	func save(ref: Firebase, key: String, data: [NSObject : AnyObject]) {
+		ref.childByAppendingPath(key).setValue(data)
+	}
+	
+	func update(ref: Firebase, key: String, data: [NSObject : AnyObject]) {
+		ref.childByAppendingPath(key).updateChildValues(data)
 	}
 	
 }

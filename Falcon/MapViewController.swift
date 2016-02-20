@@ -8,25 +8,138 @@
 
 import UIKit
 import GoogleMaps
+import CoreLocation
 
-class MapViewController: UIViewController, GMSMapViewDelegate {
+class MapViewController: UIViewController {
 	
+	// MARK: Properties
+	let locationManager = CLLocationManager()
+	let geocoder = GMSGeocoder()
+	let placesClient = GMSPlacesClient()
+	let mapZoom: Float = 18
+	let mapViewingAngle: Double = 42
+	let placeManager = PlacesManager()
+	let searchRadius: Double = 1000
+	var placeViewController: UIViewController?
+	
+	// MARK: View Properties
+	@IBOutlet weak var mapView: GMSMapView! = GMSMapView()
+	@IBOutlet weak var placeView: UIView!
+	@IBOutlet weak var locationLabel: UILabel!
+	@IBOutlet weak var placeNameLabel: UILabel!
+	@IBOutlet weak var placeDistanceLabel: UILabel!
+	
+	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let camera = GMSCameraPosition.cameraWithLatitude(48.857165, longitude: 2.354613, zoom: 8.0)
-		let mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
-//		mapView.myLocationEnabled = true
-		mapView.settings.myLocationButton = true
-//		self.view = mapView
+		locationManager.delegate = self
 		mapView.delegate = self
-		self.view = mapView
 		
+		locationManager.requestAlwaysAuthorization()
+		locationManager.requestWhenInUseAuthorization()
+		locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+		locationManager.startUpdatingLocation()
+		
+		mapView.camera = GMSCameraPosition(target: locationManager.location!.coordinate, zoom: self.mapZoom, bearing: 0, viewingAngle: self.mapViewingAngle)
+		
+		mapView.settings.setAllGesturesEnabled(false)
+		mapView.myLocationEnabled = true
+		mapView.settings.myLocationButton = true
+		
+		self.placeView.hidden = true
+	}
+	@IBAction func scanAction(sender: UIButton) {
+		mapView.clear()
+		self.placeManager.fetchNearPlaces {
+			(places) -> Void in
+			for place: Place in places {
+				let marker = PlaceMarker(place: place)
+				marker.map = self.mapView
+			}
+		}
 	}
 	
+	func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
+		geocoder.reverseGeocodeCoordinate(coordinate) {
+			response, error in
+			if let address = response?.firstResult() {
+				let lines = address.lines as! [String]
+				self.locationLabel.text = lines.joinWithSeparator("\n")
+				let labelHeight = self.locationLabel.intrinsicContentSize().height
+				self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
+				UIView.animateWithDuration(0.25) {
+					self.view.layoutIfNeeded()
+				}
+			}
+		}
+	}
+	
+	func showPlaceInfo(placeMarker: PlaceMarker) {
+		DataManager.sharedInstance.currentSelectedPlace = placeMarker
+		placeViewController = PlaceViewController()
+		self.placeView.hidden = false
+		//Add PlaceViewController to PlaceView Container
+		addChildViewController(placeViewController!)
+		placeViewController!.view.frame = placeView.bounds
+		placeView.addSubview(placeViewController!.view)
+		placeViewController!.didMoveToParentViewController(self)
+	}
+	
+	func hidePlaceInfo() {
+		self.placeView.hidden = true
+		if let activeVC = placeViewController {
+			activeVC.willMoveToParentViewController(nil)
+			activeVC.view.removeFromSuperview()
+			activeVC.removeFromParentViewController()
+		}
+	}
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+	
+	// MARK: - CLLocationManagerDelegate
+	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+		if status == .AuthorizedWhenInUse {
+			locationManager.startUpdatingLocation()
+			
+		}
+	}
+	
+	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		if let location = locations.first {
+			print("MapView : location updated")
+			mapView.animateToLocation(location.coordinate)
+			locationManager.stopUpdatingLocation()
+		}
+	}
+}
+
+extension MapViewController: GMSMapViewDelegate {
+	
 	// MARK: GMSMapViewDelegate
+	func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
+		reverseGeocodeCoordinate(locationManager.location!.coordinate)
+	}
+	
+	func didTapMyLocationButtonForMapView(mapView: GMSMapView!) -> Bool {
+	  mapView.animateToLocation(locationManager.location!.coordinate)
+	  mapView.selectedMarker = nil
+	  self.hidePlaceInfo()
+	  return true
+	}
+	
+	func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
+		let placeMarker = marker as! PlaceMarker
+
+		self.showPlaceInfo(placeMarker)
+		mapView.animateToLocation(placeMarker.place.coordinate)
+		return true
+	}
 	
 	func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
-		print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+		self.hidePlaceInfo()
+		print("MapView : tap")
+		mapView.animateToLocation(locationManager.location!.coordinate)
 	}
 }

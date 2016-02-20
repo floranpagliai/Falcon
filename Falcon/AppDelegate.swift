@@ -16,19 +16,17 @@ import FBSDKLoginKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-	var ref: Firebase!
+	var ref = FirebaseManager()
 
 	override init() {
 		super.init()
-		Firebase.defaultConfig().persistenceEnabled = true
 	}
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		var controllerId = "Login";
-		let ref = Firebase(url: "https://falcongame.firebaseio.com")
 		GMSServices.provideAPIKey("AIzaSyDg64M-wm_BOaiicA5nt0f3zqGPWbNFfvs")
 
-		if ref.authData != nil {
+		if self.ref.getAuthData() != nil {
 			controllerId = "Home";
 		} else {
 			controllerId = "Login";
