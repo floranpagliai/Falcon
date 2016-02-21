@@ -124,7 +124,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gkv-Ka-QlS" customClass="GMSMapView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gkv-Ka-QlS" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -139,7 +139,7 @@
                                 <rect key="frame" x="8" y="25" width="32" height="32"/>
                                 <state key="normal" image="closeButton"/>
                                 <connections>
-                                    <segue destination="BVd-Bd-ZBR" kind="modal" modalTransitionStyle="crossDissolve" id="HVh-O6-PDE"/>
+                                    <segue destination="BVd-Bd-ZBR" kind="modal" identifier="Home" modalTransitionStyle="crossDissolve" id="HVh-O6-PDE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDi-CZ-mJJ">
@@ -161,11 +161,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gAC-dx-Iwy" firstAttribute="top" secondItem="XnO-ba-vey" secondAttribute="bottom" id="1SA-1s-aWD"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="trailing" secondItem="XnO-ba-vey" secondAttribute="trailing" id="AGr-vT-qeb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pDi-CZ-mJJ" secondAttribute="trailing" constant="-8" id="Cxc-er-FLe"/>
                             <constraint firstItem="Z3P-f7-946" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="top" constant="25" id="LOc-yj-P7e"/>
                             <constraint firstAttribute="trailing" secondItem="XnO-ba-vey" secondAttribute="trailing" id="UQs-oG-ijV"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="bottom" secondItem="gAC-dx-Iwy" secondAttribute="top" id="Z9u-T3-ot0"/>
                             <constraint firstItem="Z3P-f7-946" firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leadingMargin" constant="-8" id="ZHp-9m-c3o"/>
                             <constraint firstAttribute="bottomMargin" secondItem="pDi-CZ-mJJ" secondAttribute="bottom" constant="110" id="d8g-Lo-PXO"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="centerX" secondItem="6mb-EV-Z5i" secondAttribute="centerX" id="h7Z-qs-x0t"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="top" id="niJ-ei-iaF"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="leading" secondItem="XnO-ba-vey" secondAttribute="leading" id="pjk-ha-Q4F"/>
                             <constraint firstItem="6mb-EV-Z5i" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="topMargin" constant="60" id="w50-jI-rxb"/>
                             <constraint firstItem="XnO-ba-vey" firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leading" id="xIY-dp-WtR"/>
                         </constraints>
@@ -245,8 +250,12 @@
         <scene sceneID="bz5-XA-twu">
             <objects>
                 <viewController id="4cT-FH-0w5" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jm1-jH-RCK"/>
+                        <viewControllerLayoutGuide type="bottom" id="BwC-lM-Yuv"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BIU-df-3Bd">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="170"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

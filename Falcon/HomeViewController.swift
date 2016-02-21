@@ -18,9 +18,12 @@ class HomeViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		ref = Firebase(url: "https://falcongame.firebaseio.com")
-		
-		PersmissionManager.showPermisionDialog()
 	}
+	
+	override func viewDidAppear(animated: Bool) {
+		PersmissionManager.showPermisionDialog { (error) -> Void in }
+	}
+	
 	@IBAction func logoutAction(sender: UIButton) {
 		ref.unauth()
 		self.performSegueWithIdentifier("Logout", sender: nil)
