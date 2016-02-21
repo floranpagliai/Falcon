@@ -10,11 +10,20 @@ import PermissionScope
 
 class PersmissionManager {
 	
-	static func showPermisionDialog() {
+	static func showPermisionDialog(withCompletionBlock: (error: Bool) -> Void) {
 		let pscope = PermissionScope()
 		
 		pscope.addPermission(LocationWhileInUsePermission(), message: "We use this to track\r\nwhere you live")
 
-		pscope.show()
+		pscope.show({
+			finished, results in
+			  print("got results \(results)")
+			  withCompletionBlock(error: false)
+			},
+			cancelled: {
+				(results) -> Void in
+				print(results)
+				withCompletionBlock(error: true)
+		})
 	}
 }

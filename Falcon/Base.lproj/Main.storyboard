@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Unknown constraint types" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -161,8 +162,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gkv-Ka-QlS" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gkv-Ka-QlS" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="locationLabel" text="Position" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnO-ba-vey">
@@ -191,9 +192,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gAC-dx-Iwy" firstAttribute="top" secondItem="XnO-ba-vey" secondAttribute="bottom" id="1SA-1s-aWD"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="trailing" secondItem="XnO-ba-vey" secondAttribute="trailing" id="AGr-vT-qeb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pDi-CZ-mJJ" secondAttribute="trailing" constant="-8" id="Cxc-er-FLe"/>
                             <constraint firstAttribute="trailing" secondItem="XnO-ba-vey" secondAttribute="trailing" id="UQs-oG-ijV"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="bottom" secondItem="gAC-dx-Iwy" secondAttribute="top" id="Z9u-T3-ot0"/>
+                            <constraint firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leadingMargin" constant="-8" id="ZHp-9m-c3o"/>
                             <constraint firstAttribute="bottomMargin" secondItem="pDi-CZ-mJJ" secondAttribute="bottom" constant="110" id="d8g-Lo-PXO"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="centerX" secondItem="6mb-EV-Z5i" secondAttribute="centerX" id="h7Z-qs-x0t"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="top" id="niJ-ei-iaF"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="leading" secondItem="XnO-ba-vey" secondAttribute="leading" id="pjk-ha-Q4F"/>
                             <constraint firstItem="6mb-EV-Z5i" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="topMargin" constant="60" id="w50-jI-rxb"/>
                             <constraint firstItem="XnO-ba-vey" firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leading" id="xIY-dp-WtR"/>
                         </constraints>
@@ -282,8 +289,8 @@
             <objects>
                 <viewController id="4cT-FH-0w5" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Kmn-NK-6uS"/>
-                        <viewControllerLayoutGuide type="bottom" id="s9f-5c-JYW"/>
+                        <viewControllerLayoutGuide type="top" id="Jm1-jH-RCK"/>
+                        <viewControllerLayoutGuide type="bottom" id="BwC-lM-Yuv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BIU-df-3Bd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>

@@ -36,7 +36,7 @@ class MapViewController: UIViewController {
 		locationManager.delegate = self
 		mapView.delegate = self
 		
-		locationManager.requestAlwaysAuthorization()
+//		locationManager.requestAlwaysAuthorization()
 		locationManager.requestWhenInUseAuthorization()
 		locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 		locationManager.startUpdatingLocation()
@@ -49,6 +49,16 @@ class MapViewController: UIViewController {
 		
 		self.placeView.hidden = true
 	}
+	
+	override func viewDidAppear(animated: Bool) {
+		PersmissionManager.showPermisionDialog {
+			(error) -> Void in
+			if (error) {
+				self.performSegueWithIdentifier("Home", sender: nil)
+			}
+		}
+	}
+	
 	@IBAction func scanAction(sender: UIButton) {
 		mapView.clear()
 		self.placeManager.fetchNearPlaces {
