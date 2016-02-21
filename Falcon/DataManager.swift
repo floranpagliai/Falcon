@@ -11,6 +11,7 @@ import Foundation
 class DataManager {
 	static let sharedInstance = DataManager()
 	var currentSelectedPlace: PlaceMarker?
+	var eWallet: [FalcoinAddress]?
 	var currentUser: User? {
 		didSet {
 			print("DataManager : currentUser setted (\(self.currentUser!.id))")

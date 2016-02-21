@@ -125,7 +125,7 @@
         <!--Wallet Controller-->
         <scene sceneID="GzF-Ey-huV">
             <objects>
-                <viewController id="kTw-mw-wZ1" customClass="EWalletController" sceneMemberID="viewController">
+                <viewController id="kTw-mw-wZ1" customClass="EWalletController" customModule="Falcon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lxi-L4-xOo"/>
                         <viewControllerLayoutGuide type="bottom" id="872-Q1-hzh"/>
@@ -142,7 +142,11 @@
                                 <segue destination="BVd-Bd-ZBR" kind="modal" modalTransitionStyle="crossDissolve" id="vLV-nx-KlZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ldi-iW-4pF"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ldi-iW-4pF">
+                            <connections>
+                                <action selector="addAddressAction:" destination="kTw-mw-wZ1" id="pm7-DY-PlV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -293,7 +297,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BwC-lM-Yuv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BIU-df-3Bd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -343,7 +347,7 @@
         <image name="radarButton" width="61" height="61"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SYo-nc-eFf"/>
         <segue reference="JUg-wo-jbd"/>
+        <segue reference="vLV-nx-KlZ"/>
     </inferredMetricsTieBreakers>
 </document>

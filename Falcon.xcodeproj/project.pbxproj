@@ -21,6 +21,8 @@
 		CED31BB71C7931F100EA573A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED31BB61C7931F100EA573A /* User.swift */; };
 		CED31BB91C79ED2D00EA573A /* EWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED31BB81C79ED2D00EA573A /* EWalletController.swift */; };
 		CED31BBB1C79F3CF00EA573A /* FalcoinAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED31BBA1C79F3CF00EA573A /* FalcoinAddress.swift */; };
+		CED31BBD1C7A57E100EA573A /* EWalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED31BBC1C7A57E100EA573A /* EWalletManager.swift */; };
+		CED31BBF1C7A5D1A00EA573A /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED31BBE1C7A5D1A00EA573A /* UserManager.swift */; };
 		CEDAB0181C7087D300CC332C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0171C7087D300CC332C /* LoginViewController.swift */; };
 		CEDAB01A1C70BF4100CC332C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0191C70BF4100CC332C /* HomeViewController.swift */; };
 		CEDAB01E1C70ECCA00CC332C /* RegisterViewCrontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */; };
@@ -81,6 +83,8 @@
 		CED31BB61C7931F100EA573A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CED31BB81C79ED2D00EA573A /* EWalletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EWalletController.swift; sourceTree = "<group>"; };
 		CED31BBA1C79F3CF00EA573A /* FalcoinAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FalcoinAddress.swift; sourceTree = "<group>"; };
+		CED31BBC1C7A57E100EA573A /* EWalletManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EWalletManager.swift; sourceTree = "<group>"; };
+		CED31BBE1C7A5D1A00EA573A /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		CEDAB0171C7087D300CC332C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEDAB0191C70BF4100CC332C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewCrontroller.swift; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 				CEDAB02B1C7743F700CC332C /* PlaceMarker.swift */,
 				CE8424561C7905BC006B8379 /* DataManager.swift */,
 				CED31BB41C79221300EA573A /* Stopwatch.swift */,
+				CED31BBC1C7A57E100EA573A /* EWalletManager.swift */,
+				CED31BBE1C7A5D1A00EA573A /* UserManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -430,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEDAB0181C7087D300CC332C /* LoginViewController.swift in Sources */,
+				CED31BBD1C7A57E100EA573A /* EWalletManager.swift in Sources */,
 				CE2775EE1C67D3F6002F81F2 /* AppDelegate.swift in Sources */,
 				CEDAB02C1C7743F700CC332C /* PlaceMarker.swift in Sources */,
 				CED31BB91C79ED2D00EA573A /* EWalletController.swift in Sources */,
@@ -446,6 +453,7 @@
 				CEDAB0221C72730900CC332C /* FacebookManager.swift in Sources */,
 				CEDAB0201C7124F900CC332C /* MapViewController.swift in Sources */,
 				CEDAB01A1C70BF4100CC332C /* HomeViewController.swift in Sources */,
+				CED31BBF1C7A5D1A00EA573A /* UserManager.swift in Sources */,
 				CEDAB02A1C7679A700CC332C /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

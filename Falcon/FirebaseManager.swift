@@ -127,4 +127,9 @@ class FirebaseManager {
 		ref.childByAppendingPath(key).updateChildValues(data)
 	}
 	
+	func childByAutoId(ref: Firebase, data: [NSObject : AnyObject]) {
+		ref.childByAutoId()
+		ref.setValue(data)
+	}
+	
 }

@@ -59,6 +59,7 @@ class MapViewController: UIViewController {
 		}
 	}
 	
+	// MARK: Actions
 	@IBAction func scanAction(sender: UIButton) {
 		mapView.clear()
 		self.placeManager.fetchNearPlaces {

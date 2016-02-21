@@ -21,6 +21,7 @@ class PlaceViewController: UIViewController {
 	@IBOutlet weak var hackProgressLabel: UILabel!
 	@IBOutlet weak var hackButton: UIButton!
 	
+	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -32,6 +33,8 @@ class PlaceViewController: UIViewController {
 		self.hackProgressLabel.text = ""
 		self.update()
 	}
+	
+	// MARK: UIViewController Lifecycle
 	@IBAction func hackStartedAction(sender: UIButton) {
 		
 		if self.placeMarker?.hacked == false {
@@ -62,10 +65,5 @@ class PlaceViewController: UIViewController {
 		} else {
 			self.hackButton.setImage(UIImage(named: "lockOpenButton"), forState: UIControlState.Normal)
 		}
-	}
-	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 }
