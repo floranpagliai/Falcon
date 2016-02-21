@@ -91,6 +91,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Falcon/FBSDKShareKit.framework"
   install_framework "Pods-Falcon/Firebase.framework"
   install_framework "Pods-Falcon/Haneke.framework"
+  install_framework "Pods-Falcon/JDStatusBarNotification.framework"
   install_framework "Pods-Falcon/PermissionScope.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -101,5 +102,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Falcon/FBSDKShareKit.framework"
   install_framework "Pods-Falcon/Firebase.framework"
   install_framework "Pods-Falcon/Haneke.framework"
+  install_framework "Pods-Falcon/JDStatusBarNotification.framework"
   install_framework "Pods-Falcon/PermissionScope.framework"
 fi

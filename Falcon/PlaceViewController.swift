@@ -24,7 +24,7 @@ class PlaceViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.view.layer.cornerRadius = 10;
+//		self.view.layer.cornerRadius = 10;
 		self.placeMarker = DataManager.sharedInstance.currentSelectedPlace
 		self.placeNameLabel.text = self.placeMarker!.place.name
 		self.placeTypeLabel.text = self.placeMarker!.place.getType()

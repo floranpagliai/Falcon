@@ -10,4 +10,5 @@ target 'Falcon' do
     pod 'PermissionScope'
     pod 'CryptoSwift'
     pod 'HanekeSwift'
+    pod 'JDStatusBarNotification'
 end

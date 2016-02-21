@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
 		
 		PersmissionManager.showPermisionDialog()
 	}
+	
 	@IBAction func logoutAction(sender: UIButton) {
 		ref.unauth()
 		self.performSegueWithIdentifier("Logout", sender: nil)

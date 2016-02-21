@@ -59,7 +59,7 @@ class FacebookManager {
 					"facebook_id": result["id"] as! String,
 					"facebook_token": token,
 				]
-				self.ref.registerUser(newUser, password: password, withCompletionBlock: { (error) -> Void in
+				self.ref.registerUser(newUser, password: password, withCompletionBlock: { (error, message) -> Void in
 					if (!error) {
 						withCompletionBlock(error: false)
 						print("FacebookManager : Register ok")

@@ -52,17 +52,28 @@ class FirebaseManager {
 		}
 	}
 	
-	func loginUser(email: String, password: String, withCompletionBlock: (error: Bool) -> Void) {
+	func loginUser(email: String, password: String, withCompletionBlock: (error: Bool, message: String?) -> Void) {
 		ref.authUser(email, password: password, withCompletionBlock: {
 			(error, auth) in
 			if error == nil {
-				withCompletionBlock(error: false)
+				withCompletionBlock(error: false, message: nil)
 				self.getUser({ (user) -> Void in
 					DataManager.sharedInstance.currentUser = user
 				})
 				print("FirebaseManager : Login ok")
 			} else {
-				withCompletionBlock(error: true)
+				if let errorCode = FAuthenticationError(rawValue: error.code) {
+					switch (errorCode) {
+					case .UserDoesNotExist:
+						withCompletionBlock(error: true, message: "No user found")
+					case .InvalidEmail:
+						withCompletionBlock(error: true, message: "Invalid email")
+					case .InvalidPassword:
+						withCompletionBlock(error: true, message: "Invalid password or maybe you have been hacked")
+					default:
+						withCompletionBlock(error: true, message: "Error")
+					}
+				}
 				print("FirebaseManager : Login ko")
 			}
 		})
@@ -84,16 +95,25 @@ class FirebaseManager {
 		})
 	}
 	
-	func registerUser(userData: [String: String], password: String, withCompletionBlock: (error: Bool) -> Void) {
+	func registerUser(userData: [String: String], password: String, withCompletionBlock: (error: Bool, message: String?) -> Void) {
 		self.ref.createUser(userData["email"], password: password, withValueCompletionBlock : {
 			(error: NSError!, result) in
 			if error == nil {
 				let uid = result["uid"] as? String
 				self.ref.childByAppendingPath("users").childByAppendingPath(uid).setValue(userData)
-				withCompletionBlock(error: false)
+				withCompletionBlock(error: false, message: nil)
 				print("FirebaseManager : Register ok")
 			} else {
-				withCompletionBlock(error: true)
+				if let errorCode = FAuthenticationError(rawValue: error.code) {
+					switch (errorCode) {
+					case .EmailTaken:
+						withCompletionBlock(error: true, message: "Email already taken")
+					case .InvalidEmail:
+						withCompletionBlock(error: true, message: "Invalid email")
+					default:
+						withCompletionBlock(error: true, message: "Error")
+					}
+				}
 				print("FirebaseManager : Register ko")
 			}
 		})

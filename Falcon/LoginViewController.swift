@@ -12,6 +12,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import CryptoSwift
 import Haneke
+import JDStatusBarNotification
 
 class LoginViewController: UIViewController {
 	
@@ -69,19 +70,25 @@ class LoginViewController: UIViewController {
 	
 	@IBAction func loginAction(sender: UIButton) {
 		ref.loginUser(loginTextField.text!, password: passwordTextField.text!) {
-			(error) -> Void in
+			(error, message) -> Void in
 			if (!error) {
 				self.performSegueWithIdentifier("Logged", sender: nil)
 			} else {
 				// There was an error logging in to this account
 				// TODO: Add error message
+				JDStatusBarNotification.showWithStatus(message, dismissAfter: NSTimeInterval(5), styleName: JDStatusBarStyleError)
 				self.loginTextField.layer.borderColor = UIColor.redColor().CGColor
 				self.loginTextField.layer.borderWidth = 1.0
-				self.loginTextField.layer.cornerRadius = 8
 				self.passwordTextField.layer.borderColor = UIColor.redColor().CGColor
 				self.passwordTextField.layer.borderWidth = 1.0
-				self.passwordTextField.layer.cornerRadius = 8
 			}
 		}
+	}
+	
+	/**
+	* Called when the user click on the view (outside the UITextField).
+	*/
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		self.view.endEditing(true)
 	}
 }

@@ -44,13 +44,11 @@ class GravatarView: UIView {
 	}
 	
 	func getImage() {
-		profilePhoto?.image = nil
 		let url = NSURL(string: "http://www.gravatar.com/avatar/" + email!.md5() + ".jpg?s=400&d=404")
-		profilePhoto?.hnk_setImageFromURL(url!)
+		self.profilePhoto?.hnk_setImageFromURL(url!)
 	}
 	
 	func getImageFromUrl() {
-		profilePhoto?.image = nil
 		let nsurl = NSURL(string: url!)
 		profilePhoto?.hnk_setImageFromURL(nsurl!)
 	}
