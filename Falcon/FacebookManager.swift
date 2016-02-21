@@ -56,7 +56,8 @@ class FacebookManager {
 					"provider": "facebook",
 					"username": result["name"] as! String,
 					"email": result["email"] as! String,
-					"facebook_token": token
+					"facebook_id": result["id"] as! String,
+					"facebook_token": token,
 				]
 				self.ref.registerUser(newUser, password: password, withCompletionBlock: { (error) -> Void in
 					if (!error) {

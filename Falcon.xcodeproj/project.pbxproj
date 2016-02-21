@@ -17,6 +17,8 @@
 		CE8424541C78CE63006B8379 /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8424521C78CE63006B8379 /* PlaceViewController.swift */; };
 		CE8424551C78CE63006B8379 /* PlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8424531C78CE63006B8379 /* PlaceViewController.xib */; };
 		CE8424571C7905BC006B8379 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8424561C7905BC006B8379 /* DataManager.swift */; };
+		CED31BB51C79221300EA573A /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED31BB41C79221300EA573A /* Stopwatch.swift */; };
+		CED31BB71C7931F100EA573A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED31BB61C7931F100EA573A /* User.swift */; };
 		CEDAB0181C7087D300CC332C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0171C7087D300CC332C /* LoginViewController.swift */; };
 		CEDAB01A1C70BF4100CC332C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB0191C70BF4100CC332C /* HomeViewController.swift */; };
 		CEDAB01E1C70ECCA00CC332C /* RegisterViewCrontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */; };
@@ -73,6 +75,8 @@
 		CE8424521C78CE63006B8379 /* PlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
 		CE8424531C78CE63006B8379 /* PlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceViewController.xib; sourceTree = "<group>"; };
 		CE8424561C7905BC006B8379 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		CED31BB41C79221300EA573A /* Stopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
+		CED31BB61C7931F100EA573A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CEDAB0171C7087D300CC332C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEDAB0191C70BF4100CC332C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewCrontroller.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				CEDAB0271C76781700CC332C /* PlacesManager.swift */,
 				CEDAB02B1C7743F700CC332C /* PlaceMarker.swift */,
 				CE8424561C7905BC006B8379 /* DataManager.swift */,
+				CED31BB41C79221300EA573A /* Stopwatch.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				CEDAB0291C7679A700CC332C /* Place.swift */,
+				CED31BB61C7931F100EA573A /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -421,9 +427,11 @@
 				CE2775EE1C67D3F6002F81F2 /* AppDelegate.swift in Sources */,
 				CEDAB02C1C7743F700CC332C /* PlaceMarker.swift in Sources */,
 				CE8424571C7905BC006B8379 /* DataManager.swift in Sources */,
+				CED31BB71C7931F100EA573A /* User.swift in Sources */,
 				CEDAB0261C7627F200CC332C /* PersmissionManager.swift in Sources */,
 				CE8424511C77F5CF006B8379 /* GravatarView.swift in Sources */,
 				CEDAB0241C739FB300CC332C /* FirebaseManager.swift in Sources */,
+				CED31BB51C79221300EA573A /* Stopwatch.swift in Sources */,
 				CEDAB01E1C70ECCA00CC332C /* RegisterViewCrontroller.swift in Sources */,
 				CEDAB0281C76781700CC332C /* PlacesManager.swift in Sources */,
 				CE8424541C78CE63006B8379 /* PlaceViewController.swift in Sources */,

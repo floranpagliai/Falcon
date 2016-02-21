@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		if self.ref.getAuthData() != nil {
 			controllerId = "Home";
+			ref.getUser({ (user) -> Void in
+				DataManager.sharedInstance.currentUser = user
+			})
 		} else {
 			controllerId = "Login";
 		}

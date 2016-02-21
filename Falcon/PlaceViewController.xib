@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceViewController" customModule="Falcon" customModuleProvider="target">
             <connections>
+                <outlet property="hackButton" destination="EbR-Nr-uwa" id="TQd-EX-Y0F"/>
+                <outlet property="hackProgressLabel" destination="XTT-FY-2fd" id="m59-QF-ao1"/>
                 <outlet property="placeDistanceLabel" destination="HGH-ff-Gqm" id="K2k-vh-0h6"/>
                 <outlet property="placeNameLabel" destination="uvR-GZ-sHf" id="jYM-oL-peS"/>
                 <outlet property="placeTypeLabel" destination="vUb-8h-WEN" id="1mL-We-8UC"/>
@@ -35,11 +37,19 @@
                     <state key="normal" image="lockButton"/>
                     <connections>
                         <action selector="hackAction:" destination="-1" eventType="touchUpInside" id="TG4-Q2-fPU"/>
+                        <action selector="hackEndAction:" destination="-1" eventType="touchUpOutside" id="fGy-ix-ykB"/>
+                        <action selector="hackStartedAction:" destination="-1" eventType="touchDown" id="Yqb-EG-dhL"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUb-8h-WEN">
                     <rect key="frame" x="8" y="28" width="190" height="21"/>
                     <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hack in progress..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTT-FY-2fd">
+                    <rect key="frame" x="8" y="74" width="121" height="21"/>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>

@@ -14,14 +14,14 @@ class FirebaseManager {
 	let ref = Firebase(url: "https://falcongame.firebaseio.com")
 	
 	init() {
-//		Firebase.defaultConfig().persistenceEnabled = true
+		//		Firebase.defaultConfig().persistenceEnabled = true
 	}
 	
 	func getAuthData() -> FAuthData? {
 		if self.ref.authData != nil {
-		    return self.ref.authData
+			return self.ref.authData
 		} else {
-		    return nil
+			return nil
 		}
 	}
 	
@@ -33,11 +33,33 @@ class FirebaseManager {
 		return ref.childByAppendingPath(path)
 	}
 	
+	func getUser(withCompletionBlock: (user: User) -> Void) {
+		let userRef = self.getPathRef("users")
+		if self.ref.authData.provider == "facebook" {
+			let id = NSURL(string: self.ref.authData.uid)?.query?.componentsSeparatedByString(":").last
+			userRef.queryOrderedByChild("facebook_id").queryEqualToValue(id).queryLimitedToFirst(1).observeEventType(.Value, withBlock: {
+				(snapshot) in
+				let enumerator = snapshot.children
+				while let rest = enumerator.nextObject() as? FDataSnapshot {
+					withCompletionBlock(user: User(snapshot: rest))
+				}
+			})
+		} else {
+			self.getPathRef(self.ref.authData.uid, ref: userRef).observeEventType(.Value, withBlock: {
+				(snapshot) in
+				withCompletionBlock(user: User(snapshot: snapshot))
+			})
+		}
+	}
+	
 	func loginUser(email: String, password: String, withCompletionBlock: (error: Bool) -> Void) {
 		ref.authUser(email, password: password, withCompletionBlock: {
 			(error, auth) in
 			if error == nil {
 				withCompletionBlock(error: false)
+				self.getUser({ (user) -> Void in
+					DataManager.sharedInstance.currentUser = user
+				})
 				print("FirebaseManager : Login ok")
 			} else {
 				withCompletionBlock(error: true)
@@ -51,6 +73,9 @@ class FirebaseManager {
 			(error, auth) in
 			if error == nil {
 				withCompletionBlock(error: false)
+				self.getUser({ (user) -> Void in
+					DataManager.sharedInstance.currentUser = user
+				})
 				print("FirebaseManager : Login OAuth ok")
 			} else {
 				withCompletionBlock(error: true)

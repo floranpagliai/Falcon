@@ -30,7 +30,7 @@ class RegisterViewController: UIViewController {
 	// MARK: Actions
 	@IBAction func registerAction(sender: UIButton) {
 		let userData = [
-			"provider": "pasword",
+			"provider": "password",
 			"username": usernameTextField.text!,
 			"email": emailTextField.text!
 		]
