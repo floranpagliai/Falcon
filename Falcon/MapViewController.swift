@@ -36,7 +36,7 @@ class MapViewController: UIViewController {
 		locationManager.delegate = self
 		mapView.delegate = self
 		
-		locationManager.requestAlwaysAuthorization()
+//		locationManager.requestAlwaysAuthorization()
 		locationManager.requestWhenInUseAuthorization()
 		locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 		locationManager.startUpdatingLocation()
