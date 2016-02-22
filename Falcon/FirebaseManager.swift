@@ -37,7 +37,6 @@ class FirebaseManager {
 	func getUser(withCompletionBlock: (user: User) -> Void) {
 		self.getPathRef(self.ref.authData.uid, ref: self.userRef).observeEventType(.Value, withBlock: {
 			(snapshot) in
-			print(snapshot)
 			withCompletionBlock(user: User(snapshot: snapshot))
 		})
 	}
@@ -113,13 +112,24 @@ class FirebaseManager {
 		ref.childByAppendingPath(key).setValue(data)
 	}
 	
+	func save(ref: Firebase, key: String, data: AnyObject) {
+		ref.childByAppendingPath(key).setValue(data)
+	}
+	
 	func update(ref: Firebase, key: String, data: [NSObject : AnyObject]) {
 		ref.childByAppendingPath(key).updateChildValues(data)
 	}
 	
-	func childByAutoId(ref: Firebase, data: [NSObject : AnyObject]) {
-		ref.childByAutoId()
-		ref.setValue(data)
+	func childByAutoId(ref: Firebase, data: [NSObject : AnyObject]) -> String {
+		let childRef = ref.ref.childByAutoId()
+		childRef.setValue(data)
+		return childRef.key
+	}
+	
+	func childByAutoId(ref: Firebase, data: AnyObject) -> String {
+		let childRef = ref.ref.childByAutoId()
+		childRef.setValue(data)
+		return childRef.key
 	}
 	
 	func unauth() {

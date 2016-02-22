@@ -14,6 +14,18 @@ class EWalletManager {
 	let ref = FirebaseManager()
 	let userManager = UserManager()
 	
+	func getWallet(withCompletionBlock: (wallet: [FalcoinAddress]) -> Void) {
+		let userRef = ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!, ref: ref.userRef)
+		let walletRef = ref.getPathRef("wallet", ref: userRef)
+		
+		walletRef.observeEventType(.Value, withBlock: {
+			(snapshot) in
+			print(snapshot)
+//			withCompletionBlock(wallet: )
+		})
+
+	}
+	
 	func updateWalet() {
 		let userRef = ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!, ref: ref.userRef)
 		let walletRef = ref.getPathRef("wallet", ref: userRef)
@@ -33,10 +45,10 @@ class EWalletManager {
 	func newAdress() {
 		let falcoinAddress = FalcoinAddress()
 		let falcoinAddressesRef = ref.getPathRef("falcoin_addresses")
+		let addressKey = ref.childByAutoId(falcoinAddressesRef, data: falcoinAddress.toAnyObject())
 		
-		ref.save(falcoinAddressesRef, key: falcoinAddress.privateKey, data: falcoinAddress.toAnyObject())
-		userManager.addAddress(falcoinAddress)
-		
+		DataManager.sharedInstance.eWallet.append(falcoinAddress)
+		userManager.addAddress(addressKey)
 	}
 	
 }

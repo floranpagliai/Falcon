@@ -66,6 +66,7 @@ class MapViewController: UIViewController {
 	@IBAction func scanAction(sender: UIButton) {
 		self.radarView.hidden = false
 		self.radarView.startAnimation()
+		self.hidePlaceInfo()
 		let stopwatch = Stopwatch()
 		let time = NSTimeInterval(3)
 		mapView.clear()
@@ -108,6 +109,7 @@ class MapViewController: UIViewController {
 	}
 	
 	func hidePlaceInfo() {
+		mapView.animateToLocation(locationManager.location!.coordinate)
 		self.placeView.hidden = true
 		if let activeVC = placeViewController {
 			activeVC.willMoveToParentViewController(nil)
@@ -161,6 +163,5 @@ extension MapViewController: GMSMapViewDelegate {
 	func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
 		self.hidePlaceInfo()
 		print("MapView : tap")
-		mapView.animateToLocation(locationManager.location!.coordinate)
 	}
 }

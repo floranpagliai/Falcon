@@ -11,13 +11,16 @@ class UserManager {
 	// MARK: Properties
 	let ref = FirebaseManager()
 	
-	func addAddress(falcoinAddress: FalcoinAddress) {
-		let userRef = ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!, ref: ref.userRef)
-		let walletRef = ref.getPathRef("wallet", ref: userRef)
-		let test = [
-			"id": falcoinAddress.privateKey
-		]
-		ref.childByAutoId(walletRef, data: test)
-		DataManager.sharedInstance.eWallet.append(falcoinAddress)
+	func getUser(withCompletionBlock: (user: User) -> Void) {
+		ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!, ref: ref.userRef).observeEventType(.Value, withBlock: {
+			(snapshot) in
+			print(snapshot)
+			withCompletionBlock(user: User(snapshot: snapshot))
+		})
+	}
+	
+	func addAddress(falcoinAddressKey: String) {
+		let walletRef = ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!+"/wallet", ref: ref.userRef)
+		ref.childByAutoId(walletRef, data: falcoinAddressKey as AnyObject)
 	}
 }
