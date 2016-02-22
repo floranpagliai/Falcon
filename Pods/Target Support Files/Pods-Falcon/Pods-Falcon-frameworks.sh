@@ -85,6 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Falcon/Bolts.framework"
+  install_framework "Pods-Falcon/CCMRadarView.framework"
   install_framework "Pods-Falcon/CryptoSwift.framework"
   install_framework "Pods-Falcon/FBSDKCoreKit.framework"
   install_framework "Pods-Falcon/FBSDKLoginKit.framework"
@@ -96,6 +97,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Falcon/Bolts.framework"
+  install_framework "Pods-Falcon/CCMRadarView.framework"
   install_framework "Pods-Falcon/CryptoSwift.framework"
   install_framework "Pods-Falcon/FBSDKCoreKit.framework"
   install_framework "Pods-Falcon/FBSDKLoginKit.framework"

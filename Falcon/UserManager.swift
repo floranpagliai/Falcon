@@ -12,13 +12,12 @@ class UserManager {
 	let ref = FirebaseManager()
 	
 	func addAddress(falcoinAddress: FalcoinAddress) {
-		let usersRef = ref.getPathRef("users")
-		let userRef = ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!, ref: usersRef)
+		let userRef = ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!, ref: ref.userRef)
 		let walletRef = ref.getPathRef("wallet", ref: userRef)
 		let test = [
 			"id": falcoinAddress.privateKey
 		]
 		ref.childByAutoId(walletRef, data: test)
-		DataManager.sharedInstance.eWallet?.append(falcoinAddress)
+		DataManager.sharedInstance.eWallet.append(falcoinAddress)
 	}
 }

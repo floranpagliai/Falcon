@@ -24,8 +24,8 @@ struct FalcoinAddress {
 	}
 	
 	init(snapshot: FDataSnapshot) {
-		self.publicKey = snapshot.value["publicKey"] as! Int
-		self.privateKey = snapshot.value["privateKey"] as! String
+		self.publicKey = snapshot.value["public_key"] as! Int
+		self.privateKey = snapshot.value["private_key"] as! String
 		self.balance = snapshot.value["balance"] as! Float
 		self.ref = snapshot.ref
 	}

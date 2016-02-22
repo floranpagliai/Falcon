@@ -35,8 +35,7 @@ class FirebaseManager {
 	}
 	
 	func getUser(withCompletionBlock: (user: User) -> Void) {
-		var uid = self.ref.authData.uid
-		self.getPathRef(uid, ref: self.userRef).observeEventType(.Value, withBlock: {
+		self.getPathRef(self.ref.authData.uid, ref: self.userRef).observeEventType(.Value, withBlock: {
 			(snapshot) in
 			print(snapshot)
 			withCompletionBlock(user: User(snapshot: snapshot))

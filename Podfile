@@ -11,4 +11,5 @@ target 'Falcon' do
     pod 'CryptoSwift'
     pod 'HanekeSwift'
     pod 'JDStatusBarNotification'
+    pod 'CCMRadarView'
 end

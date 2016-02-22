@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.6.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.6.0)
+  - CCMRadarView (1.0.2)
   - CryptoSwift (0.2.3)
   - FBSDKCoreKit (4.10.0):
     - Bolts (~> 1.5)
@@ -19,6 +20,7 @@ PODS:
   - PermissionScope (1.0.2)
 
 DEPENDENCIES:
+  - CCMRadarView
   - CryptoSwift
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -31,6 +33,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  CCMRadarView: 6bff4c5c3d05d627664a4b398a508d051a4a94be
   CryptoSwift: b2bf37b8e7cc6d682ef3365cb966bc5ae5174aa5
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
@@ -41,6 +44,6 @@ SPEC CHECKSUMS:
   JDStatusBarNotification: 29413865af11c862c17180610b0f46a21118b412
   PermissionScope: 860828c5516d349b6f49e5491799cfef33c5ccc7
 
-PODFILE CHECKSUM: b41804bdd7d67b48c479acccc2f3601b5b752894
+PODFILE CHECKSUM: f9769152b1a17dc740e406f5cbc00e16efaee2d7
 
 COCOAPODS: 1.0.0.beta.3
