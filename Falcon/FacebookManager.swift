@@ -51,7 +51,6 @@ class FacebookManager {
 		self.getUserData(token) {
 			(error, result) -> Void in
 			if (!error) {
-				let password = self.randomStringWithLength(8)
 				let newUser = [
 					"provider": "facebook",
 					"username": result["name"] as! String,
@@ -59,33 +58,12 @@ class FacebookManager {
 					"facebook_id": result["id"] as! String,
 					"facebook_token": token,
 				]
-				self.ref.registerUser(newUser, password: password, withCompletionBlock: { (error, message) -> Void in
-					if (!error) {
-						withCompletionBlock(error: false)
-						print("FacebookManager : Register ok")
-					} else {
-						withCompletionBlock(error: true)
-						print("FacebookManager : Register ko")
-					}
-				})
+				self.ref.update(self.ref.userRef, key: "facebook:"+newUser["facebook_id"]!, data: newUser)
+				withCompletionBlock(error: false)
+				print("FacebookManager : Register ok")
 			} else {
 				withCompletionBlock(error: true)
 			}
 		}
-	}
-	
-	func randomStringWithLength(len: Int) -> String {
-		
-		let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-		
-		let randomString : NSMutableString = NSMutableString(capacity: len)
-		
-		for (var i=0; i < len; i++){
-			let length = UInt32 (letters.length)
-			let rand = arc4random_uniform(length)
-			randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
-		}
-		
-		return randomString as String
 	}
 }

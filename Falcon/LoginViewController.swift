@@ -64,6 +64,7 @@ class LoginViewController: UIViewController {
 						self.performSegueWithIdentifier("Logged", sender: nil)
 					}
 				})
+				
 			}
 		})
 	}

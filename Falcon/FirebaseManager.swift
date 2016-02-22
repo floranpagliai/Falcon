@@ -12,6 +12,7 @@ class FirebaseManager {
 	
 	// MARK: Properties
 	let ref = Firebase(url: "https://falcongame.firebaseio.com")
+	let userRef = Firebase(url: "https://falcongame.firebaseio.com/users")
 	
 	init() {
 		//		Firebase.defaultConfig().persistenceEnabled = true
@@ -34,22 +35,12 @@ class FirebaseManager {
 	}
 	
 	func getUser(withCompletionBlock: (user: User) -> Void) {
-		let userRef = self.getPathRef("users")
-		if self.ref.authData.provider == "facebook" {
-			let id = NSURL(string: self.ref.authData.uid)?.query?.componentsSeparatedByString(":").last
-			userRef.queryOrderedByChild("facebook_id").queryEqualToValue(id).queryLimitedToFirst(1).observeEventType(.Value, withBlock: {
-				(snapshot) in
-				let enumerator = snapshot.children
-				while let rest = enumerator.nextObject() as? FDataSnapshot {
-					withCompletionBlock(user: User(snapshot: rest))
-				}
-			})
-		} else {
-			self.getPathRef(self.ref.authData.uid, ref: userRef).observeEventType(.Value, withBlock: {
-				(snapshot) in
-				withCompletionBlock(user: User(snapshot: snapshot))
-			})
-		}
+		var uid = self.ref.authData.uid
+		self.getPathRef(uid, ref: self.userRef).observeEventType(.Value, withBlock: {
+			(snapshot) in
+			print(snapshot)
+			withCompletionBlock(user: User(snapshot: snapshot))
+		})
 	}
 	
 	func loginUser(email: String, password: String, withCompletionBlock: (error: Bool, message: String?) -> Void) {
@@ -132,4 +123,7 @@ class FirebaseManager {
 		ref.setValue(data)
 	}
 	
+	func unauth() {
+		self.ref.unauth()
+	}
 }
