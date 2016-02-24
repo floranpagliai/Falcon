@@ -22,9 +22,14 @@ class EWalletController: UIViewController, UITableViewDelegate, UITableViewDataS
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.walletManager.getWallet()
 		self.falcoinAddresses.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		self.falcoinAddresses.reloadData()
+	}
+	
+	override func viewDidAppear(animated: Bool) {
 		walletManager.updateWalet()
+		self.falcoinAddresses.reloadData()
 	}
 	
 	// MARK: Actions
