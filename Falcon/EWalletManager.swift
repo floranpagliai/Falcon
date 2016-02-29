@@ -26,29 +26,11 @@ class EWalletManager {
 				let falcoinAddrsRef = self.ref.getPathRef(children.value as! String, ref: self.ref.falcoinAddrsRef)
 				falcoinAddrsRef.observeEventType(.Value, withBlock: {
 					(snapshot) in
-					let falcoinAddress = FalcoinAddress(snapshot: snapshot)
+					let falcoinAddress = FalcoinAddress(snapshot: snapshot, userWalletRef: children.ref)
 					DataManager.sharedInstance.eWallet.append(falcoinAddress)
 				})
 			}
 		})
-	}
-	
-	func updateWalet() {
-//		let userRef = ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!, ref: ref.userRef)
-//		let walletRef = ref.getPathRef("wallet", ref: userRef)
-		
-//		self.getWallet()
-		
-//		walletRef.observeEventType (.ChildChanged, withBlock: { snapshot in
-//			var eWallet = [FalcoinAddress]()
-//			for children in snapshot.children {
-//				print(children)
-//				let falcoinAddress = FalcoinAddress(snapshot: children as! FDataSnapshot)
-//				print(falcoinAddress)
-//				eWallet.append(falcoinAddress)
-//			}
-//			DataManager.sharedInstance.eWallet = eWallet
-//		})
 	}
 	
 	func newAdress() {
@@ -56,8 +38,11 @@ class EWalletManager {
 		let falcoinAddressesRef = ref.getPathRef("falcoin_addresses")
 		let addressKey = ref.childByAutoId(falcoinAddressesRef, data: falcoinAddress.toAnyObject())
 		
-		DataManager.sharedInstance.eWallet.append(falcoinAddress)
 		userManager.addAddress(addressKey)
+	}
+	
+	func removeAddress(falcoinAddress: FalcoinAddress) {
+		falcoinAddress.userWalletRef!.removeValue()
 	}
 	
 }

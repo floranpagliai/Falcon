@@ -14,6 +14,7 @@ struct FalcoinAddress {
 	let privateKey: String!
 	let balance: Float!
 	let ref: Firebase?
+	let userWalletRef: Firebase?
 	
 	// Initialize from arbitrary data
 	init() {
@@ -21,13 +22,15 @@ struct FalcoinAddress {
 		self.privateKey = NSUUID().UUIDString
 		self.balance = 0
 		self.ref = nil
+		self.userWalletRef = nil
 	}
 	
-	init(snapshot: FDataSnapshot) {
+	init(snapshot: FDataSnapshot, userWalletRef: Firebase) {
 		self.publicKey = snapshot.value["public_key"] as! Int
 		self.privateKey = snapshot.value["private_key"] as! String
 		self.balance = snapshot.value["balance"] as! Float
 		self.ref = snapshot.ref
+		self.userWalletRef = userWalletRef
 	}
 	
 	func toAnyObject() -> [NSObject : AnyObject] {

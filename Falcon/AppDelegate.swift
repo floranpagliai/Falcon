@@ -23,21 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		var controllerId = "Login";
+		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+		var initViewController: UIViewController =  storyboard.instantiateViewControllerWithIdentifier("Home") as UIViewController
 		GMSServices.provideAPIKey("AIzaSyDg64M-wm_BOaiicA5nt0f3zqGPWbNFfvs")
 
 		if self.ref.getAuthData() != nil {
-			controllerId = "Home";
 			ref.getUser({ (user) -> Void in
 				DataManager.sharedInstance.currentUser = user
+				self.window?.rootViewController = initViewController
 			})
 		} else {
-			controllerId = "Login";
+			initViewController = storyboard.instantiateViewControllerWithIdentifier("Login") as UIViewController
+			self.window?.rootViewController = initViewController
 		}
-		
-		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-		let initViewController: UIViewController = storyboard.instantiateViewControllerWithIdentifier(controllerId) as UIViewController
-		self.window?.rootViewController = initViewController
 		
 		return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 	}
