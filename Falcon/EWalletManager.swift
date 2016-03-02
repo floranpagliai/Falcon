@@ -14,31 +14,36 @@ class EWalletManager {
 	let ref = FirebaseManager()
 	let userManager = UserManager()
 	
-	func getWallet() {
-		let userRef = ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!, ref: ref.userRef)
-		let walletRef = ref.getPathRef("wallet", ref: userRef)
-		DataManager.sharedInstance.eWallet = [FalcoinAddress]()
-		
-		walletRef.observeEventType(.Value, withBlock: {
-			(snapshot) in
-			let enumerator = snapshot.children
-			while let children = enumerator.nextObject() as? FDataSnapshot {
-				let falcoinAddrsRef = self.ref.getPathRef(children.value as! String, ref: self.ref.falcoinAddrsRef)
-				falcoinAddrsRef.observeEventType(.Value, withBlock: {
-					(snapshot) in
-					let falcoinAddress = FalcoinAddress(snapshot: snapshot, userWalletRef: children.ref)
-					DataManager.sharedInstance.eWallet.append(falcoinAddress)
-				})
-			}
-		})
-	}
-	
 	func newAdress() {
-		let falcoinAddress = FalcoinAddress()
+		var falcoinAddress = FalcoinAddress()
 		let falcoinAddressesRef = ref.getPathRef("falcoin_addresses")
 		let addressKey = ref.childByAutoId(falcoinAddressesRef, data: falcoinAddress.toAnyObject())
 		
-		userManager.addAddress(addressKey)
+		
+		self.getNextKey { (error, key) -> Void in
+			if (!error) {
+				self.userManager.addAddress(addressKey)
+				falcoinAddress.publicKey = key
+				self.ref.update(falcoinAddressesRef, key: addressKey, data: falcoinAddress.toAnyObject())
+			}
+		}
+	}
+	
+	func getNextKey(withCompletionBlock: (error: Bool, key: Int) -> Void) {
+		let addressesKey = self.ref.falcoinAddrsKeyRef
+		
+		addressesKey.runTransactionBlock({
+			(currentData:FMutableData!) in
+			var value = currentData.value as? Int
+			if (value == nil) {
+				value = 0
+			} else {
+				
+				withCompletionBlock(error: false, key: value! + 1)
+			}
+			currentData.value = value! + 1
+			return FTransactionResult.successWithValue(currentData)
+		})
 	}
 	
 	func removeAddress(falcoinAddress: FalcoinAddress) {

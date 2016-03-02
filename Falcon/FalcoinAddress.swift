@@ -10,15 +10,15 @@
 import Firebase
 
 struct FalcoinAddress {
-	let publicKey: Int!
+	var publicKey: Int!
 	let privateKey: String!
-	let balance: Float!
+	var balance: Float!
 	let ref: Firebase?
 	let userWalletRef: Firebase?
 	
 	// Initialize from arbitrary data
 	init() {
-		self.publicKey = 1
+		self.publicKey = 0
 		self.privateKey = NSUUID().UUIDString
 		self.balance = 0
 		self.ref = nil
@@ -40,6 +40,17 @@ struct FalcoinAddress {
 			"balance": self.balance,
 		]
 	}
-	
 }
+
+extension FalcoinAddress: Hashable {
+	var hashValue: Int {
+		return privateKey.hashValue
+	}
+}
+
+
+func ==(lhs: FalcoinAddress, rhs: FalcoinAddress) -> Bool {
+	return lhs.privateKey == rhs.privateKey
+}
+
 

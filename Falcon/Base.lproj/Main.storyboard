@@ -122,7 +122,7 @@
             </objects>
             <point key="canvasLocation" x="920" y="239"/>
         </scene>
-        <!--Wallet Controller-->
+        <!--E-Wallet-->
         <scene sceneID="GzF-Ey-huV">
             <objects>
                 <viewController id="kTw-mw-wZ1" customClass="EWalletController" customModule="Falcon" customModuleProvider="target" sceneMemberID="viewController">
@@ -134,29 +134,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QoP-8f-k7r">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z51-rf-Qs6">
+                                <rect key="frame" x="0.0" y="64" width="320" height="188"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="5000.0 F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13P-Pc-fz7">
+                                        <rect key="frame" x="8" y="71" width="304" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="304" id="TRD-9o-3Ln"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.23137254900000001" green="0.32549019610000002" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="leading" secondItem="z51-rf-Qs6" secondAttribute="leadingMargin" id="2gK-Zd-88u"/>
+                                    <constraint firstAttribute="bottom" secondItem="13P-Pc-fz7" secondAttribute="bottom" constant="71" id="33Q-Af-s8f"/>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="leading" secondItem="z51-rf-Qs6" secondAttribute="leading" constant="8" id="KGy-KD-siO"/>
+                                    <constraint firstAttribute="trailing" secondItem="13P-Pc-fz7" secondAttribute="trailing" constant="8" id="V9c-aQ-ROm"/>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="top" secondItem="z51-rf-Qs6" secondAttribute="top" constant="71" id="WQa-FL-frd"/>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="top" secondItem="z51-rf-Qs6" secondAttribute="top" constant="71" id="Y5t-75-ajH"/>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="centerX" secondItem="z51-rf-Qs6" secondAttribute="centerX" id="Ya3-fB-5mi"/>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="leading" secondItem="z51-rf-Qs6" secondAttribute="leading" constant="8" id="lGI-qs-pHv"/>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="centerY" secondItem="z51-rf-Qs6" secondAttribute="centerY" id="lwP-UH-G8p"/>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="top" secondItem="z51-rf-Qs6" secondAttribute="top" constant="71" id="m80-2n-SgT"/>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="trailing" secondItem="z51-rf-Qs6" secondAttribute="trailingMargin" id="pDW-0H-p3I"/>
+                                    <constraint firstItem="13P-Pc-fz7" firstAttribute="leading" secondItem="z51-rf-Qs6" secondAttribute="leading" constant="8" id="yq5-cP-cTT"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QoP-8f-k7r">
+                                <rect key="frame" x="0.0" y="224" width="320" height="344"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zh5-so-paa">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FalcoinAddressCell" textLabel="6vr-50-FRl" detailTextLabel="gCn-Qe-l0f" style="IBUITableViewCellStyleSubtitle" id="zh5-so-paa">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zh5-so-paa" id="0T5-Hj-nHW">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6vr-50-FRl">
+                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gCn-Qe-l0f">
+                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.29803921570000003" green="0.85098039219999999" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="kTw-mw-wZ1" id="rqr-UK-DMh"/>
                                     <outlet property="delegate" destination="kTw-mw-wZ1" id="7Zo-uk-qfH"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="ETR-PV-baV">
+                    <navigationItem key="navigationItem" title="E-Wallet" id="ETR-PV-baV">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="vWh-Ie-I1m">
                             <connections>
                                 <segue destination="BVd-Bd-ZBR" kind="modal" modalTransitionStyle="crossDissolve" id="vLV-nx-KlZ"/>
@@ -171,6 +217,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="falcoinAddresses" destination="QoP-8f-k7r" id="dJ1-Dv-9wf"/>
+                        <outlet property="totalFalcoinsLabel" destination="13P-Pc-fz7" id="69D-cd-Br5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G6F-zh-Ptn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -341,7 +388,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BwC-lM-Yuv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BIU-df-3Bd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -391,7 +438,7 @@
         <image name="radarButton" width="61" height="61"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SYo-nc-eFf"/>
+        <segue reference="vLV-nx-KlZ"/>
         <segue reference="JUg-wo-jbd"/>
     </inferredMetricsTieBreakers>
 </document>

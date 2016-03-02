@@ -10,37 +10,41 @@ import UIKit
 import JDStatusBarNotification
 import Firebase
 
-class EWalletController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EWalletController: UIViewController, UITableViewDataSource {
 	
 	// MARK: Properties
 	let walletManager = EWalletManager()
-	var eWallet = [FalcoinAddress]()
+	var eWallet = Set<FalcoinAddress>()
 	let ref = FirebaseManager()
 	let userManager = UserManager()
 	
 	// MARK: View Properties
 	@IBOutlet weak var falcoinAddresses: UITableView!
+	@IBOutlet weak var totalFalcoinsLabel: UILabel!
 	
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.falcoinAddresses.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		
+		self.falcoinAddresses.rowHeight = 80.0
+		self.falcoinAddresses.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		self.syncWallet()
 	}
 	
 	override func viewDidAppear(animated: Bool) {
-		self.updateWallet()
-		self.falcoinAddresses.reloadData()
+		
 	}
 	
 	// MARK: Actions
 	@IBAction func addAddressAction(sender: UIBarButtonItem) {
-		let falcoinAddress = FalcoinAddress()
-		let falcoinAddressesRef = ref.getPathRef("falcoin_addresses")
-		let addressKey = ref.childByAutoId(falcoinAddressesRef, data: falcoinAddress.toAnyObject())
+		if (self.eWallet.count < 5) {
+			walletManager.newAdress()
+			JDStatusBarNotification.showWithStatus("New Falcoin address created", dismissAfter: NSTimeInterval(5), styleName: JDStatusBarStyleSuccess)
+		} else {
+			JDStatusBarNotification.showWithStatus("You have too much Falcoin addresses", dismissAfter: NSTimeInterval(5), styleName: JDStatusBarStyleError)
+		}
 		
-		userManager.addAddress(addressKey)
-		JDStatusBarNotification.showWithStatus("New Falcoin address created", dismissAfter: NSTimeInterval(5), styleName: JDStatusBarStyleSuccess)
+		
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,9 +52,12 @@ class EWalletController: UIViewController, UITableViewDelegate, UITableViewDataS
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell:UITableViewCell = self.falcoinAddresses.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
+		let cell:UITableViewCell = self.falcoinAddresses.dequeueReusableCellWithIdentifier("FalcoinAddressCell")! as UITableViewCell
 		
-		cell.textLabel?.text = self.eWallet[indexPath.row].privateKey
+		let address = self.eWallet[self.eWallet.startIndex.advancedBy(indexPath.row)]
+		
+		cell.textLabel?.text = "Public Address : " + String(address.publicKey)
+		cell.detailTextLabel?.text = "Balance : " + String(address.balance) + " F"
 		
 		return cell
 	}
@@ -59,32 +66,65 @@ class EWalletController: UIViewController, UITableViewDelegate, UITableViewDataS
 		
 	}
 	
+	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+		// the cells you would like the actions to appear needs to be editable
+		return true
+	}
+	
 	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		if editingStyle == UITableViewCellEditingStyle.Delete {
-			walletManager.removeAddress(self.eWallet[indexPath.row])
-			self.eWallet.removeAtIndex(indexPath.row)
+			walletManager.removeAddress(self.eWallet[self.eWallet.startIndex.advancedBy(indexPath.row)])
+			self.eWallet.remove(self.eWallet[self.eWallet.startIndex.advancedBy(indexPath.row)])
 			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
 		}
 	}
 	
-	func updateWallet() {
+	func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+		let transfer = UITableViewRowAction(style: .Normal, title: "Transfer") { action, index in
+			print("transfer button tapped")
+		}
+		transfer.backgroundColor = UIColor.lightGrayColor()
+		let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+			self.walletManager.removeAddress(self.eWallet[self.eWallet.startIndex.advancedBy(indexPath.row)])
+			self.eWallet.remove(self.eWallet[self.eWallet.startIndex.advancedBy(indexPath.row)])
+			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+		}
+		delete.backgroundColor = UIColor.redColor()
+		
+		return [delete, transfer]
+	}
+	
+	func syncWallet() {
 		let userRef = ref.getPathRef((DataManager.sharedInstance.currentUser?.id)!, ref: ref.userRef)
 		let walletRef = ref.getPathRef("wallet", ref: userRef)
 		
 		walletRef.observeEventType(.Value, withBlock: {
 			(snapshot) in
-			var newWallet = [FalcoinAddress]()
 			let enumerator = snapshot.children
 			while let children = enumerator.nextObject() as? FDataSnapshot {
 				let falcoinAddrsRef = self.ref.getPathRef(children.value as! String, ref: self.ref.falcoinAddrsRef)
 				falcoinAddrsRef.observeEventType(.Value, withBlock: {
 					(snapshot) in
-					let falcoinAddress = FalcoinAddress(snapshot: snapshot, userWalletRef: children.ref)
-					newWallet.append(falcoinAddress)
-					self.eWallet = newWallet
-					self.falcoinAddresses.reloadData()
+					if snapshot.value is NSNull {
+						// The value is null
+					} else {
+						let falcoinAddress = FalcoinAddress(snapshot: snapshot, userWalletRef: children.ref)
+						
+						self.eWallet.insert(falcoinAddress)
+						self.calcTotal()
+						self.falcoinAddresses.reloadData()
+					}
+					
 				})
 			}
 		})
+	}
+	
+	func calcTotal() {
+		var total = Float()
+		for falcoinAddress in self.eWallet {
+			  total += falcoinAddress.balance
+		}
+		self.totalFalcoinsLabel.text = String(total) + " F"
 	}
 }
