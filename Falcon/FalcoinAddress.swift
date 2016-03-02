@@ -12,7 +12,7 @@ import Firebase
 struct FalcoinAddress {
 	var publicKey: Int!
 	let privateKey: String!
-	var balance: Float!
+	var balance: Int!
 	let ref: Firebase?
 	let userWalletRef: Firebase?
 	
@@ -28,7 +28,7 @@ struct FalcoinAddress {
 	init(snapshot: FDataSnapshot, userWalletRef: Firebase) {
 		self.publicKey = snapshot.value["public_key"] as! Int
 		self.privateKey = snapshot.value["private_key"] as! String
-		self.balance = snapshot.value["balance"] as! Float
+		self.balance = snapshot.value["balance"] as! Int
 		self.ref = snapshot.ref
 		self.userWalletRef = userWalletRef
 	}

@@ -137,7 +137,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z51-rf-Qs6">
                                 <rect key="frame" x="0.0" y="64" width="320" height="188"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="5000.0 F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13P-Pc-fz7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0.0 F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13P-Pc-fz7" customClass="UICountingLabel">
                                         <rect key="frame" x="8" y="71" width="304" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="304" id="TRD-9o-3Ln"/>
@@ -217,7 +217,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="falcoinAddresses" destination="QoP-8f-k7r" id="dJ1-Dv-9wf"/>
-                        <outlet property="totalFalcoinsLabel" destination="13P-Pc-fz7" id="69D-cd-Br5"/>
+                        <outlet property="totalFalcoinsLabel" destination="13P-Pc-fz7" id="q0F-KL-jSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G6F-zh-Ptn" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -94,6 +94,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Falcon/Haneke.framework"
   install_framework "Pods-Falcon/JDStatusBarNotification.framework"
   install_framework "Pods-Falcon/PermissionScope.framework"
+  install_framework "Pods-Falcon/UICountingLabel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Falcon/Bolts.framework"
@@ -106,4 +107,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Falcon/Haneke.framework"
   install_framework "Pods-Falcon/JDStatusBarNotification.framework"
   install_framework "Pods-Falcon/PermissionScope.framework"
+  install_framework "Pods-Falcon/UICountingLabel.framework"
 fi

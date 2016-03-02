@@ -9,6 +9,7 @@
 import UIKit
 import JDStatusBarNotification
 import Firebase
+import UICountingLabel
 
 class EWalletController: UIViewController, UITableViewDataSource {
 	
@@ -20,13 +21,14 @@ class EWalletController: UIViewController, UITableViewDataSource {
 	
 	// MARK: View Properties
 	@IBOutlet weak var falcoinAddresses: UITableView!
-	@IBOutlet weak var totalFalcoinsLabel: UILabel!
+	@IBOutlet weak var totalFalcoinsLabel: UICountingLabel!
 	
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		self.falcoinAddresses.rowHeight = 80.0
+		self.totalFalcoinsLabel.format = "%d";
 		self.falcoinAddresses.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		self.syncWallet()
 	}
@@ -121,10 +123,10 @@ class EWalletController: UIViewController, UITableViewDataSource {
 	}
 	
 	func calcTotal() {
-		var total = Float()
+		var total = 0
 		for falcoinAddress in self.eWallet {
 			  total += falcoinAddress.balance
 		}
-		self.totalFalcoinsLabel.text = String(total) + " F"
+		self.totalFalcoinsLabel.countFromCurrentValueTo(CGFloat(total))
 	}
 }

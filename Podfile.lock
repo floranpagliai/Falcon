@@ -18,6 +18,7 @@ PODS:
   - HanekeSwift (0.10.1)
   - JDStatusBarNotification (1.5.3)
   - PermissionScope (1.0.2)
+  - UICountingLabel (1.4.0)
 
 DEPENDENCIES:
   - CCMRadarView
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - HanekeSwift
   - JDStatusBarNotification
   - PermissionScope
+  - UICountingLabel
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
@@ -43,7 +45,8 @@ SPEC CHECKSUMS:
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   JDStatusBarNotification: 29413865af11c862c17180610b0f46a21118b412
   PermissionScope: 860828c5516d349b6f49e5491799cfef33c5ccc7
+  UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
 
-PODFILE CHECKSUM: f9769152b1a17dc740e406f5cbc00e16efaee2d7
+PODFILE CHECKSUM: d507ce060cda265b28ea96405075904c1a8b1d80
 
 COCOAPODS: 1.0.0.beta.3

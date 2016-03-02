@@ -12,4 +12,5 @@ target 'Falcon' do
     pod 'HanekeSwift'
     pod 'JDStatusBarNotification'
     pod 'CCMRadarView'
+    pod 'UICountingLabel'
 end
