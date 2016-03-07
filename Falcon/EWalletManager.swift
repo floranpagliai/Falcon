@@ -46,6 +46,30 @@ class EWalletManager {
 		})
 	}
 	
+	func get(publicKey: String, withCompletionBlock: (error: Bool, falcoinAddress: FalcoinAddress?) -> Void) {
+		let falcoinAddressesRef = ref.getPathRef("falcoin_addresses")
+		print(publicKey)
+		
+		falcoinAddressesRef.queryOrderedByChild("public_key").queryEqualToValue(Int(publicKey)).queryLimitedToFirst(1).observeEventType(.ChildAdded, withBlock: {
+			(snapshot) in
+			if snapshot.value is NSNull  {
+				withCompletionBlock(error: true, falcoinAddress: nil)
+			} else {
+				let falcoinAddress = FalcoinAddress(snapshot: snapshot)
+				withCompletionBlock(error: false, falcoinAddress: falcoinAddress)
+			}
+		})
+		
+	}
+	
+	func transfer(inout originAddress: FalcoinAddress, inout destAddress: FalcoinAddress, amount: Int) {
+		originAddress.balance = originAddress.balance - amount
+		destAddress.balance = destAddress.balance + amount
+		originAddress.save()
+		destAddress.save()
+		
+	}
+	
 	func removeAddress(falcoinAddress: FalcoinAddress) {
 		falcoinAddress.userWalletRef!.removeValue()
 	}

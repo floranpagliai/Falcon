@@ -33,12 +33,24 @@ struct FalcoinAddress {
 		self.userWalletRef = userWalletRef
 	}
 	
+	init(snapshot: FDataSnapshot) {
+		self.publicKey = snapshot.value["public_key"] as! Int
+		self.privateKey = snapshot.value["private_key"] as! String
+		self.balance = snapshot.value["balance"] as! Int
+		self.ref = snapshot.ref
+		self.userWalletRef = nil
+	}
+	
 	func toAnyObject() -> [NSObject : AnyObject] {
 		return [
 			"public_key": self.publicKey,
 			"private_key": self.privateKey,
 			"balance": self.balance,
 		]
+	}
+	
+	func save() {
+		self.ref?.updateChildValues(self.toAnyObject())
 	}
 }
 

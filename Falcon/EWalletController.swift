@@ -16,6 +16,7 @@ class EWalletController: UIViewController, UITableViewDataSource {
 	// MARK: Properties
 	let walletManager = EWalletManager()
 	var eWallet = Set<FalcoinAddress>()
+	var originAddress: FalcoinAddress?
 	let ref = FirebaseManager()
 	let userManager = UserManager()
 	
@@ -28,7 +29,8 @@ class EWalletController: UIViewController, UITableViewDataSource {
 		super.viewDidLoad()
 		
 		self.falcoinAddresses.rowHeight = 80.0
-		self.totalFalcoinsLabel.format = "%d";
+		self.totalFalcoinsLabel.format = "%d"
+		self.totalFalcoinsLabel.method = UILabelCountingMethod.EaseOut
 		self.falcoinAddresses.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		self.syncWallet()
 	}
@@ -47,6 +49,15 @@ class EWalletController: UIViewController, UITableViewDataSource {
 		}
 		
 		
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if (segue.identifier == "TransferFalcoin") {
+			let navVC = segue.destinationViewController as! UINavigationController
+			let svc = navVC.viewControllers.first as! TransferController
+			
+			svc.originAddress = self.originAddress
+		}
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,7 +94,8 @@ class EWalletController: UIViewController, UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
 		let transfer = UITableViewRowAction(style: .Normal, title: "Transfer") { action, index in
-			print("transfer button tapped")
+			self.originAddress = self.eWallet[self.eWallet.startIndex.advancedBy(indexPath.row)]
+			self.performSegueWithIdentifier("TransferFalcoin", sender: nil)
 		}
 		transfer.backgroundColor = UIColor.lightGrayColor()
 		let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
@@ -116,7 +128,6 @@ class EWalletController: UIViewController, UITableViewDataSource {
 						self.calcTotal()
 						self.falcoinAddresses.reloadData()
 					}
-					
 				})
 			}
 		})

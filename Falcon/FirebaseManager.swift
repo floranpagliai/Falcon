@@ -14,7 +14,7 @@ class FirebaseManager {
 	let ref = Firebase(url: "https://falcongame.firebaseio.com")
 	let userRef = Firebase(url: "https://falcongame.firebaseio.com/users")
 	let falcoinAddrsRef = Firebase(url: "https://falcongame.firebaseio.com/falcoin_addresses")
-	let falcoinAddrsKeyRef = Firebase(url: "https://falcongame.firebaseio.com/falcoin_addresses/key")
+	let falcoinAddrsKeyRef = Firebase(url: "https://falcongame.firebaseio.com/falcoin_addresses_key")
 
 	
 	init() {
