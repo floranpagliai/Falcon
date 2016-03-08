@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.6.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.6.0)
+  - CCMRadarView (1.0.2)
   - CryptoSwift (0.2.3)
   - FBSDKCoreKit (4.10.0):
     - Bolts (~> 1.5)
@@ -15,9 +16,12 @@ PODS:
   - Firebase (2.5.0)
   - GoogleMaps (1.11.1)
   - HanekeSwift (0.10.1)
+  - JDStatusBarNotification (1.5.3)
   - PermissionScope (1.0.2)
+  - UICountingLabel (1.4.0)
 
 DEPENDENCIES:
+  - CCMRadarView
   - CryptoSwift
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -25,10 +29,13 @@ DEPENDENCIES:
   - Firebase (>= 2.5.0)
   - GoogleMaps
   - HanekeSwift
+  - JDStatusBarNotification
   - PermissionScope
+  - UICountingLabel
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  CCMRadarView: 6bff4c5c3d05d627664a4b398a508d051a4a94be
   CryptoSwift: b2bf37b8e7cc6d682ef3365cb966bc5ae5174aa5
   FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
   FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
@@ -36,8 +43,10 @@ SPEC CHECKSUMS:
   Firebase: 744617c0733b45198f9486ebd5cac64ec2d10d79
   GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  JDStatusBarNotification: 29413865af11c862c17180610b0f46a21118b412
   PermissionScope: 860828c5516d349b6f49e5491799cfef33c5ccc7
+  UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
 
-PODFILE CHECKSUM: d6b6b281488ee5bcc7ad24071e5f526aef193f68
+PODFILE CHECKSUM: d507ce060cda265b28ea96405075904c1a8b1d80
 
 COCOAPODS: 1.0.0.beta.3

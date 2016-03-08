@@ -85,21 +85,27 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Falcon/Bolts.framework"
+  install_framework "Pods-Falcon/CCMRadarView.framework"
   install_framework "Pods-Falcon/CryptoSwift.framework"
   install_framework "Pods-Falcon/FBSDKCoreKit.framework"
   install_framework "Pods-Falcon/FBSDKLoginKit.framework"
   install_framework "Pods-Falcon/FBSDKShareKit.framework"
   install_framework "Pods-Falcon/Firebase.framework"
   install_framework "Pods-Falcon/Haneke.framework"
+  install_framework "Pods-Falcon/JDStatusBarNotification.framework"
   install_framework "Pods-Falcon/PermissionScope.framework"
+  install_framework "Pods-Falcon/UICountingLabel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Falcon/Bolts.framework"
+  install_framework "Pods-Falcon/CCMRadarView.framework"
   install_framework "Pods-Falcon/CryptoSwift.framework"
   install_framework "Pods-Falcon/FBSDKCoreKit.framework"
   install_framework "Pods-Falcon/FBSDKLoginKit.framework"
   install_framework "Pods-Falcon/FBSDKShareKit.framework"
   install_framework "Pods-Falcon/Firebase.framework"
   install_framework "Pods-Falcon/Haneke.framework"
+  install_framework "Pods-Falcon/JDStatusBarNotification.framework"
   install_framework "Pods-Falcon/PermissionScope.framework"
+  install_framework "Pods-Falcon/UICountingLabel.framework"
 fi
