@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import CCMRadarView
 
 class MapViewController: UIViewController {
 	
@@ -28,6 +29,7 @@ class MapViewController: UIViewController {
 	@IBOutlet weak var locationLabel: UILabel!
 	@IBOutlet weak var placeNameLabel: UILabel!
 	@IBOutlet weak var placeDistanceLabel: UILabel!
+	@IBOutlet weak var radarView: CCMRadarView!
 	
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
@@ -48,6 +50,7 @@ class MapViewController: UIViewController {
 		mapView.settings.myLocationButton = true
 		
 		self.placeView.hidden = true
+		self.radarView.hidden = true
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -59,14 +62,23 @@ class MapViewController: UIViewController {
 		}
 	}
 	
+	// MARK: Actions
 	@IBAction func scanAction(sender: UIButton) {
+		self.radarView.hidden = false
+		self.radarView.startAnimation()
+		self.hidePlaceInfo()
+		let stopwatch = Stopwatch()
+		let time = NSTimeInterval(3)
 		mapView.clear()
 		self.placeManager.fetchNearPlaces {
 			(places) -> Void in
+			while time > stopwatch.elapsedTimeInterval() {}
 			for place: Place in places {
 				let marker = PlaceMarker(place: place)
 				marker.map = self.mapView
 			}
+			self.radarView.hidden = true
+			self.radarView.stopAnimation()
 		}
 	}
 	
@@ -97,6 +109,7 @@ class MapViewController: UIViewController {
 	}
 	
 	func hidePlaceInfo() {
+		mapView.animateToLocation(locationManager.location!.coordinate)
 		self.placeView.hidden = true
 		if let activeVC = placeViewController {
 			activeVC.willMoveToParentViewController(nil)
@@ -150,6 +163,5 @@ extension MapViewController: GMSMapViewDelegate {
 	func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
 		self.hidePlaceInfo()
 		print("MapView : tap")
-		mapView.animateToLocation(locationManager.location!.coordinate)
 	}
 }

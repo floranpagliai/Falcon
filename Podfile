@@ -10,4 +10,7 @@ target 'Falcon' do
     pod 'PermissionScope'
     pod 'CryptoSwift'
     pod 'HanekeSwift'
+    pod 'JDStatusBarNotification'
+    pod 'CCMRadarView'
+    pod 'UICountingLabel'
 end

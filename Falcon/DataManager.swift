@@ -11,6 +11,11 @@ import Foundation
 class DataManager {
 	static let sharedInstance = DataManager()
 	var currentSelectedPlace: PlaceMarker?
+	var currentUser: User? {
+		didSet {
+			print("DataManager : currentUser setted (\(self.currentUser!.id))")
+		}
+	}
 	
 	init() {
 		self.currentSelectedPlace = nil
