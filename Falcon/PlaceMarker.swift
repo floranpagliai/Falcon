@@ -12,6 +12,7 @@ import CoreLocation
 
 class PlaceMarker: GMSMarker {
 	let place: Place
+	var hacked: Bool = false
  
 	init(place: Place) {
 		self.place = place
@@ -32,5 +33,4 @@ class PlaceMarker: GMSMarker {
 		let location = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 		return String(format:"%.0f", location.distanceFromLocation(CLLocationManager().location!))
 	}
-	
 }
