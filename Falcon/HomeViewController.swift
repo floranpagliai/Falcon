@@ -9,14 +9,19 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UICollectionViewDelegate {
 	
 	// MARK: Properties
 	var ref: Firebase!
-	
+    @IBOutlet weak var homeMap: UIButton!
+    @IBOutlet weak var homeLogout: UIButton!
+    
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        let colorBorder = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        
+       
 		ref = Firebase(url: "https://falcongame.firebaseio.com")
 	}
 	
@@ -28,4 +33,5 @@ class HomeViewController: UIViewController {
 		ref.unauth()
 		self.performSegueWithIdentifier("Logout", sender: nil)
 	}
+    
 }
