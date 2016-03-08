@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Unknown constraint types" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -259,6 +260,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3tP-m8-UkE" customClass="CCMRadarView" customModule="CCMRadarView">
+                                <rect key="frame" x="-74" y="50" width="468" height="468"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="reversedRadar" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="radarColor">
+                                        <color key="value" red="0.23137254900000001" green="0.32549019610000002" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfWaves">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="waveWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="locationLabel" text="Position" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnO-ba-vey">
                                 <rect key="frame" x="0.0" y="547" width="320" height="21"/>
                                 <color key="backgroundColor" red="0.20392156862745098" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
@@ -266,13 +286,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3P-f7-946">
-                                <rect key="frame" x="8" y="25" width="32" height="32"/>
-                                <state key="normal" image="closeButton"/>
-                                <connections>
-                                    <segue destination="BVd-Bd-ZBR" kind="modal" identifier="Home" modalTransitionStyle="crossDissolve" id="HVh-O6-PDE"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDi-CZ-mJJ">
                                 <rect key="frame" x="251" y="397" width="61" height="61"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="0.0"/>
@@ -289,24 +302,33 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gAC-dx-Iwy" firstAttribute="top" secondItem="XnO-ba-vey" secondAttribute="bottom" id="1SA-1s-aWD"/>
-                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="trailing" secondItem="XnO-ba-vey" secondAttribute="trailing" id="AGr-vT-qeb"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="leading" secondItem="6mb-EV-Z5i" secondAttribute="leading" id="ATt-ps-3Hb"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="trailing" secondItem="XnO-ba-vey" secondAttribute="trailing" id="CBT-Y7-m75"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pDi-CZ-mJJ" secondAttribute="trailing" constant="-8" id="Cxc-er-FLe"/>
-                            <constraint firstItem="Z3P-f7-946" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="top" constant="25" id="LOc-yj-P7e"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="top" id="SXk-vX-VQH"/>
                             <constraint firstAttribute="trailing" secondItem="XnO-ba-vey" secondAttribute="trailing" id="UQs-oG-ijV"/>
-                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="bottom" secondItem="gAC-dx-Iwy" secondAttribute="top" id="Z9u-T3-ot0"/>
-                            <constraint firstItem="Z3P-f7-946" firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leadingMargin" constant="-8" id="ZHp-9m-c3o"/>
+                            <constraint firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leadingMargin" constant="-8" id="ZHp-9m-c3o"/>
                             <constraint firstAttribute="bottomMargin" secondItem="pDi-CZ-mJJ" secondAttribute="bottom" constant="110" id="d8g-Lo-PXO"/>
-                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="centerX" secondItem="6mb-EV-Z5i" secondAttribute="centerX" id="h7Z-qs-x0t"/>
-                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="top" id="niJ-ei-iaF"/>
-                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="leading" secondItem="XnO-ba-vey" secondAttribute="leading" id="pjk-ha-Q4F"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="trailing" secondItem="6mb-EV-Z5i" secondAttribute="trailing" id="pvf-M5-vLx"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="bottom" secondItem="gAC-dx-Iwy" secondAttribute="top" id="uan-GS-HqJ"/>
                             <constraint firstItem="6mb-EV-Z5i" firstAttribute="top" secondItem="I7Z-lu-bLs" secondAttribute="topMargin" constant="60" id="w50-jI-rxb"/>
                             <constraint firstItem="XnO-ba-vey" firstAttribute="leading" secondItem="I7Z-lu-bLs" secondAttribute="leading" id="xIY-dp-WtR"/>
+                            <constraint firstItem="Gkv-Ka-QlS" firstAttribute="leading" secondItem="XnO-ba-vey" secondAttribute="leading" id="zlL-wh-hEU"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="fv8-ih-wz0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="pqr-IX-WyF">
+                            <connections>
+                                <segue destination="BVd-Bd-ZBR" kind="modal" modalTransitionStyle="crossDissolve" id="7c9-K8-kXL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="locationLabel" destination="XnO-ba-vey" id="Zju-NX-9T3"/>
                         <outlet property="mapView" destination="Gkv-Ka-QlS" id="PrQ-x4-Cf9"/>
                         <outlet property="placeView" destination="6mb-EV-Z5i" id="IqM-w6-td5"/>
+                        <outlet property="radarView" destination="3tP-m8-UkE" id="mEN-eq-MpI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfc-Ch-gdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -384,7 +406,7 @@
         <image name="skills" width="81" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HVh-O6-PDE"/>
-        <segue reference="Iwy-Rj-YvC"/>
+        <segue reference="vLV-nx-KlZ"/>
+        <segue reference="JUg-wo-jbd"/>
     </inferredMetricsTieBreakers>
 </document>

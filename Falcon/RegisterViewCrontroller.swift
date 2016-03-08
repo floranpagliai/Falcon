@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import JDStatusBarNotification
 
 class RegisterViewController: UIViewController {
 	
@@ -30,17 +31,24 @@ class RegisterViewController: UIViewController {
 	// MARK: Actions
 	@IBAction func registerAction(sender: UIButton) {
 		let userData = [
-			"provider": "pasword",
+			"provider": "password",
 			"username": usernameTextField.text!,
 			"email": emailTextField.text!
 		]
-		ref.registerUser(
-			userData,
-			password: passwordTextField.text!) {
-				(error) -> Void in
+		ref.registerUser(userData, password: passwordTextField.text!) {
+				(error, message) -> Void in
 				if (!error) {
 					self.performSegueWithIdentifier("Logged", sender: nil)
+				} else {
+					JDStatusBarNotification.showWithStatus(message, dismissAfter: NSTimeInterval(5), styleName: JDStatusBarStyleError)
 				}
 		}
+	}
+	
+	/**
+	* Called when the user click on the view (outside the UITextField).
+	*/
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		self.view.endEditing(true)
 	}
 }

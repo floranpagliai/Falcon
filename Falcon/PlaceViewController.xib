@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceViewController" customModule="Falcon" customModuleProvider="target">
             <connections>
+                <outlet property="hackButton" destination="EbR-Nr-uwa" id="TQd-EX-Y0F"/>
+                <outlet property="hackProgressLabel" destination="XTT-FY-2fd" id="m59-QF-ao1"/>
                 <outlet property="placeDistanceLabel" destination="HGH-ff-Gqm" id="K2k-vh-0h6"/>
                 <outlet property="placeNameLabel" destination="uvR-GZ-sHf" id="jYM-oL-peS"/>
                 <outlet property="placeTypeLabel" destination="vUb-8h-WEN" id="1mL-We-8UC"/>
@@ -15,7 +17,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" alpha="0.90000000000000002" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="280" height="170"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvR-GZ-sHf">
@@ -25,24 +27,32 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGH-ff-Gqm">
-                    <rect key="frame" x="205" y="8" width="67" height="21"/>
+                    <rect key="frame" x="245" y="8" width="67" height="21"/>
                     <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EbR-Nr-uwa">
-                    <rect key="frame" x="83" y="54" width="115" height="61"/>
-                    <state key="normal" image="lockButton"/>
-                    <connections>
-                        <action selector="hackAction:" destination="-1" eventType="touchUpInside" id="TG4-Q2-fPU"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUb-8h-WEN">
                     <rect key="frame" x="8" y="28" width="190" height="21"/>
                     <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hack in progress..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTT-FY-2fd">
+                    <rect key="frame" x="8" y="74" width="121" height="21"/>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Light" family="Kohinoor Bangla" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EbR-Nr-uwa">
+                    <rect key="frame" x="103" y="54" width="115" height="61"/>
+                    <state key="normal" image="lockButton"/>
+                    <connections>
+                        <action selector="hackAction:" destination="-1" eventType="touchUpInside" id="TG4-Q2-fPU"/>
+                        <action selector="hackEndAction:" destination="-1" eventType="touchUpOutside" id="fGy-ix-ykB"/>
+                        <action selector="hackStartedAction:" destination="-1" eventType="touchDown" id="Yqb-EG-dhL"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.23137254901960785" green="0.32549019607843138" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
