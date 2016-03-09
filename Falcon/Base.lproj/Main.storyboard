@@ -228,7 +228,7 @@
         <!--Transfer Controller-->
         <scene sceneID="7M1-VV-nYK">
             <objects>
-                <viewController id="ljI-Fb-iVa" customClass="TransferController" customModule="Falcon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TransferController" id="ljI-Fb-iVa" customClass="TransferController" customModule="Falcon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mk4-k6-HRC"/>
                         <viewControllerLayoutGuide type="bottom" id="EK7-bb-5uv"/>
@@ -430,6 +430,7 @@
                         <outlet property="mapView" destination="Gkv-Ka-QlS" id="PrQ-x4-Cf9"/>
                         <outlet property="placeView" destination="6mb-EV-Z5i" id="IqM-w6-td5"/>
                         <outlet property="radarView" destination="3tP-m8-UkE" id="mEN-eq-MpI"/>
+                        <segue destination="jhB-r0-5g9" kind="modal" identifier="TransferPlaceFalcoin" id="6ux-Mc-9Xd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfc-Ch-gdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -518,7 +519,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gHD-WK-5TO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cNd-MJ-KRA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EWalletNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cNd-MJ-KRA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ajT-B2-YjV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -554,7 +555,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cTR-0N-Ezh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jhB-r0-5g9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TransferNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="jhB-r0-5g9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IOA-bl-etV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -574,7 +575,8 @@
         <image name="radarButton" width="61" height="61"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vLV-nx-KlZ"/>
+        <segue reference="7c9-K8-kXL"/>
+        <segue reference="6ux-Mc-9Xd"/>
         <segue reference="JUg-wo-jbd"/>
     </inferredMetricsTieBreakers>
 </document>

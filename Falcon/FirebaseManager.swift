@@ -13,6 +13,7 @@ class FirebaseManager {
 	// MARK: Properties
 	let ref = Firebase(url: "https://falcongame.firebaseio.com")
 	let userRef = Firebase(url: "https://falcongame.firebaseio.com/users")
+	let placesRef = Firebase(url: "https://falcongame.firebaseio.com/places")
 	let falcoinAddrsRef = Firebase(url: "https://falcongame.firebaseio.com/falcoin_addresses")
 	let falcoinAddrsKeyRef = Firebase(url: "https://falcongame.firebaseio.com/falcoin_addresses_key")
 
