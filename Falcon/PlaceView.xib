@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceViewController" customModule="Falcon" customModuleProvider="target">
             <connections>
+                <outlet property="eWalletButton" destination="tlF-g8-g6s" id="TCa-w4-p7L"/>
                 <outlet property="hackButton" destination="EbR-Nr-uwa" id="TQd-EX-Y0F"/>
                 <outlet property="hackProgressLabel" destination="XTT-FY-2fd" id="m59-QF-ao1"/>
                 <outlet property="placeDistanceLabel" destination="HGH-ff-Gqm" id="K2k-vh-0h6"/>
@@ -51,6 +52,16 @@
                         <action selector="hackAction:" destination="-1" eventType="touchUpInside" id="TG4-Q2-fPU"/>
                         <action selector="hackEndAction:" destination="-1" eventType="touchUpOutside" id="fGy-ix-ykB"/>
                         <action selector="hackStartedAction:" destination="-1" eventType="touchDown" id="Yqb-EG-dhL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tlF-g8-g6s">
+                    <rect key="frame" x="131" y="132" width="58" height="30"/>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                    <state key="normal" title="E-Wallet">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="eWalletAction:" destination="-1" eventType="touchUpInside" id="KpU-WN-bA0"/>
                     </connections>
                 </button>
             </subviews>
