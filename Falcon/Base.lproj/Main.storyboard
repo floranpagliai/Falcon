@@ -498,54 +498,104 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mrj-4h-uZ3">
-                                <rect key="frame" x="20" y="173" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cbd-f3-ZwU">
-                                <rect key="frame" x="20" y="211" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2M-CT-cDJ">
-                                <rect key="frame" x="20" y="249" width="280" height="30"/>
-                                <color key="backgroundColor" red="0.29803921570000003" green="0.85098039219999999" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Register">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="OB8-uk-HZz"/>
-                                    <action selector="registerAction:" destination="rTZ-gs-Zw2" eventType="touchUpInside" id="Fru-UM-RAi"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3e-MA-fAI">
-                                <rect key="frame" x="142" y="287" width="38" height="30"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="registerAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="agi-71-8d5"/>
-                                    <segue destination="Vhb-mS-16o" kind="modal" modalTransitionStyle="flipHorizontal" id="JUg-wo-jbd"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yIk-AQ-JCg">
-                                <rect key="frame" x="20" y="135" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUM-7m-hVJ">
+                                <rect key="frame" x="19" y="125" width="281" height="318"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BeU-hl-qBf">
+                                        <rect key="frame" x="0.0" y="82" width="280" height="42"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="0.19700969830000001" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="TxE-Xe-MIz"/>
+                                            <constraint firstAttribute="height" constant="42" id="Ygy-ve-rtt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="emailEditingDidChange:" destination="Vhb-mS-16o" eventType="editingChanged" id="8U0-nb-X4c"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u5z-8T-gIl">
+                                        <rect key="frame" x="1" y="139" width="280" height="42"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="0.20269396549999999" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="3lR-Iu-qzL"/>
+                                            <constraint firstAttribute="width" constant="280" id="c4u-JF-Ewk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dT6-dB-fFP">
+                                        <rect key="frame" x="0.0" y="196" width="280" height="42"/>
+                                        <color key="backgroundColor" red="0.23137254900000001" green="0.32549019610000002" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="L5K-6g-dhC"/>
+                                            <constraint firstAttribute="width" constant="280" id="Neg-dI-69D"/>
+                                        </constraints>
+                                        <state key="normal" title="Register">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="vNJ-Ut-JIX"/>
+                                            <action selector="registerAction:" destination="rTZ-gs-Zw2" eventType="touchUpInside" id="zbs-hW-hgj"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GAp-ds-aiE">
+                                        <rect key="frame" x="1" y="25" width="280" height="42"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="0.19700969830000001" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="W3x-M5-dkY"/>
+                                            <constraint firstAttribute="width" constant="280" id="zFx-Fk-Ya1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="emailEditingDidChange:" destination="Vhb-mS-16o" eventType="editingChanged" id="hVb-jm-G53"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3e-MA-fAI">
+                                        <rect key="frame" x="121" y="263" width="38" height="30"/>
+                                        <state key="normal" title="Login"/>
+                                        <connections>
+                                            <action selector="registerAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="agi-71-8d5"/>
+                                            <segue destination="Vhb-mS-16o" kind="modal" modalTransitionStyle="flipHorizontal" id="JUg-wo-jbd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="GAp-ds-aiE" firstAttribute="top" secondItem="sUM-7m-hVJ" secondAttribute="top" constant="25" id="1zc-aX-Fcf"/>
+                                    <constraint firstItem="v3e-MA-fAI" firstAttribute="centerX" secondItem="sUM-7m-hVJ" secondAttribute="centerX" id="5qn-xM-J92"/>
+                                    <constraint firstItem="dT6-dB-fFP" firstAttribute="centerX" secondItem="sUM-7m-hVJ" secondAttribute="centerX" id="7vE-08-n5C"/>
+                                    <constraint firstItem="v3e-MA-fAI" firstAttribute="top" secondItem="dT6-dB-fFP" secondAttribute="bottom" constant="25" id="DEg-Rk-DeC"/>
+                                    <constraint firstItem="BeU-hl-qBf" firstAttribute="centerX" secondItem="sUM-7m-hVJ" secondAttribute="centerX" id="PEN-Fl-F1d"/>
+                                    <constraint firstItem="u5z-8T-gIl" firstAttribute="top" secondItem="BeU-hl-qBf" secondAttribute="bottom" constant="15" id="Qbp-TC-Tcl"/>
+                                    <constraint firstItem="BeU-hl-qBf" firstAttribute="top" secondItem="GAp-ds-aiE" secondAttribute="bottom" constant="15" id="TYw-ZY-iOR"/>
+                                    <constraint firstAttribute="width" constant="281" id="UZ0-AW-aIX"/>
+                                    <constraint firstAttribute="height" constant="318" id="brE-jD-6D9"/>
+                                    <constraint firstItem="dT6-dB-fFP" firstAttribute="top" secondItem="u5z-8T-gIl" secondAttribute="bottom" constant="15" id="dvh-e5-l77"/>
+                                    <constraint firstAttribute="bottom" secondItem="v3e-MA-fAI" secondAttribute="bottom" constant="25" id="iyF-W1-by6"/>
+                                    <constraint firstItem="GAp-ds-aiE" firstAttribute="centerX" secondItem="sUM-7m-hVJ" secondAttribute="centerX" id="owy-9r-QQo"/>
+                                    <constraint firstItem="u5z-8T-gIl" firstAttribute="centerX" secondItem="sUM-7m-hVJ" secondAttribute="centerX" id="tgX-5V-B58"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sUM-7m-hVJ" firstAttribute="centerX" secondItem="d9c-Re-rrP" secondAttribute="centerX" id="GQJ-gw-ImQ"/>
+                            <constraint firstItem="sUM-7m-hVJ" firstAttribute="centerY" secondItem="d9c-Re-rrP" secondAttribute="centerY" id="t6X-Qp-XOh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vTK-zv-lHp"/>
                     <connections>
-                        <outlet property="emailTextField" destination="Mrj-4h-uZ3" id="gpu-JS-2lf"/>
-                        <outlet property="passwordTextField" destination="Cbd-f3-ZwU" id="ud4-36-kHZ"/>
-                        <outlet property="usernameTextField" destination="yIk-AQ-JCg" id="N8T-NQ-hMy"/>
+                        <outlet property="emailTextField" destination="BeU-hl-qBf" id="bTP-4L-1Au"/>
+                        <outlet property="passwordTextField" destination="u5z-8T-gIl" id="MCV-xg-9ue"/>
+                        <outlet property="usernameTextField" destination="GAp-ds-aiE" id="NKD-9f-Qou"/>
                         <segue destination="BVd-Bd-ZBR" kind="modal" identifier="Logged" id="9fZ-gR-3TG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WBU-Av-E88" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="219" y="990"/>
+            <point key="canvasLocation" x="245" y="998"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bz5-XA-twu">
@@ -624,7 +674,7 @@
         <image name="radarButton" width="61" height="61"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SYo-nc-eFf"/>
+        <segue reference="9fZ-gR-3TG"/>
         <segue reference="JUg-wo-jbd"/>
     </inferredMetricsTieBreakers>
 </document>
