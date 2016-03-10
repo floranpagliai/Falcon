@@ -295,16 +295,8 @@
                                     <constraint firstItem="pi0-ah-aha" firstAttribute="centerX" secondItem="RID-ZA-o1O" secondAttribute="centerX" id="yl4-2N-Bkf"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cXY-Xi-Qkq">
-                                <rect key="frame" x="20" y="278" width="80" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="searchDestAddress:" destination="ljI-Fb-iVa" eventType="editingChanged" id="P8k-j0-POf"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EEx-3r-WbQ">
-                                <rect key="frame" x="120" y="278" width="80" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EEx-3r-WbQ">
+                                <rect key="frame" x="120" y="278" width="108" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -318,6 +310,14 @@
                                     <action selector="transferAction:" destination="ljI-Fb-iVa" eventType="touchUpInside" id="oIs-o9-8vv"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Public Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cXY-Xi-Qkq">
+                                <rect key="frame" x="9" y="278" width="103" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="searchDestAddress:" destination="ljI-Fb-iVa" eventType="editingChanged" id="P8k-j0-POf"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -430,7 +430,6 @@
                         <outlet property="mapView" destination="Gkv-Ka-QlS" id="PrQ-x4-Cf9"/>
                         <outlet property="placeView" destination="6mb-EV-Z5i" id="IqM-w6-td5"/>
                         <outlet property="radarView" destination="3tP-m8-UkE" id="mEN-eq-MpI"/>
-                        <segue destination="jhB-r0-5g9" kind="modal" identifier="TransferPlaceFalcoin" id="6ux-Mc-9Xd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfc-Ch-gdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -576,7 +575,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7c9-K8-kXL"/>
-        <segue reference="6ux-Mc-9Xd"/>
         <segue reference="JUg-wo-jbd"/>
     </inferredMetricsTieBreakers>
 </document>

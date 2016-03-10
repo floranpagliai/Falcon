@@ -31,6 +31,7 @@ class EWalletManager {
 	
 	func newPlaceAdress(placeKey: String) {
 		var falcoinAddress = FalcoinAddress()
+		falcoinAddress.balance = 1000
 		let falcoinAddressesRef = ref.getPathRef("falcoin_addresses")
 		let addressKey = ref.childByAutoId(falcoinAddressesRef, data: falcoinAddress.toAnyObject())
 		

@@ -38,9 +38,8 @@ class PlaceViewController: UIViewController {
 		self.update()
 	}
 	
-	// MARK: UIViewController Lifecycle
+	// MARK: Actions
 	@IBAction func hackStartedAction(sender: UIButton) {
-		
 		if self.placeMarker?.hacked == false {
 			self.hackProgressLabel.text = "Hack in progress..."
 		} else {
@@ -61,6 +60,7 @@ class PlaceViewController: UIViewController {
 			while time > stopwatch!.elapsedTimeInterval() {}
 			self.placeMarker?.hacked = false
 			self.eWalletButton.hidden = true
+			self.hackProgressLabel.text = ""
 		}
 		self.update()
 	}

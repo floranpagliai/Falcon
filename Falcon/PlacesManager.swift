@@ -45,6 +45,7 @@ class PlacesManager {
 							let place = Place(snapshot: snapshot)
 							if place.type != PlaceType.unknow {
 								places.append(place)
+								self.updatePlace(place)
 							}
 						}
 						withCompletionBlock(places: places)
@@ -58,6 +59,11 @@ class PlacesManager {
 		let placesRef = ref.getPathRef("places")
 		ref.update(placesRef, key: place.id, data: place.toAnyObject())
 		self.eWalletManager.newPlaceAdress(place.id)
+	}
+	
+	func updatePlace(place: Place) {
+		let placesRef = ref.getPathRef("places")
+		ref.update(placesRef, key: place.id, data: place.toAnyObject())
 	}
 	
 	func savePlaces(places: [Place]) {
