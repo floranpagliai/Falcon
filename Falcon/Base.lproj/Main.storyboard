@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vhb-mS-16o">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vhb-mS-16o">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Unknown constraint types" minToolsVersion="5.1"/>
     </dependencies>
@@ -19,54 +19,104 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UaJ-fe-bl7" customClass="GravatarView" customModule="Falcon" customModuleProvider="target">
-                                <rect key="frame" x="110" y="33" width="100" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLs-5l-kIB">
+                                <rect key="frame" x="20" y="58.5" width="281" height="450"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UaJ-fe-bl7" customClass="GravatarView" customModule="Falcon" customModuleProvider="target">
+                                        <rect key="frame" x="90" y="25" width="100" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="Uo8-oN-s1g"/>
+                                            <constraint firstAttribute="height" constant="100" id="efG-VR-j4P"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GF0-6i-uUf">
+                                        <rect key="frame" x="0.0" y="150" width="280" height="42"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.19700969827586207" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="JlU-Gc-Zb1"/>
+                                            <constraint firstAttribute="width" constant="280" id="xjz-Oa-ixa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="emailEditingDidChange:" destination="Vhb-mS-16o" eventType="editingChanged" id="wbn-gA-6BB"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="90k-dm-EGL">
+                                        <rect key="frame" x="1" y="207" width="280" height="42"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.20269396551724139" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="7V3-7Z-HJI"/>
+                                            <constraint firstAttribute="height" constant="42" id="zwH-K3-CZw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqF-QB-1y6">
+                                        <rect key="frame" x="112" y="398" width="57" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Ovp-Px-vkn"/>
+                                            <constraint firstAttribute="width" constant="57" id="q3o-PJ-r9T"/>
+                                        </constraints>
+                                        <state key="normal" title="Register"/>
+                                        <connections>
+                                            <segue destination="rTZ-gs-Zw2" kind="modal" identifier="" modalTransitionStyle="flipHorizontal" id="R5h-9t-FK9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urb-6p-P50">
+                                        <rect key="frame" x="0.0" y="264" width="280" height="42"/>
+                                        <color key="backgroundColor" red="0.23137254900000001" green="0.32549019610000002" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="9Z5-eV-VKe"/>
+                                            <constraint firstAttribute="height" constant="42" id="g81-fP-khk"/>
+                                        </constraints>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="M02-61-v2f"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1q-6V-Wsl">
+                                        <rect key="frame" x="0.0" y="331" width="280" height="42"/>
+                                        <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="0c3-1M-JHY"/>
+                                            <constraint firstAttribute="height" constant="42" id="HFn-2A-0Bk"/>
+                                        </constraints>
+                                        <state key="normal" title="Login with Facebook">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginFacebookAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="stu-si-csR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="90k-dm-EGL" firstAttribute="centerX" secondItem="LLs-5l-kIB" secondAttribute="centerX" id="4xL-JI-VNC"/>
+                                    <constraint firstItem="90k-dm-EGL" firstAttribute="top" secondItem="GF0-6i-uUf" secondAttribute="bottom" constant="15" id="AJO-CJ-2Pk"/>
+                                    <constraint firstItem="b1q-6V-Wsl" firstAttribute="top" secondItem="Urb-6p-P50" secondAttribute="bottom" constant="25" id="BDU-BX-y3P"/>
+                                    <constraint firstItem="Urb-6p-P50" firstAttribute="top" secondItem="90k-dm-EGL" secondAttribute="bottom" constant="15" id="CUI-KG-Hp2"/>
+                                    <constraint firstAttribute="width" constant="281" id="DSZ-YB-IRg"/>
+                                    <constraint firstItem="UaJ-fe-bl7" firstAttribute="centerX" secondItem="LLs-5l-kIB" secondAttribute="centerX" id="GQn-L2-Fl4"/>
+                                    <constraint firstItem="GF0-6i-uUf" firstAttribute="top" secondItem="UaJ-fe-bl7" secondAttribute="bottom" constant="25" id="L0E-RO-0O7"/>
+                                    <constraint firstItem="XqF-QB-1y6" firstAttribute="centerX" secondItem="LLs-5l-kIB" secondAttribute="centerX" id="Lcz-SW-szD"/>
+                                    <constraint firstAttribute="height" constant="450" id="MEi-pZ-D1s"/>
+                                    <constraint firstItem="GF0-6i-uUf" firstAttribute="centerX" secondItem="LLs-5l-kIB" secondAttribute="centerX" id="UO5-SA-KaP"/>
+                                    <constraint firstItem="b1q-6V-Wsl" firstAttribute="centerX" secondItem="LLs-5l-kIB" secondAttribute="centerX" id="ggs-MH-5bj"/>
+                                    <constraint firstItem="Urb-6p-P50" firstAttribute="centerX" secondItem="LLs-5l-kIB" secondAttribute="centerX" id="vG4-zo-ERr"/>
+                                    <constraint firstItem="XqF-QB-1y6" firstAttribute="top" secondItem="b1q-6V-Wsl" secondAttribute="bottom" constant="25" id="yCs-qg-Thf"/>
+                                    <constraint firstItem="UaJ-fe-bl7" firstAttribute="top" secondItem="LLs-5l-kIB" secondAttribute="top" constant="25" id="zK6-c5-707"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1q-6V-Wsl">
-                                <rect key="frame" x="20" y="300" width="280" height="42"/>
-                                <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Login with Facebook">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginFacebookAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="stu-si-csR"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GF0-6i-uUf">
-                                <rect key="frame" x="20" y="150" width="280" height="42"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.19700969827586207" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <action selector="emailEditingDidChange:" destination="Vhb-mS-16o" eventType="editingChanged" id="wbn-gA-6BB"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="90k-dm-EGL">
-                                <rect key="frame" x="20" y="200" width="280" height="42"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.20269396551724139" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqF-QB-1y6">
-                                <rect key="frame" x="132" y="350" width="57" height="30"/>
-                                <state key="normal" title="Register"/>
-                                <connections>
-                                    <segue destination="rTZ-gs-Zw2" kind="modal" identifier="" modalTransitionStyle="flipHorizontal" id="R5h-9t-FK9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urb-6p-P50">
-                                <rect key="frame" x="20" y="250" width="280" height="42"/>
-                                <color key="backgroundColor" red="0.23137254900000001" green="0.32549019610000002" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginAction:" destination="Vhb-mS-16o" eventType="touchUpInside" id="M02-61-v2f"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LLs-5l-kIB" firstAttribute="centerX" secondItem="vSb-Yd-bKp" secondAttribute="centerX" id="nez-27-POB"/>
+                            <constraint firstItem="LLs-5l-kIB" firstAttribute="centerY" secondItem="vSb-Yd-bKp" secondAttribute="centerY" id="vn9-B0-I7j"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="loginTextField" destination="GF0-6i-uUf" id="4i2-Tt-ad5"/>
@@ -175,14 +225,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6vr-50-FRl">
-                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gCn-Qe-l0f">
-                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -506,7 +556,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BwC-lM-Yuv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BIU-df-3Bd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -574,7 +624,7 @@
         <image name="radarButton" width="61" height="61"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vLV-nx-KlZ"/>
+        <segue reference="SYo-nc-eFf"/>
         <segue reference="JUg-wo-jbd"/>
     </inferredMetricsTieBreakers>
 </document>
