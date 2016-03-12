@@ -326,7 +326,7 @@
 				TargetAttributes = {
 					CE2775E91C67D3F6002F81F2 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = N68VWDH255;
+						DevelopmentTeam = PHAN4JE4T7;
 					};
 					CE2775FD1C67D3F6002F81F2 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -613,7 +613,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Pods/Firebase",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.falcon.ios.Falconn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.falcon.ios.Falcon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -637,7 +637,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Pods/Firebase",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.falcon.ios.Falconn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.falcon.ios.Falcon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
