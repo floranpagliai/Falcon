@@ -24,6 +24,7 @@ struct Place {
 	let address: String!
 	let type: PlaceType
 	let coordinate: CLLocationCoordinate2D
+	let wallet: String?
 	let ref: Firebase?
 	
 	// Initialize from arbitrary data
@@ -33,17 +34,20 @@ struct Place {
 		self.address = address
 		self.type = type
 		self.coordinate = coordinate
+		self.wallet = nil
 		self.ref = nil
 	}
 	
 	init(snapshot: FDataSnapshot) {
+		let placeManager = PlacesManager()
 		self.id = snapshot.key
 		self.name = snapshot.value["name"] as! String
 		self.address = snapshot.value["address"] as! String
-		self.type = snapshot.value["type"] as! PlaceType
+		self.type = placeManager.convertPlaceType(snapshot.value["type"] as! String)
 		self.coordinate = CLLocationCoordinate2D(
 			latitude: snapshot.value["latitude"] as! CLLocationDegrees,
 			longitude: snapshot.value["longitude"] as! CLLocationDegrees)
+		self.wallet = snapshot.value["wallet"] as? String
 		self.ref = snapshot.ref
 	}
 	

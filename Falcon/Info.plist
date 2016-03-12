@@ -66,9 +66,9 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Localisation</string>
 	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Localisation</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Localisation</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
