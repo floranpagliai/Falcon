@@ -16,7 +16,7 @@
 		CE27760E1C67D3F6002F81F2 /* FalconUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27760D1C67D3F6002F81F2 /* FalconUITests.swift */; };
 		CE8424511C77F5CF006B8379 /* GravatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8424501C77F5CF006B8379 /* GravatarView.swift */; };
 		CE8424541C78CE63006B8379 /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8424521C78CE63006B8379 /* PlaceViewController.swift */; };
-		CE8424551C78CE63006B8379 /* PlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8424531C78CE63006B8379 /* PlaceViewController.xib */; };
+		CE8424551C78CE63006B8379 /* PlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8424531C78CE63006B8379 /* PlaceView.xib */; };
 		CE8424571C7905BC006B8379 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8424561C7905BC006B8379 /* DataManager.swift */; };
 		CED31BB51C79221300EA573A /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED31BB41C79221300EA573A /* Stopwatch.swift */; };
 		CED31BB71C7931F100EA573A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED31BB61C7931F100EA573A /* User.swift */; };
@@ -79,7 +79,7 @@
 		CE529C091C6FCE9B00A97F18 /* libFirebase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFirebase.a; path = "Pods/../build/Debug-iphoneos/libFirebase.a"; sourceTree = "<group>"; };
 		CE8424501C77F5CF006B8379 /* GravatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravatarView.swift; sourceTree = "<group>"; };
 		CE8424521C78CE63006B8379 /* PlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
-		CE8424531C78CE63006B8379 /* PlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceViewController.xib; sourceTree = "<group>"; };
+		CE8424531C78CE63006B8379 /* PlaceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceView.xib; sourceTree = "<group>"; };
 		CE8424561C7905BC006B8379 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		CED31BB41C79221300EA573A /* Stopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		CED31BB61C7931F100EA573A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -214,7 +214,6 @@
 				CEDAB01D1C70ECCA00CC332C /* RegisterViewCrontroller.swift */,
 				CEDAB01F1C7124F900CC332C /* MapViewController.swift */,
 				CE8424521C78CE63006B8379 /* PlaceViewController.swift */,
-				CE8424531C78CE63006B8379 /* PlaceViewController.xib */,
 				CED31BB81C79ED2D00EA573A /* EWalletController.swift */,
 				CE1C1C3D1C88D27E00C9DDA3 /* TransferController.swift */,
 			);
@@ -250,6 +249,7 @@
 		CE84244F1C77F585006B8379 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE8424531C78CE63006B8379 /* PlaceView.xib */,
 				CE8424501C77F5CF006B8379 /* GravatarView.swift */,
 			);
 			name = Views;
@@ -326,6 +326,7 @@
 				TargetAttributes = {
 					CE2775E91C67D3F6002F81F2 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = PHAN4JE4T7;
 					};
 					CE2775FD1C67D3F6002F81F2 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -362,7 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE8424551C78CE63006B8379 /* PlaceViewController.xib in Resources */,
+				CE8424551C78CE63006B8379 /* PlaceView.xib in Resources */,
 				CE2775F81C67D3F6002F81F2 /* LaunchScreen.storyboard in Resources */,
 				CE2775F51C67D3F6002F81F2 /* Assets.xcassets in Resources */,
 				CE2775F31C67D3F6002F81F2 /* Main.storyboard in Resources */,
@@ -599,6 +600,8 @@
 			baseConfigurationReference = 356E778BF74F7AFABC9CEFAD /* Pods-Falcon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/Firebase",
@@ -612,6 +615,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.falcon.ios.Falcon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -620,6 +624,8 @@
 			baseConfigurationReference = FE533763D9FE914DCBF5FC91 /* Pods-Falcon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/Firebase",
@@ -633,6 +639,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.falcon.ios.Falcon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
