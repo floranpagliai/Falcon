@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-		var initViewController: UIViewController =  storyboard.instantiateViewControllerWithIdentifier("Home") as UIViewController
+		var initViewController: UIViewController =  storyboard.instantiateViewControllerWithIdentifier("HomeView") as UIViewController
 		GMSServices.provideAPIKey("AIzaSyDg64M-wm_BOaiicA5nt0f3zqGPWbNFfvs")
 
 		if self.ref.getAuthData() != nil {
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				self.window?.rootViewController = initViewController
 			})
 		} else {
-			initViewController = storyboard.instantiateViewControllerWithIdentifier("Login") as UIViewController
+			initViewController = storyboard.instantiateViewControllerWithIdentifier("LoginView") as UIViewController
 			self.window?.rootViewController = initViewController
 		}
 		

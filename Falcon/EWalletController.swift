@@ -19,6 +19,9 @@ class EWalletController: UIViewController, UITableViewDataSource {
 	var originAddress: FalcoinAddress?
 	let ref = FirebaseManager()
 	let userManager = UserManager()
+	var selectedCellIndexPath: NSIndexPath?
+	let selectedCellHeight: CGFloat = 200.0
+	let unselectedCellHeight: CGFloat = 80.0
 	
 	// MARK: View Properties
 	@IBOutlet weak var falcoinAddresses: UITableView!
@@ -28,8 +31,9 @@ class EWalletController: UIViewController, UITableViewDataSource {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.title = "EWallet"
 		self.falcoinAddresses.rowHeight = 80.0
-		self.totalFalcoinsLabel.format = "%d"
+		self.totalFalcoinsLabel.format = "%d FC"
 		self.totalFalcoinsLabel.method = UILabelCountingMethod.EaseOut
 		self.falcoinAddresses.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		self.syncWallet()
@@ -51,6 +55,10 @@ class EWalletController: UIViewController, UITableViewDataSource {
 		
 	}
 	
+	@IBAction func closeAction(sender: AnyObject) {
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if (segue.identifier == "TransferFalcoin") {
 			let navVC = segue.destinationViewController as! UINavigationController
@@ -60,6 +68,7 @@ class EWalletController: UIViewController, UITableViewDataSource {
 		}
 	}
 	
+	// MARK: Table views
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return self.eWallet.count
 	}
@@ -70,17 +79,41 @@ class EWalletController: UIViewController, UITableViewDataSource {
 		let address = self.eWallet[self.eWallet.startIndex.advancedBy(indexPath.row)]
 		
 		cell.textLabel?.text = "Public Address : " + String(address.publicKey)
-		cell.detailTextLabel?.text = "Balance : " + String(address.balance) + " F"
+		cell.detailTextLabel?.text = "Balance : " + String(self.walletManager.suffixNumber(address.balance)) + " FC"
 		
 		return cell
 	}
 	
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		if self.selectedCellIndexPath == indexPath {
+			return self.selectedCellHeight
+		}
+		return self.unselectedCellHeight
+	}
+	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		if self.selectedCellIndexPath != nil && self.selectedCellIndexPath == indexPath {
+			self.selectedCellIndexPath = nil
+		} else {
+			self.selectedCellIndexPath = indexPath
+		}
+		
+		tableView.beginUpdates()
+		tableView.endUpdates()
+		
+		if self.selectedCellIndexPath != nil {
+			// This ensures, that the cell is fully visible once expanded
+			tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .None, animated: true)
+		}
 		
 	}
 	
 	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+		if self.selectedCellIndexPath != nil && self.selectedCellIndexPath == indexPath {
+			return false;
+		}
 		// the cells you would like the actions to appear needs to be editable
+		
 		return true
 	}
 	
@@ -138,6 +171,7 @@ class EWalletController: UIViewController, UITableViewDataSource {
 		for falcoinAddress in self.eWallet {
 			  total += falcoinAddress.balance
 		}
+		//self.totalFalcoinsLabel.text = self.walletManager.suffixNumber(total) as String
 		self.totalFalcoinsLabel.countFromCurrentValueTo(CGFloat(total))
 	}
 }

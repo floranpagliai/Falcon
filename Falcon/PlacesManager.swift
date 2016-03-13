@@ -84,9 +84,6 @@ class PlacesManager {
 			case "restaurant":
 				placeType = PlaceType.restaurant
 				break
-			case "school":
-				placeType = PlaceType.school
-				break
 			case "store":
 				placeType = PlaceType.store
 				break
@@ -104,9 +101,6 @@ class PlacesManager {
 				break
 			case "restaurant":
 				placeType = PlaceType.restaurant
-				break
-			case "school":
-				placeType = PlaceType.school
 				break
 			case "store":
 				placeType = PlaceType.store

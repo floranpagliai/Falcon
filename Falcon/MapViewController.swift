@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import CoreLocation
 import CCMRadarView
+import JDStatusBarNotification
 
 class MapViewController: UIViewController {
 	
@@ -53,23 +54,15 @@ class MapViewController: UIViewController {
 		self.radarView.hidden = true
 	}
 	
-	override func viewDidAppear(animated: Bool) {
-		PersmissionManager.showPermisionDialog {
-			(error) -> Void in
-			if (error) {
-				self.performSegueWithIdentifier("Home", sender: nil)
-			}
-		}
-	}
-	
 	// MARK: Actions
 	@IBAction func scanAction(sender: UIButton) {
+		let stopwatch = Stopwatch()
+		let time = NSTimeInterval(3)
+		
 		self.radarView.hidden = false
 		self.radarView.startAnimation()
 		self.hidePlaceInfo()
-		let stopwatch = Stopwatch()
-		let time = NSTimeInterval(3)
-		mapView.clear()
+		self.mapView.clear()
 		self.placeManager.fetchNearPlaces {
 			(places) -> Void in
 			while time > stopwatch.elapsedTimeInterval() {}
@@ -80,6 +73,13 @@ class MapViewController: UIViewController {
 			self.radarView.hidden = true
 			self.radarView.stopAnimation()
 		}
+		if (self.mapView == nil) {
+			JDStatusBarNotification.showWithStatus("No place to hack nearby", dismissAfter: NSTimeInterval(5), styleName: JDStatusBarStyleError)
+		}
+	}
+	
+	@IBAction func closeAction(sender: AnyObject) {
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
@@ -162,6 +162,5 @@ extension MapViewController: GMSMapViewDelegate {
 	
 	func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
 		self.hidePlaceInfo()
-		print("MapView : tap")
 	}
 }

@@ -14,6 +14,9 @@ class HomeViewController: UIViewController {
 	// MARK: Properties
 	var ref: Firebase!
 	
+	// MARK: View Properties
+    @IBOutlet weak var mapButton: UIButton!
+	
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -27,6 +30,9 @@ class HomeViewController: UIViewController {
 	// MARK: Actions
 	@IBAction func logoutAction(sender: UIButton) {
 		ref.unauth()
-		self.performSegueWithIdentifier("Logout", sender: nil)
+		//self.performSegueWithIdentifier("Logout", sender: nil)
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc = storyboard.instantiateViewControllerWithIdentifier("LoginView")
+		self.presentViewController(vc, animated: true, completion: nil)
 	}
 }

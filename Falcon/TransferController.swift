@@ -68,7 +68,7 @@ class TransferController: UIViewController {
 	}
 	
 	@IBAction func closeActon(sender: UIBarButtonItem) {
-		self.dismissViewControllerAnimated(false, completion: nil)
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	func checkAmount() {

@@ -227,7 +227,6 @@
 				CEDAB0231C739FB300CC332C /* FirebaseManager.swift */,
 				CEDAB0251C7627F200CC332C /* PersmissionManager.swift */,
 				CEDAB0271C76781700CC332C /* PlacesManager.swift */,
-				CEDAB02B1C7743F700CC332C /* PlaceMarker.swift */,
 				CE8424561C7905BC006B8379 /* DataManager.swift */,
 				CED31BB41C79221300EA573A /* Stopwatch.swift */,
 				CED31BBC1C7A57E100EA573A /* EWalletManager.swift */,
@@ -239,6 +238,7 @@
 		CE529BFC1C6FC70A00A97F18 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CEDAB02B1C7743F700CC332C /* PlaceMarker.swift */,
 				CEDAB0291C7679A700CC332C /* Place.swift */,
 				CED31BB61C7931F100EA573A /* User.swift */,
 				CED31BBA1C79F3CF00EA573A /* FalcoinAddress.swift */,

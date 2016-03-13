@@ -11,18 +11,18 @@ import PermissionScope
 class PersmissionManager {
 	
 	static func showPermisionDialog(withCompletionBlock: (error: Bool) -> Void) {
-		let pscope = PermissionScope()
+		let pscope = PermissionScope(backgroundTapCancels: false)
 		
+		pscope.headerLabel.text = "Hey !"
 		pscope.addPermission(LocationWhileInUsePermission(), message: "We use this to track\r\nwhere you live")
-
+		
+		pscope.closeButton = UIButton()
 		pscope.show({
 			finished, results in
-			  print("got results \(results)")
 			  withCompletionBlock(error: false)
 			},
 			cancelled: {
 				(results) -> Void in
-				print(results)
 				withCompletionBlock(error: true)
 		})
 	}
