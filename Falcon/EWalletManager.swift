@@ -46,19 +46,17 @@ class EWalletManager {
 		}
 	}
 	
-	func getNextKey(withCompletionBlock: (error: Bool, key: Int) -> Void) {
+	func getNextKey(withCompletionBlock: (error: Bool, key: String) -> Void) {
 		let addressesKey = self.ref.falcoinAddrsKeyRef
 		
 		addressesKey.runTransactionBlock({
 			(currentData:FMutableData!) in
-			var value = currentData.value as? Int
-			if (value == nil) {
-				value = 0
+			if (currentData.value is NSNull) {
+				currentData.value = "A1"
 			} else {
-				
-				withCompletionBlock(error: false, key: value! + 1)
+				currentData.value = self.incrementPublicKey(currentData.value as! String)
+				withCompletionBlock(error: false, key: currentData.value as! String)
 			}
-			currentData.value = value! + 1
 			return FTransactionResult.successWithValue(currentData)
 		})
 	}
@@ -122,6 +120,24 @@ class EWalletManager {
 		let roundedNum:Double = 10 * num / pow(1000.0,Double(exp)) / 10;
 		
 		return "\(sign)\(roundedNum)\(units[exp-1])";
+	}
+	
+	func incrementPublicKey(publicKey: String) -> String {
+		var letter: String
+		let NSPublicKey = publicKey as NSString
+		var number = Int(NSPublicKey.substringWithRange(NSRange(location: 1, length: publicKey.characters.count - 1)))!
+		
+		switch NSPublicKey.substringWithRange(NSRange(location: 0, length: 1)) {
+			case "A":
+			letter = "B"
+			case "B":
+			letter = "C"
+			default:
+			letter = "A"
+			number = number + 1
+		}
+		
+		return letter + String(number)
 	}
 
 	

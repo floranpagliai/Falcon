@@ -17,8 +17,8 @@ import JDStatusBarNotification
 class LoginViewController: UIViewController {
 	
 	// MARK: Properties
-	var ref: FirebaseManager!
-	var fbm: FacebookManager!
+	var ref = FirebaseManager()
+	var fbm = FacebookManager()
 	
 	// MARK: View Properties
 	@IBOutlet weak var loginTextField: UITextField!
@@ -28,8 +28,6 @@ class LoginViewController: UIViewController {
 	// MARK: UIViewController Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		ref = FirebaseManager()
-		fbm = FacebookManager()
 		
 		loginTextField.autocorrectionType = UITextAutocorrectionType.No
 	}
@@ -75,8 +73,6 @@ class LoginViewController: UIViewController {
 			if (!error) {
 				self.performSegueWithIdentifier("Logged", sender: nil)
 			} else {
-				// There was an error logging in to this account
-				// TODO: Add error message
 				JDStatusBarNotification.showWithStatus(message, dismissAfter: NSTimeInterval(5), styleName: JDStatusBarStyleError)
 				self.loginTextField.layer.borderColor = UIColor.redColor().CGColor
 				self.loginTextField.layer.borderWidth = 1.0

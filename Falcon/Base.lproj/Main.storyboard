@@ -253,20 +253,20 @@
                                     <constraint firstItem="6E7-f4-rjq" firstAttribute="top" secondItem="Yji-6f-0S1" secondAttribute="bottom" constant="15" id="xr8-0u-2Og"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoHome" translatesAutoresizingMaskIntoConstraints="NO" id="SWX-f9-cBZ">
-                                <rect key="frame" x="0.0" y="20" width="320" height="92"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="peptide" translatesAutoresizingMaskIntoConstraints="NO" id="SWX-f9-cBZ">
+                                <rect key="frame" x="140" y="520" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="92" id="NHH-m0-IKb"/>
-                                    <constraint firstAttribute="width" constant="320" id="kMr-6V-98V"/>
+                                    <constraint firstAttribute="width" constant="40" id="mAo-GS-J25"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="SWX-f9-cBZ" firstAttribute="top" secondItem="AJv-1F-O56" secondAttribute="bottom" constant="52" id="Db1-eJ-5q8"/>
                             <constraint firstItem="AJv-1F-O56" firstAttribute="centerX" secondItem="2tk-iE-LpR" secondAttribute="centerX" id="Qpw-HE-MOj"/>
-                            <constraint firstItem="SWX-f9-cBZ" firstAttribute="centerX" secondItem="2tk-iE-LpR" secondAttribute="centerX" id="Qsb-Z0-fHS"/>
+                            <constraint firstItem="SWX-f9-cBZ" firstAttribute="centerX" secondItem="AJv-1F-O56" secondAttribute="centerX" id="evC-XH-x6O"/>
                             <constraint firstItem="AJv-1F-O56" firstAttribute="centerY" secondItem="2tk-iE-LpR" secondAttribute="centerY" id="hmL-XG-Y1n"/>
-                            <constraint firstItem="SWX-f9-cBZ" firstAttribute="top" secondItem="nwZ-89-cdc" secondAttribute="bottom" id="xVS-nu-sMA"/>
+                            <constraint firstItem="KYO-aC-47L" firstAttribute="top" secondItem="SWX-f9-cBZ" secondAttribute="bottom" constant="8" symbolic="YES" id="v4p-1c-4f2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0gr-PJ-3a9"/>
@@ -814,9 +814,9 @@
     </scenes>
     <resources>
         <image name="falcoin" width="61" height="61"/>
-        <image name="logoHome" width="243" height="109"/>
         <image name="logoutHome" width="80" height="100"/>
         <image name="mapHome" width="80" height="100"/>
+        <image name="peptide" width="61" height="61"/>
         <image name="radarButton" width="61" height="61"/>
         <image name="settingsHome" width="80" height="100"/>
         <image name="walletHome" width="80" height="72"/>

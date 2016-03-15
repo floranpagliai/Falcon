@@ -17,10 +17,11 @@ struct User {
 	let ref: Firebase?
 	
 	// Initialize from arbitrary data
-	init(id: String, username: String, address: String, email: String) {
+	init(id: String, username: String, address: String, email: String, coordinate: CLLocationCoordinate2D) {
 		self.id = id
 		self.username = username
 		self.email = email
+//		self.coordinate = coordinate
 		self.ref = nil
 	}
 	
@@ -28,6 +29,9 @@ struct User {
 		self.id = snapshot.key
 		self.username = snapshot.value["username"] as! String
 		self.email = snapshot.value["email"] as! String
+//		self.coordinate = CLLocationCoordinate2D(
+//			latitude: snapshot.value["latitude"] as! CLLocationDegrees,
+//			longitude: snapshot.value["longitude"] as! CLLocationDegrees)
 		self.ref = snapshot.ref
 	}
 	
@@ -35,6 +39,8 @@ struct User {
 		return [
 			"username": self.username,
 			"email": self.email,
+//			"latitude": self.coordinate.latitude,
+//			"longitude": self.coordinate.longitude
 		]
 	}
 

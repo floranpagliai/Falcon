@@ -36,12 +36,12 @@ class RegisterViewController: UIViewController {
 			"email": emailTextField.text!
 		]
 		ref.registerUser(userData, password: passwordTextField.text!) {
-				(error, message) -> Void in
-				if (!error) {
-					self.performSegueWithIdentifier("Logged", sender: nil)
-				} else {
-					JDStatusBarNotification.showWithStatus(message, dismissAfter: NSTimeInterval(5), styleName: JDStatusBarStyleError)
-				}
+			(error, message) -> Void in
+			if (!error) {
+				self.performSegueWithIdentifier("Logged", sender: nil)
+			} else {
+				JDStatusBarNotification.showWithStatus(message, dismissAfter: NSTimeInterval(5), styleName: JDStatusBarStyleError)
+			}
 		}
 	}
 	

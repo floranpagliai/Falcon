@@ -142,7 +142,12 @@ extension MapViewController: GMSMapViewDelegate {
 	
 	// MARK: GMSMapViewDelegate
 	func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
-		reverseGeocodeCoordinate(locationManager.location!.coordinate)
+		//reverseGeocodeCoordinate(locationManager.location!.coordinate)
+		let latitude = locationManager.location!.coordinate.latitude.description
+		let longitude = locationManager.location!.coordinate.longitude.description
+		self.locationLabel.text = "Location: " + latitude + ", " + longitude
+		let labelHeight = self.locationLabel.intrinsicContentSize().height
+		self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: labelHeight, right: 0)
 	}
 	
 	func didTapMyLocationButtonForMapView(mapView: GMSMapView!) -> Bool {
